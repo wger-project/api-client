@@ -1,0 +1,176 @@
+from http import HTTPStatus
+from typing import Any
+
+import httpx
+
+from ... import errors
+from ...client import AuthenticatedClient, Client
+from ...models.weight_config import WeightConfig
+from ...models.weight_config_request import WeightConfigRequest
+from ...types import UNSET, Response
+
+
+def _get_kwargs(
+    *,
+    body: WeightConfigRequest | Unset = UNSET,
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
+
+    _kwargs: dict[str, Any] = {
+        "method": "post",
+        "url": "/api/v2/weight-config/",
+    }
+
+    if isinstance(body, WeightConfigRequest):
+        _kwargs["json"] = body.to_dict()
+
+        headers["Content-Type"] = "application/json"
+    if isinstance(body, WeightConfigRequest):
+        _kwargs["data"] = body.to_dict()
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    if isinstance(body, WeightConfigRequest):
+        _kwargs["files"] = body.to_multipart()
+
+        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+
+    _kwargs["headers"] = headers
+    return _kwargs
+
+
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> WeightConfig | None:
+    if response.status_code == 201:
+        response_201 = WeightConfig.from_dict(response.json())
+
+        return response_201
+
+    if client.raise_on_unexpected_status:
+        raise errors.UnexpectedStatus(response.status_code, response.content)
+    else:
+        return None
+
+
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[WeightConfig]:
+    return Response(
+        status_code=HTTPStatus(response.status_code),
+        content=response.content,
+        headers=response.headers,
+        parsed=_parse_response(client=client, response=response),
+    )
+
+
+def sync_detailed(
+    *,
+    client: AuthenticatedClient,
+    body: WeightConfigRequest | Unset = UNSET,
+) -> Response[WeightConfig]:
+    """API endpoint for weight config objects
+
+    Args:
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[WeightConfig]
+    """
+
+    kwargs = _get_kwargs(
+        body=body,
+    )
+
+    response = client.get_httpx_client().request(
+        **kwargs,
+    )
+
+    return _build_response(client=client, response=response)
+
+
+def sync(
+    *,
+    client: AuthenticatedClient,
+    body: WeightConfigRequest | Unset = UNSET,
+) -> WeightConfig | None:
+    """API endpoint for weight config objects
+
+    Args:
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        WeightConfig
+    """
+
+    return sync_detailed(
+        client=client,
+        body=body,
+    ).parsed
+
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient,
+    body: WeightConfigRequest | Unset = UNSET,
+) -> Response[WeightConfig]:
+    """API endpoint for weight config objects
+
+    Args:
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[WeightConfig]
+    """
+
+    kwargs = _get_kwargs(
+        body=body,
+    )
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    *,
+    client: AuthenticatedClient,
+    body: WeightConfigRequest | Unset = UNSET,
+) -> WeightConfig | None:
+    """API endpoint for weight config objects
+
+    Args:
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+        body (WeightConfigRequest): Weight Config serializer
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        WeightConfig
+    """
+
+    return (
+        await asyncio_detailed(
+            client=client,
+            body=body,
+        )
+    ).parsed

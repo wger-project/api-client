@@ -1,0 +1,9 @@
+# Config for openapi-python-client. See scripts/generate.sh for how it is invoked.
+#
+# The schema's title is just "wger", which would produce a package called
+# "wger_client" and collide conceptually with the "wger" distribution (the
+# server itself). Pin both names instead.
+project_name_override: wger-api-client
+package_name_override: wger_api_client
+
+use_path_prefixes_for_title_model_names: false

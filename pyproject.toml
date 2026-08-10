@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wger-api-client"
+# Tracks the oldest wger release this client targets, so 2.6.x is meant for a
+# 2.6 server. The patch component is the client's own release counter.
+version = "2.6.0"
+description = "Typed Python client for the wger workout manager REST API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE.txt", "NOTICE"]
+authors = [
+    { name = "Roland Geider", email = "roland@geider.net" },
+]
+keywords = ["wger", "fitness", "openapi", "rest", "client"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.23,<0.29",
+    "attrs>=22.2",
+    # The generated code imports typing_extensions.Self unconditionally, even
+    # though openapi-python-client does not list it in the metadata it emits.
+    "typing-extensions>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/wger-project/api-client"
+Issues = "https://github.com/wger-project/api-client/issues"
+"wger server" = "https://github.com/wger-project/wger"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.9",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["wger_api_client"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "wger_api_client",
+    "schema",
+    "scripts",
+    "tests",
+    "openapi-config.yml",
+    "LICENSE.txt",
+    "NOTICE",
+    "README.md",
+]
+
+[tool.ruff]
+# The package is generated, so it is formatted by the generator, not by us.
+extend-exclude = ["wger_api_client"]
+# Deliberately no line-length or quote-style: the generator runs "ruff format"
+# inside the output directory, which walks up and finds this file. Anything set
+# here would change the generated code, and scripts/generate.sh --check would
+# then depend on whether it generated inside the repo or in a temp directory.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

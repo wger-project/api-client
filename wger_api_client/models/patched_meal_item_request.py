@@ -1,0 +1,164 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+from uuid import UUID
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+from typing_extensions import Self
+
+from .. import types
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="PatchedMealItemRequest")
+
+
+@_attrs_define
+class PatchedMealItemRequest:
+    """MealItem serializer
+
+    Attributes:
+        id (UUID | Unset):
+        meal (UUID | Unset):
+        ingredient (int | Unset):
+        weight_unit (int | None | Unset):
+        amount (str | Unset):
+    """
+
+    id: UUID | Unset = UNSET
+    meal: UUID | Unset = UNSET
+    ingredient: int | Unset = UNSET
+    weight_unit: int | None | Unset = UNSET
+    amount: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        id: str | Unset = UNSET
+        if not isinstance(self.id, Unset):
+            id = str(self.id)
+
+        meal: str | Unset = UNSET
+        if not isinstance(self.meal, Unset):
+            meal = str(self.meal)
+
+        ingredient = self.ingredient
+
+        weight_unit: int | None | Unset
+        if isinstance(self.weight_unit, Unset):
+            weight_unit = UNSET
+        else:
+            weight_unit = self.weight_unit
+
+        amount = self.amount
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update({})
+        if id is not UNSET:
+            field_dict["id"] = id
+        if meal is not UNSET:
+            field_dict["meal"] = meal
+        if ingredient is not UNSET:
+            field_dict["ingredient"] = ingredient
+        if weight_unit is not UNSET:
+            field_dict["weight_unit"] = weight_unit
+        if amount is not UNSET:
+            field_dict["amount"] = amount
+
+        return field_dict
+
+    def to_multipart(self) -> types.RequestFiles:
+        files: types.RequestFiles = []
+
+        if not isinstance(self.id, Unset):
+            files.append(("id", (None, str(self.id), "text/plain")))
+
+        if not isinstance(self.meal, Unset):
+            files.append(("meal", (None, str(self.meal), "text/plain")))
+
+        if not isinstance(self.ingredient, Unset):
+            files.append(
+                ("ingredient", (None, str(self.ingredient).encode(), "text/plain"))
+            )
+
+        if not isinstance(self.weight_unit, Unset):
+            if isinstance(self.weight_unit, int):
+                files.append(
+                    (
+                        "weight_unit",
+                        (None, str(self.weight_unit).encode(), "text/plain"),
+                    )
+                )
+            else:
+                files.append(
+                    (
+                        "weight_unit",
+                        (None, str(self.weight_unit).encode(), "text/plain"),
+                    )
+                )
+
+        if not isinstance(self.amount, Unset):
+            files.append(("amount", (None, str(self.amount).encode(), "text/plain")))
+
+        for prop_name, prop in self.additional_properties.items():
+            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
+
+        return files
+
+    @classmethod
+    def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
+        d = dict(src_dict)
+        _id = d.pop("id", UNSET)
+        id: UUID | Unset
+        if isinstance(_id, Unset):
+            id = UNSET
+        else:
+            id = UUID(_id)
+
+        _meal = d.pop("meal", UNSET)
+        meal: UUID | Unset
+        if isinstance(_meal, Unset):
+            meal = UNSET
+        else:
+            meal = UUID(_meal)
+
+        ingredient = d.pop("ingredient", UNSET)
+
+        def _parse_weight_unit(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        weight_unit = _parse_weight_unit(d.pop("weight_unit", UNSET))
+
+        amount = d.pop("amount", UNSET)
+
+        patched_meal_item_request = cls(
+            id=id,
+            meal=meal,
+            ingredient=ingredient,
+            weight_unit=weight_unit,
+            amount=amount,
+        )
+
+        patched_meal_item_request.additional_properties = d
+        return patched_meal_item_request
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

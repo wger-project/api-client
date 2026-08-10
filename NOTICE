@@ -1,0 +1,15 @@
+wger-api-client
+Copyright 2026 Roland Geider and the wger contributors
+
+This product includes software developed as part of the wger project
+(https://github.com/wger-project/wger).
+
+The package under wger_api_client/ is generated from wger's OpenAPI schema, a
+copy of which is kept at schema/wger-openapi.yaml. The generator is
+openapi-python-client (https://github.com/openapi-generators/openapi-python-client),
+distributed under the MIT license.
+
+The endpoint, model and field descriptions that appear as docstrings in the
+generated package originate from the wger server's source code, which is
+licensed under the GNU Affero General Public License, version 3 or later.
+They are reproduced here as API documentation.

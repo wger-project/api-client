@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install
+        run: uv sync --group dev --python ${{ matrix.python-version }}
+
+      - name: Contract tests
+        run: uv run pytest
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install
+        run: uv sync --group dev
+
+      # The generated package is excluded in pyproject.toml, this covers the
+      # hand-written scripts and tests.
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+
+  generated-code-is-current:
+    # The package is checked in, so a schema that was updated without
+    # regenerating would ship a client that does not match its own contract.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Regenerate and compare
+        run: scripts/generate.sh --check
+
+  schema-drift:
+    # Warns when wger master has moved on. Informational: a red run here means
+    # "refresh the snapshot", not "this PR is broken".
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Check the snapshot against the upstream instance
+        run: uv run python scripts/sync_schema.py --check --base-url https://wger.de

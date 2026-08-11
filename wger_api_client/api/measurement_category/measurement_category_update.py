@@ -9,7 +9,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.category import Category
 from ...models.category_request import CategoryRequest
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

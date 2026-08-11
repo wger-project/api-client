@@ -7,6 +7,7 @@ allowed methods per URL, valid enum values and the set of writable fields.
 import dataclasses
 import importlib
 import inspect
+import pkgutil
 from pathlib import Path
 
 import pytest
@@ -25,6 +26,26 @@ def fields(model) -> set[str]:
     if dataclasses.is_dataclass(model):
         return {f.name for f in dataclasses.fields(model)}
     return {a.name for a in model.__attrs_attrs__}
+
+
+def test_every_module_imports():
+    """
+    Importing part of the package is not enough to catch a missing import in an
+    annotation: Python 3.14 evaluates annotations lazily, so a broken module only
+    fails on 3.10 to 3.13, and only once it is actually imported.
+    """
+    import wger_api_client
+
+    failed = {}
+    for module in pkgutil.walk_packages(wger_api_client.__path__, "wger_api_client."):
+        try:
+            importlib.import_module(module.name)
+        except Exception as e:  # noqa: BLE001 - any import failure counts
+            failed[module.name] = f"{type(e).__name__}: {e}"
+
+    assert not failed, (
+        f"{len(failed)} modules fail to import: {sorted(failed.items())[:3]}"
+    )
 
 
 def test_equipment_is_read_only():

@@ -7,7 +7,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.repetitions_config import RepetitionsConfig
 from ...models.repetitions_config_request import RepetitionsConfigRequest
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

@@ -9,7 +9,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.log_item import LogItem
 from ...models.log_item_request import LogItemRequest
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

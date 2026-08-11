@@ -8,7 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.max_ri_r_config import MaxRiRConfig
 from ...models.max_ri_r_config_request import MaxRiRConfigRequest
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

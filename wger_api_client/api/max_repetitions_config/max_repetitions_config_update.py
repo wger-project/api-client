@@ -8,7 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.max_repetitions_config import MaxRepetitionsConfig
 from ...models.max_repetitions_config_request import MaxRepetitionsConfigRequest
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

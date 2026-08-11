@@ -7,7 +7,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.powersync_upload_request import PowersyncUploadRequest
 from ...models.powersync_upload_response import PowersyncUploadResponse
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(

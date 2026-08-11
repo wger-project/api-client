@@ -245,7 +245,7 @@ wheels = [
 
 [[package]]
 name = "wger-api-client"
-version = "2.6.0"
+version = "2.6.0b1"
 source = { editable = "." }
 dependencies = [
     { name = "attrs" },

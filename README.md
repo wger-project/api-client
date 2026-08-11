@@ -5,6 +5,8 @@ manager REST API, generated from the server's OpenAPI schema with
 [openapi-python-client](https://github.com/openapi-generators/openapi-python-client).
 Built on `httpx`, with a sync and an async call for every endpoint.
 
+Note that this is still new, if you encounter any problems, please contact us.
+
 ## Install
 
 ```bash
@@ -63,12 +65,11 @@ By default a non-2xx response returns `None` from `sync`. Pass
 ## Versioning
 
 The major and minor version say which wger release this client targets, so
-`2.6.x` is meant for a 2.6 server. The patch component is this package's own
-release counter.
+`2.6.x` is meant for a 2.6 server.
 
-Since the API is additive within a release series, an older client generally
-keeps working against a newer server, it just does not know about the newer
-endpoints and fields.
+Since we try to keep the API as compatible as possible, an older client generally
+keeps working against a newer server, specially for endpoints such as the exercises.
+However it is recommended that you use the version that matches your server's
 
 ## Development
 
@@ -81,10 +82,10 @@ by default the upstream one at https://wger.de:
 
 ```bash
 # 1. refresh schema/wger-openapi.yaml
-uv run python scripts/sync_schema.py
+uv run scripts/sync_schema.py [--base-url https://my.server]
 
 # 2. regenerate the client from the refreshed schema
-scripts/generate.sh
+./scripts/generate.sh
 
 uv run pytest
 ```
@@ -94,7 +95,7 @@ To pick up API changes that are not released yet, point it at a local instance
 `$WGER_BASE_URL`:
 
 ```bash
-uv run python scripts/sync_schema.py --base-url http://localhost:8000
+uv run scripts/sync_schema.py --base-url http://localhost:8000
 ```
 
 Then commit both diffs together. A schema that moved without a regenerated
@@ -104,25 +105,22 @@ Two things to keep in mind when refreshing:
 
 The instance must be backed by **PostgreSQL**, the way real deployments are.
 Django derives the bounds of its integer fields from the database backend, so
-the schema is backend-dependent: on SQLite around 100 fields come out with
-64-bit bounds (`Day.order`, `WorkoutLog.rest`, `NutritionPlan.goal_*` and the
-`iteration` fields), where PostgreSQL reports the 32-bit range the server
-actually enforces. The default instance already satisfies this, so it only
-matters when syncing from a local checkout configured for SQLite.
+the schema is backend-dependent. The default instance already satisfies this,
+so it only matters when syncing from a local checkout configured for SQLite.
 
-The schema endpoint does not report the warnings that `./manage.py spectacular`
-prints on the server side. Those warnings mean the schema is misdescribing the
-API somewhere, and the mistake gets baked into the client, so check them in the
-server checkout whenever its serializers changed.
+Also note that the schema endpoint does not report the warnings that
+`./manage.py spectacular` prints on the server side. Those warnings mean the schema
+might be misdescribing the  API somewhere, and the mistake gets baked into the
+client, so check them in the server checkout whenever its serializers changed.
 
-To verify without changing anything, which is what CI does:
+To verify without changing anything:
 
 ```bash
 # does the committed client still match the committed schema?
-scripts/generate.sh --check
+./scripts/generate.sh --check
 
 # has the server's schema moved since the snapshot was taken?
-uv run python scripts/sync_schema.py --check
+uv run scripts/sync_schema.py --check
 ```
 
 `tests/test_contract.py` pins the parts of the contract that are easy to get
@@ -137,7 +135,6 @@ methods each URL allows, the valid enum values and the writable field sets.
 Apache-2.0, see [LICENSE.txt](LICENSE.txt) and [NOTICE](NOTICE).
 
 The wger server itself is AGPL-3.0-or-later. This client is licensed
-permissively so that it can be used as an ordinary dependency, which is the
-usual arrangement for a generated API client. The endpoint and field
-descriptions carried in the generated docstrings come from the server's source
-code and are attributed in the NOTICE file.
+permissively so that it can be used as an ordinary dependency. The endpoint and
+field descriptions carried in the generated docstrings come from the server's
+source code and are attributed in the NOTICE file.

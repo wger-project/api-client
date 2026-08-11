@@ -92,7 +92,7 @@ jobs:
           A rename will also change the s name in the generated client, which breaks its
           consumers even when the API itself did not change.
 
-          After merging: bump the version, update the changelog, tag the release.
+          After merging:
           * bump the version \`uv version x.y.z\`
           * update the changelog
           * tag the version \`git tag x.y.z && git push origin x.y.z\` 

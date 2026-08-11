@@ -4,9 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wger-api-client"
-# Tracks the oldest wger release this client targets, so 2.6.x is meant for a
-# 2.6 server. The patch component is the client's own release counter.
-version = "2.6.0b1"
+version = "2.6.0b2"
 description = "Typed Python client for the wger workout manager REST API"
 readme = "README.md"
 requires-python = ">=3.11"

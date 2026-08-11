@@ -17,16 +17,21 @@ cd "$(dirname "$0")/.."
 PACKAGE=wger_api_client
 SCHEMA=schema/wger-openapi.yaml
 
-if ! command -v uvx >/dev/null 2>&1; then
-    echo 'uvx not found. Install uv: https://docs.astral.sh/uv/' >&2
+if ! command -v uv >/dev/null 2>&1; then
+    echo 'uv not found. Install it: https://docs.astral.sh/uv/' >&2
     exit 1
 fi
 
 generate() {
     local target=$1
+    # The generator comes from the dev dependency group, so uv.lock fixes its
+    # version and the version of the ruff it formats the output with. Running it
+    # with uvx instead would resolve both freshly every time, and the generated
+    # code would change whenever either released.
+    #
     # --meta none emits only the package directory, leaving the hand-written
     # pyproject.toml, README and tests alone.
-    uvx --from openapi-python-client openapi-python-client generate \
+    uv run --quiet openapi-python-client generate \
         --path "$SCHEMA" \
         --config openapi-config.yml \
         --meta none \

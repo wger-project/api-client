@@ -44,6 +44,9 @@ Changelog = "https://github.com/wger-project/api-client/blob/master/CHANGELOG.md
 [dependency-groups]
 dev = [
     "pytest>=8",
+    # The marker is required: the generator needs 3.11, while the package itself
+    # supports 3.10, and without it the dev group cannot be resolved for 3.10.
+    "openapi-python-client>=0.29; python_version >= '3.11'",
     "ruff>=0.9",
 ]
 

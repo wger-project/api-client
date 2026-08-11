@@ -13,6 +13,16 @@ Note that this is still new, if you encounter any problems, please contact us.
 pip install wger-api-client
 ```
 
+### Versioning
+
+The major and minor version indicate which wger release this client targets, so
+`2.6.x` is meant for a 2.6 server.
+
+Since we try to keep the API as compatible as possible, an older client generally
+keeps working against a newer server, specially for endpoints such as the exercises.
+However, it is recommended that you use the version that exactly matches the server
+you want to connect to.
+
 ## Usage
 
 Every endpoint has its own module under `wger_api_client.api.<tag>`, and each of
@@ -61,15 +71,6 @@ with Client(base_url="https://wger.de") as client:
 By default a non-2xx response returns `None` from `sync`. Pass
 `raise_on_unexpected_status=True` to the client to get an
 `errors.UnexpectedStatus` exception instead.
-
-## Versioning
-
-The major and minor version say which wger release this client targets, so
-`2.6.x` is meant for a 2.6 server.
-
-Since we try to keep the API as compatible as possible, an older client generally
-keeps working against a newer server, specially for endpoints such as the exercises.
-However it is recommended that you use the version that matches your server's
 
 ## Development
 

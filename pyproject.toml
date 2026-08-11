@@ -9,7 +9,7 @@ name = "wger-api-client"
 version = "2.6.0b1"
 description = "Typed Python client for the wger workout manager REST API"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE.txt", "NOTICE"]
 authors = [
@@ -20,7 +20,6 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -44,9 +43,7 @@ Changelog = "https://github.com/wger-project/api-client/blob/master/CHANGELOG.md
 [dependency-groups]
 dev = [
     "pytest>=8",
-    # The marker is required: the generator needs 3.11, while the package itself
-    # supports 3.10, and without it the dev group cannot be resolved for 3.10.
-    "openapi-python-client>=0.29; python_version >= '3.11'",
+    "openapi-python-client>=0.29",
     "ruff>=0.9",
 ]
 

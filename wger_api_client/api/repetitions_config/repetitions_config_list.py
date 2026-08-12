@@ -6,8 +6,12 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.paginated_repetitions_config_list import PaginatedRepetitionsConfigList
-from ...models.repetitions_config_list_operation import RepetitionsConfigListOperation
-from ...models.repetitions_config_list_step import RepetitionsConfigListStep
+from ...models.repetitions_config_list_operation import (
+    RepetitionsConfigListOperation,
+)
+from ...models.repetitions_config_list_step import (
+    RepetitionsConfigListStep,
+)
 from ...types import UNSET, Response, Unset
 
 
@@ -37,7 +41,7 @@ def _get_kwargs(
 
     json_operation: str | Unset = UNSET
     if not isinstance(operation, Unset):
-        json_operation = operation.value
+        json_operation = operation
 
     params["operation"] = json_operation
 
@@ -49,7 +53,7 @@ def _get_kwargs(
 
     json_step: str | Unset = UNSET
     if not isinstance(step, Unset):
-        json_step = step.value
+        json_step = step
 
     params["step"] = json_step
 

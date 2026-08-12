@@ -48,7 +48,7 @@ def _get_kwargs(
 
     json_type_: str | Unset = UNSET
     if not isinstance(type_, Unset):
-        json_type_ = type_.value
+        json_type_ = type_
 
     params["type"] = json_type_
 

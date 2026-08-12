@@ -1,107 +1,215 @@
-from enum import Enum
+from typing import Literal
+
+SchemaRetrieveLang = Literal[
+    "af",
+    "ar",
+    "ar-dz",
+    "ast",
+    "az",
+    "be",
+    "bg",
+    "bn",
+    "br",
+    "bs",
+    "ca",
+    "ckb",
+    "cs",
+    "cy",
+    "da",
+    "de",
+    "dsb",
+    "el",
+    "en",
+    "en-au",
+    "en-gb",
+    "eo",
+    "es",
+    "es-ar",
+    "es-co",
+    "es-mx",
+    "es-ni",
+    "es-ve",
+    "et",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "fy",
+    "ga",
+    "gd",
+    "gl",
+    "he",
+    "hi",
+    "hr",
+    "hsb",
+    "ht",
+    "hu",
+    "hy",
+    "ia",
+    "id",
+    "ig",
+    "io",
+    "is",
+    "it",
+    "ja",
+    "ka",
+    "kab",
+    "kk",
+    "km",
+    "kn",
+    "ko",
+    "ky",
+    "lb",
+    "lt",
+    "lv",
+    "mk",
+    "ml",
+    "mn",
+    "mr",
+    "ms",
+    "my",
+    "nb",
+    "ne",
+    "nl",
+    "nn",
+    "os",
+    "pa",
+    "pl",
+    "pt",
+    "pt-br",
+    "ro",
+    "ru",
+    "sk",
+    "sl",
+    "sq",
+    "sr",
+    "sr-latn",
+    "sv",
+    "sw",
+    "ta",
+    "te",
+    "tg",
+    "th",
+    "tk",
+    "tr",
+    "tt",
+    "udm",
+    "ug",
+    "uk",
+    "ur",
+    "uz",
+    "vi",
+    "zh-hans",
+    "zh-hant",
+]
+
+SCHEMA_RETRIEVE_LANG_VALUES: set[SchemaRetrieveLang] = {
+    "af",
+    "ar",
+    "ar-dz",
+    "ast",
+    "az",
+    "be",
+    "bg",
+    "bn",
+    "br",
+    "bs",
+    "ca",
+    "ckb",
+    "cs",
+    "cy",
+    "da",
+    "de",
+    "dsb",
+    "el",
+    "en",
+    "en-au",
+    "en-gb",
+    "eo",
+    "es",
+    "es-ar",
+    "es-co",
+    "es-mx",
+    "es-ni",
+    "es-ve",
+    "et",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "fy",
+    "ga",
+    "gd",
+    "gl",
+    "he",
+    "hi",
+    "hr",
+    "hsb",
+    "ht",
+    "hu",
+    "hy",
+    "ia",
+    "id",
+    "ig",
+    "io",
+    "is",
+    "it",
+    "ja",
+    "ka",
+    "kab",
+    "kk",
+    "km",
+    "kn",
+    "ko",
+    "ky",
+    "lb",
+    "lt",
+    "lv",
+    "mk",
+    "ml",
+    "mn",
+    "mr",
+    "ms",
+    "my",
+    "nb",
+    "ne",
+    "nl",
+    "nn",
+    "os",
+    "pa",
+    "pl",
+    "pt",
+    "pt-br",
+    "ro",
+    "ru",
+    "sk",
+    "sl",
+    "sq",
+    "sr",
+    "sr-latn",
+    "sv",
+    "sw",
+    "ta",
+    "te",
+    "tg",
+    "th",
+    "tk",
+    "tr",
+    "tt",
+    "udm",
+    "ug",
+    "uk",
+    "ur",
+    "uz",
+    "vi",
+    "zh-hans",
+    "zh-hant",
+}
 
 
-class SchemaRetrieveLang(str, Enum):
-    AF = "af"
-    AR = "ar"
-    AR_DZ = "ar-dz"
-    AST = "ast"
-    AZ = "az"
-    BE = "be"
-    BG = "bg"
-    BN = "bn"
-    BR = "br"
-    BS = "bs"
-    CA = "ca"
-    CKB = "ckb"
-    CS = "cs"
-    CY = "cy"
-    DA = "da"
-    DE = "de"
-    DSB = "dsb"
-    EL = "el"
-    EN = "en"
-    EN_AU = "en-au"
-    EN_GB = "en-gb"
-    EO = "eo"
-    ES = "es"
-    ES_AR = "es-ar"
-    ES_CO = "es-co"
-    ES_MX = "es-mx"
-    ES_NI = "es-ni"
-    ES_VE = "es-ve"
-    ET = "et"
-    EU = "eu"
-    FA = "fa"
-    FI = "fi"
-    FR = "fr"
-    FY = "fy"
-    GA = "ga"
-    GD = "gd"
-    GL = "gl"
-    HE = "he"
-    HI = "hi"
-    HR = "hr"
-    HSB = "hsb"
-    HT = "ht"
-    HU = "hu"
-    HY = "hy"
-    IA = "ia"
-    ID = "id"
-    IG = "ig"
-    IO = "io"
-    IS = "is"
-    IT = "it"
-    JA = "ja"
-    KA = "ka"
-    KAB = "kab"
-    KK = "kk"
-    KM = "km"
-    KN = "kn"
-    KO = "ko"
-    KY = "ky"
-    LB = "lb"
-    LT = "lt"
-    LV = "lv"
-    MK = "mk"
-    ML = "ml"
-    MN = "mn"
-    MR = "mr"
-    MS = "ms"
-    MY = "my"
-    NB = "nb"
-    NE = "ne"
-    NL = "nl"
-    NN = "nn"
-    OS = "os"
-    PA = "pa"
-    PL = "pl"
-    PT = "pt"
-    PT_BR = "pt-br"
-    RO = "ro"
-    RU = "ru"
-    SK = "sk"
-    SL = "sl"
-    SQ = "sq"
-    SR = "sr"
-    SR_LATN = "sr-latn"
-    SV = "sv"
-    SW = "sw"
-    TA = "ta"
-    TE = "te"
-    TG = "tg"
-    TH = "th"
-    TK = "tk"
-    TR = "tr"
-    TT = "tt"
-    UDM = "udm"
-    UG = "ug"
-    UK = "uk"
-    UR = "ur"
-    UZ = "uz"
-    VI = "vi"
-    ZH_HANS = "zh-hans"
-    ZH_HANT = "zh-hant"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_schema_retrieve_lang(value: str) -> SchemaRetrieveLang:
+    if value in SCHEMA_RETRIEVE_LANG_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {SCHEMA_RETRIEVE_LANG_VALUES!r}"
+    )

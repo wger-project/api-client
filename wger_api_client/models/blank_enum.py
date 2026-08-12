@@ -1,8 +1,15 @@
-from enum import Enum
+from typing import Literal
+
+BlankEnum = Literal[""]
+
+BLANK_ENUM_VALUES: set[BlankEnum] = {
+    "",
+}
 
 
-class BlankEnum(str, Enum):
-    VALUE_0 = ""
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_blank_enum(value: str) -> BlankEnum:
+    if value in BLANK_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {BLANK_ENUM_VALUES!r}"
+    )

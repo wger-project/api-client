@@ -1,10 +1,17 @@
-from enum import Enum
+from typing import Literal
+
+WeightConfigListOperation = Literal["+", "-", "r"]
+
+WEIGHT_CONFIG_LIST_OPERATION_VALUES: set[WeightConfigListOperation] = {
+    "+",
+    "-",
+    "r",
+}
 
 
-class WeightConfigListOperation(str, Enum):
-    R = "r"
-    VALUE_0 = "+"
-    VALUE_1 = "-"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_weight_config_list_operation(value: str) -> WeightConfigListOperation:
+    if value in WEIGHT_CONFIG_LIST_OPERATION_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {WEIGHT_CONFIG_LIST_OPERATION_VALUES!r}"
+    )

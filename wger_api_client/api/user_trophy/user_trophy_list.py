@@ -7,7 +7,9 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.paginated_user_trophy_list import PaginatedUserTrophyList
-from ...models.user_trophy_list_trophy_trophy_type import UserTrophyListTrophyTrophyType
+from ...models.user_trophy_list_trophy_trophy_type import (
+    UserTrophyListTrophyTrophyType,
+)
 from ...types import UNSET, Response, Unset
 
 
@@ -92,7 +94,7 @@ def _get_kwargs(
 
     json_trophy_trophy_type: str | Unset = UNSET
     if not isinstance(trophy_trophy_type, Unset):
-        json_trophy_trophy_type = trophy_trophy_type.value
+        json_trophy_trophy_type = trophy_trophy_type
 
     params["trophy__trophy_type"] = json_trophy_trophy_type
 

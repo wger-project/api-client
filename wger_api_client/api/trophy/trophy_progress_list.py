@@ -6,7 +6,9 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.trophy_progress import TrophyProgress
-from ...models.trophy_progress_list_trophy_type import TrophyProgressListTrophyType
+from ...models.trophy_progress_list_trophy_type import (
+    TrophyProgressListTrophyType,
+)
 from ...types import UNSET, Response, Unset
 
 
@@ -45,7 +47,7 @@ def _get_kwargs(
 
     json_trophy_type: str | Unset = UNSET
     if not isinstance(trophy_type, Unset):
-        json_trophy_type = trophy_type.value
+        json_trophy_type = trophy_type
 
     params["trophy_type"] = json_trophy_type
 

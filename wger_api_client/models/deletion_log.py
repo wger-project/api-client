@@ -8,7 +8,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.model_type_enum import ModelTypeEnum
+from ..models.model_type_enum import ModelTypeEnum, check_model_type_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DeletionLog")
@@ -38,7 +38,7 @@ class DeletionLog:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        model_type = self.model_type.value
+        model_type: str = self.model_type
 
         uuid = str(self.uuid)
 
@@ -70,7 +70,7 @@ class DeletionLog:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
-        model_type = ModelTypeEnum(d.pop("model_type"))
+        model_type = check_model_type_enum(d.pop("model_type"))
 
         uuid = UUID(d.pop("uuid"))
 

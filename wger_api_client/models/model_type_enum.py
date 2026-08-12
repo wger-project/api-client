@@ -1,11 +1,18 @@
-from enum import Enum
+from typing import Literal
+
+ModelTypeEnum = Literal["base", "image", "translation", "video"]
+
+MODEL_TYPE_ENUM_VALUES: set[ModelTypeEnum] = {
+    "base",
+    "image",
+    "translation",
+    "video",
+}
 
 
-class ModelTypeEnum(str, Enum):
-    BASE = "base"
-    IMAGE = "image"
-    TRANSLATION = "translation"
-    VIDEO = "video"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_model_type_enum(value: str) -> ModelTypeEnum:
+    if value in MODEL_TYPE_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {MODEL_TYPE_ENUM_VALUES!r}"
+    )

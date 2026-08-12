@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Self, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.exercise_type_enum import ExerciseTypeEnum
+from ..models.exercise_type_enum import ExerciseTypeEnum, check_exercise_type_enum
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -146,7 +146,7 @@ class SlotEntryStructure:
 
         type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+            type_ = self.type_
 
         class_name: None | str | Unset
         if isinstance(self.class_name, Unset):
@@ -324,7 +324,7 @@ class SlotEntryStructure:
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
-            type_ = ExerciseTypeEnum(_type_)
+            type_ = check_exercise_type_enum(_type_)
 
         def _parse_class_name(data: object) -> None | str | Unset:
             if data is None:

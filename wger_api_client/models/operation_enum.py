@@ -1,10 +1,17 @@
-from enum import Enum
+from typing import Literal
+
+OperationEnum = Literal["+", "-", "r"]
+
+OPERATION_ENUM_VALUES: set[OperationEnum] = {
+    "+",
+    "-",
+    "r",
+}
 
 
-class OperationEnum(str, Enum):
-    R = "r"
-    VALUE_0 = "+"
-    VALUE_1 = "-"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_operation_enum(value: str) -> OperationEnum:
+    if value in OPERATION_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {OPERATION_ENUM_VALUES!r}"
+    )

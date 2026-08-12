@@ -1,10 +1,21 @@
-from enum import Enum
+from typing import Literal
+
+WorkoutsessionListGeneralImpression = Literal["1", "2", "3"]
+
+WORKOUTSESSION_LIST_GENERAL_IMPRESSION_VALUES: set[
+    WorkoutsessionListGeneralImpression
+] = {
+    "1",
+    "2",
+    "3",
+}
 
 
-class WorkoutsessionListGeneralImpression(str, Enum):
-    VALUE_0 = "1"
-    VALUE_1 = "2"
-    VALUE_2 = "3"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_workoutsession_list_general_impression(
+    value: str,
+) -> WorkoutsessionListGeneralImpression:
+    if value in WORKOUTSESSION_LIST_GENERAL_IMPRESSION_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {WORKOUTSESSION_LIST_GENERAL_IMPRESSION_VALUES!r}"
+    )

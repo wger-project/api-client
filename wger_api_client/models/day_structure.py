@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Self, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.day_type_enum import DayTypeEnum
+from ..models.day_type_enum import DayTypeEnum, check_day_type_enum
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -74,7 +74,7 @@ class DayStructure:
 
         type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+            type_ = self.type_
 
         config = self.config
 
@@ -135,7 +135,7 @@ class DayStructure:
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
-            type_ = DayTypeEnum(_type_)
+            type_ = check_day_type_enum(_type_)
 
         config = d.pop("config", UNSET)
 

@@ -1,16 +1,25 @@
-from enum import Enum
+from typing import Literal
+
+ExerciseTypeEnum = Literal[
+    "dropset", "forced", "iso", "jump", "myo", "normal", "partial", "tut", "warmup"
+]
+
+EXERCISE_TYPE_ENUM_VALUES: set[ExerciseTypeEnum] = {
+    "dropset",
+    "forced",
+    "iso",
+    "jump",
+    "myo",
+    "normal",
+    "partial",
+    "tut",
+    "warmup",
+}
 
 
-class ExerciseTypeEnum(str, Enum):
-    DROPSET = "dropset"
-    FORCED = "forced"
-    ISO = "iso"
-    JUMP = "jump"
-    MYO = "myo"
-    NORMAL = "normal"
-    PARTIAL = "partial"
-    TUT = "tut"
-    WARMUP = "warmup"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_exercise_type_enum(value: str) -> ExerciseTypeEnum:
+    if value in EXERCISE_TYPE_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {EXERCISE_TYPE_ENUM_VALUES!r}"
+    )

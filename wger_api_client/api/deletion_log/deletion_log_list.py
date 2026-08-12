@@ -5,7 +5,9 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.deletion_log_list_model_type import DeletionLogListModelType
+from ...models.deletion_log_list_model_type import (
+    DeletionLogListModelType,
+)
 from ...models.paginated_deletion_log_list import PaginatedDeletionLogList
 from ...types import UNSET, Response, Unset
 
@@ -24,7 +26,7 @@ def _get_kwargs(
 
     json_model_type: str | Unset = UNSET
     if not isinstance(model_type, Unset):
-        json_model_type = model_type.value
+        json_model_type = model_type
 
     params["model_type"] = json_model_type
 

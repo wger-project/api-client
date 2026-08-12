@@ -35,7 +35,7 @@ def _get_kwargs(
 
     json_impression: str | Unset = UNSET
     if not isinstance(impression, Unset):
-        json_impression = impression.value
+        json_impression = impression
 
     params["impression"] = json_impression
 

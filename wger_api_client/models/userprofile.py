@@ -7,9 +7,9 @@ from typing import Any, Self, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.gender_enum import GenderEnum
-from ..models.intensity_enum import IntensityEnum
-from ..models.weight_unit_enum import WeightUnitEnum
+from ..models.gender_enum import GenderEnum, check_gender_enum
+from ..models.intensity_enum import IntensityEnum, check_intensity_enum
+from ..models.weight_unit_enum import WeightUnitEnum, check_weight_unit_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Userprofile")
@@ -161,8 +161,8 @@ class Userprofile:
         gender: None | str | Unset
         if isinstance(self.gender, Unset):
             gender = UNSET
-        elif isinstance(self.gender, GenderEnum):
-            gender = self.gender.value
+        elif isinstance(self.gender, str):
+            gender = self.gender
         else:
             gender = self.gender
 
@@ -181,8 +181,8 @@ class Userprofile:
         work_intensity: None | str | Unset
         if isinstance(self.work_intensity, Unset):
             work_intensity = UNSET
-        elif isinstance(self.work_intensity, IntensityEnum):
-            work_intensity = self.work_intensity.value
+        elif isinstance(self.work_intensity, str):
+            work_intensity = self.work_intensity
         else:
             work_intensity = self.work_intensity
 
@@ -195,8 +195,8 @@ class Userprofile:
         sport_intensity: None | str | Unset
         if isinstance(self.sport_intensity, Unset):
             sport_intensity = UNSET
-        elif isinstance(self.sport_intensity, IntensityEnum):
-            sport_intensity = self.sport_intensity.value
+        elif isinstance(self.sport_intensity, str):
+            sport_intensity = self.sport_intensity
         else:
             sport_intensity = self.sport_intensity
 
@@ -209,8 +209,8 @@ class Userprofile:
         freetime_intensity: None | str | Unset
         if isinstance(self.freetime_intensity, Unset):
             freetime_intensity = UNSET
-        elif isinstance(self.freetime_intensity, IntensityEnum):
-            freetime_intensity = self.freetime_intensity.value
+        elif isinstance(self.freetime_intensity, str):
+            freetime_intensity = self.freetime_intensity
         else:
             freetime_intensity = self.freetime_intensity
 
@@ -222,7 +222,7 @@ class Userprofile:
 
         weight_unit: str | Unset = UNSET
         if not isinstance(self.weight_unit, Unset):
-            weight_unit = self.weight_unit.value
+            weight_unit = self.weight_unit
 
         num_days_weight_reminder = self.num_days_weight_reminder
 
@@ -393,7 +393,7 @@ class Userprofile:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                gender_type_0 = GenderEnum(data)
+                gender_type_0 = check_gender_enum(data)
 
                 return gender_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -428,7 +428,7 @@ class Userprofile:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                work_intensity_type_0 = IntensityEnum(data)
+                work_intensity_type_0 = check_intensity_enum(data)
 
                 return work_intensity_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -454,7 +454,7 @@ class Userprofile:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                sport_intensity_type_0 = IntensityEnum(data)
+                sport_intensity_type_0 = check_intensity_enum(data)
 
                 return sport_intensity_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -480,7 +480,7 @@ class Userprofile:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                freetime_intensity_type_0 = IntensityEnum(data)
+                freetime_intensity_type_0 = check_intensity_enum(data)
 
                 return freetime_intensity_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -505,7 +505,7 @@ class Userprofile:
         if isinstance(_weight_unit, Unset):
             weight_unit = UNSET
         else:
-            weight_unit = WeightUnitEnum(_weight_unit)
+            weight_unit = check_weight_unit_enum(_weight_unit)
 
         num_days_weight_reminder = d.pop("num_days_weight_reminder", UNSET)
 

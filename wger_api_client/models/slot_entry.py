@@ -6,7 +6,7 @@ from typing import Any, Self, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.exercise_type_enum import ExerciseTypeEnum
+from ..models.exercise_type_enum import ExerciseTypeEnum, check_exercise_type_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SlotEntry")
@@ -60,7 +60,7 @@ class SlotEntry:
 
         type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
-            type_ = self.type_.value
+            type_ = self.type_
 
         repetition_unit: int | None | Unset
         if isinstance(self.repetition_unit, Unset):
@@ -134,7 +134,7 @@ class SlotEntry:
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
-            type_ = ExerciseTypeEnum(_type_)
+            type_ = check_exercise_type_enum(_type_)
 
         def _parse_repetition_unit(data: object) -> int | None | Unset:
             if data is None:

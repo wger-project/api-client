@@ -1,10 +1,17 @@
-from enum import Enum
+from typing import Literal
+
+ImpressionEnum = Literal["1", "2", "3"]
+
+IMPRESSION_ENUM_VALUES: set[ImpressionEnum] = {
+    "1",
+    "2",
+    "3",
+}
 
 
-class ImpressionEnum(str, Enum):
-    VALUE_0 = "1"
-    VALUE_1 = "2"
-    VALUE_2 = "3"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_impression_enum(value: str) -> ImpressionEnum:
+    if value in IMPRESSION_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {IMPRESSION_ENUM_VALUES!r}"
+    )

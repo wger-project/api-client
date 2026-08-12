@@ -1,10 +1,17 @@
-from enum import Enum
+from typing import Literal
+
+IntensityEnum = Literal["1", "2", "3"]
+
+INTENSITY_ENUM_VALUES: set[IntensityEnum] = {
+    "1",
+    "2",
+    "3",
+}
 
 
-class IntensityEnum(str, Enum):
-    VALUE_0 = "1"
-    VALUE_1 = "2"
-    VALUE_2 = "3"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_intensity_enum(value: str) -> IntensityEnum:
+    if value in INTENSITY_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {INTENSITY_ENUM_VALUES!r}"
+    )

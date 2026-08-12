@@ -1,12 +1,19 @@
-from enum import Enum
+from typing import Literal
+
+StyleEnum = Literal["1", "2", "3", "4", "5"]
+
+STYLE_ENUM_VALUES: set[StyleEnum] = {
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+}
 
 
-class StyleEnum(str, Enum):
-    VALUE_0 = "1"
-    VALUE_1 = "2"
-    VALUE_2 = "3"
-    VALUE_3 = "4"
-    VALUE_4 = "5"
-
-    def __str__(self) -> str:
-        return str(self.value)
+def check_style_enum(value: str) -> StyleEnum:
+    if value in STYLE_ENUM_VALUES:
+        return value
+    raise TypeError(
+        f"Unexpected value {value!r}. Expected one of {STYLE_ENUM_VALUES!r}"
+    )

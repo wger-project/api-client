@@ -7,8 +7,12 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.ingredient_sync_list_nutri_score import IngredientSyncListNutriScore
-from ...models.paginated_ingredient_info_list import PaginatedIngredientInfoList
+from ...models.cursor_paginated_ingredient_info_list import (
+    CursorPaginatedIngredientInfoList,
+)
+from ...models.ingredient_sync_list_nutri_score import (
+    IngredientSyncListNutriScore,
+)
 from ...types import UNSET, Response, Unset
 
 
@@ -163,7 +167,7 @@ def _get_kwargs(
 
     json_nutriscore: str | Unset = UNSET
     if not isinstance(nutriscore, Unset):
-        json_nutriscore = nutriscore.value
+        json_nutriscore = nutriscore
 
     params["nutriscore"] = json_nutriscore
 
@@ -209,9 +213,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> PaginatedIngredientInfoList | None:
+) -> CursorPaginatedIngredientInfoList | None:
     if response.status_code == 200:
-        response_200 = PaginatedIngredientInfoList.from_dict(response.json())
+        response_200 = CursorPaginatedIngredientInfoList.from_dict(response.json())
 
         return response_200
 
@@ -223,7 +227,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[PaginatedIngredientInfoList]:
+) -> Response[CursorPaginatedIngredientInfoList]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -279,7 +283,7 @@ def sync_detailed(
     sodium: float | Unset = UNSET,
     source_name: str | Unset = UNSET,
     uuid: UUID | Unset = UNSET,
-) -> Response[PaginatedIngredientInfoList]:
+) -> Response[CursorPaginatedIngredientInfoList]:
     """Cursor-paginated read-only endpoint designed for syncing the ingredient
     catalogue.
 
@@ -342,7 +346,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedIngredientInfoList]
+        Response[CursorPaginatedIngredientInfoList]
     """
 
     kwargs = _get_kwargs(
@@ -446,7 +450,7 @@ def sync(
     sodium: float | Unset = UNSET,
     source_name: str | Unset = UNSET,
     uuid: UUID | Unset = UNSET,
-) -> PaginatedIngredientInfoList | None:
+) -> CursorPaginatedIngredientInfoList | None:
     """Cursor-paginated read-only endpoint designed for syncing the ingredient
     catalogue.
 
@@ -509,7 +513,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedIngredientInfoList
+        CursorPaginatedIngredientInfoList
     """
 
     return sync_detailed(
@@ -608,7 +612,7 @@ async def asyncio_detailed(
     sodium: float | Unset = UNSET,
     source_name: str | Unset = UNSET,
     uuid: UUID | Unset = UNSET,
-) -> Response[PaginatedIngredientInfoList]:
+) -> Response[CursorPaginatedIngredientInfoList]:
     """Cursor-paginated read-only endpoint designed for syncing the ingredient
     catalogue.
 
@@ -671,7 +675,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedIngredientInfoList]
+        Response[CursorPaginatedIngredientInfoList]
     """
 
     kwargs = _get_kwargs(
@@ -773,7 +777,7 @@ async def asyncio(
     sodium: float | Unset = UNSET,
     source_name: str | Unset = UNSET,
     uuid: UUID | Unset = UNSET,
-) -> PaginatedIngredientInfoList | None:
+) -> CursorPaginatedIngredientInfoList | None:
     """Cursor-paginated read-only endpoint designed for syncing the ingredient
     catalogue.
 
@@ -836,7 +840,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedIngredientInfoList
+        CursorPaginatedIngredientInfoList
     """
 
     return (

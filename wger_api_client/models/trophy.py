@@ -7,7 +7,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.trophy_type_enum import TrophyTypeEnum
+from ..models.trophy_type_enum import TrophyTypeEnum, check_trophy_type_enum
 
 T = TypeVar("T", bound="Trophy")
 
@@ -61,7 +61,7 @@ class Trophy:
         image: None | str
         image = self.image
 
-        trophy_type = self.trophy_type.value
+        trophy_type: str = self.trophy_type
 
         is_hidden = self.is_hidden
 
@@ -108,7 +108,7 @@ class Trophy:
 
         image = _parse_image(d.pop("image"))
 
-        trophy_type = TrophyTypeEnum(d.pop("trophy_type"))
+        trophy_type = check_trophy_type_enum(d.pop("trophy_type"))
 
         is_hidden = d.pop("is_hidden")
 

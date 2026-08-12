@@ -3,6 +3,7 @@
 from .blank_enum import BlankEnum
 from .category import Category
 from .category_request import CategoryRequest
+from .cursor_paginated_ingredient_info_list import CursorPaginatedIngredientInfoList
 from .day import Day
 from .day_request import DayRequest
 from .day_structure import DayStructure
@@ -262,6 +263,7 @@ __all__ = (
     "BlankEnum",
     "Category",
     "CategoryRequest",
+    "CursorPaginatedIngredientInfoList",
     "Day",
     "DayRequest",
     "DayStructure",

@@ -6,7 +6,7 @@ from typing import Any, Self, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.unit_type_enum import UnitTypeEnum
+from ..models.unit_type_enum import UnitTypeEnum, check_unit_type_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="RepetitionUnit")
@@ -40,7 +40,7 @@ class RepetitionUnit:
 
         unit_type: str | Unset = UNSET
         if not isinstance(self.unit_type, Unset):
-            unit_type = self.unit_type.value
+            unit_type = self.unit_type
 
         multiplier: int | None | Unset
         if isinstance(self.multiplier, Unset):
@@ -75,7 +75,7 @@ class RepetitionUnit:
         if isinstance(_unit_type, Unset):
             unit_type = UNSET
         else:
-            unit_type = UnitTypeEnum(_unit_type)
+            unit_type = check_unit_type_enum(_unit_type)
 
         def _parse_multiplier(data: object) -> int | None | Unset:
             if data is None:

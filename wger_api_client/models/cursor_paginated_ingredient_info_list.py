@@ -12,28 +12,24 @@ if TYPE_CHECKING:
     from ..models.ingredient_info import IngredientInfo
 
 
-T = TypeVar("T", bound="PaginatedIngredientInfoList")
+T = TypeVar("T", bound="CursorPaginatedIngredientInfoList")
 
 
 @_attrs_define
-class PaginatedIngredientInfoList:
+class CursorPaginatedIngredientInfoList:
     """
     Attributes:
-        count (int):  Example: 123.
         results (list[IngredientInfo]):
-        next_ (None | str | Unset):  Example: http://api.example.org/accounts/?offset=400&limit=100.
-        previous (None | str | Unset):  Example: http://api.example.org/accounts/?offset=200&limit=100.
+        next_ (None | str | Unset):  Example: http://api.example.org/accounts/?cursor=cD00ODY%3D".
+        previous (None | str | Unset):  Example: http://api.example.org/accounts/?cursor=cj0xJnA9NDg3.
     """
 
-    count: int
     results: list[IngredientInfo]
     next_: None | str | Unset = UNSET
     previous: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        count = self.count
-
         results = []
         for results_item_data in self.results:
             results_item = results_item_data.to_dict()
@@ -55,7 +51,6 @@ class PaginatedIngredientInfoList:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "count": count,
                 "results": results,
             }
         )
@@ -71,8 +66,6 @@ class PaginatedIngredientInfoList:
         from ..models.ingredient_info import IngredientInfo
 
         d = dict(src_dict)
-        count = d.pop("count")
-
         results = []
         _results = d.pop("results")
         for results_item_data in _results:
@@ -98,15 +91,14 @@ class PaginatedIngredientInfoList:
 
         previous = _parse_previous(d.pop("previous", UNSET))
 
-        paginated_ingredient_info_list = cls(
-            count=count,
+        cursor_paginated_ingredient_info_list = cls(
             results=results,
             next_=next_,
             previous=previous,
         )
 
-        paginated_ingredient_info_list.additional_properties = d
-        return paginated_ingredient_info_list
+        cursor_paginated_ingredient_info_list.additional_properties = d
+        return cursor_paginated_ingredient_info_list
 
     @property
     def additional_keys(self) -> list[str]:

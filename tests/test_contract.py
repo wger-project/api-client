@@ -74,9 +74,12 @@ def test_userprofile_list_returns_a_single_object():
 
 
 def test_day_type_rejects_invalid_choices():
-    from wger_api_client.models import DayTypeEnum
+    from wger_api_client.models.day_type_enum import (
+        DAY_TYPE_ENUM_VALUES,
+        check_day_type_enum,
+    )
 
-    assert {e.value for e in DayTypeEnum} == {
+    assert DAY_TYPE_ENUM_VALUES == {
         "custom",
         "enom",
         "amrap",
@@ -86,8 +89,8 @@ def test_day_type_rejects_invalid_choices():
         "rft",
         "afap",
     }
-    with pytest.raises(ValueError):
-        DayTypeEnum("standard")
+    with pytest.raises(TypeError):
+        check_day_type_enum("standard")
 
 
 def test_day_can_be_filtered_by_routine():

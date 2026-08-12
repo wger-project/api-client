@@ -7,7 +7,9 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.ingredientinfo_list_nutri_score import IngredientinfoListNutriScore
+from ...models.ingredientinfo_list_nutri_score import (
+    IngredientinfoListNutriScore,
+)
 from ...models.paginated_ingredient_info_list import PaginatedIngredientInfoList
 from ...types import UNSET, Response, Unset
 
@@ -163,7 +165,7 @@ def _get_kwargs(
 
     json_nutriscore: str | Unset = UNSET
     if not isinstance(nutriscore, Unset):
-        json_nutriscore = nutriscore.value
+        json_nutriscore = nutriscore
 
     params["nutriscore"] = json_nutriscore
 

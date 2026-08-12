@@ -8,8 +8,8 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.blank_enum import BlankEnum
-from ..models.nutriscore_enum import NutriscoreEnum
+from ..models.blank_enum import BlankEnum, check_blank_enum
+from ..models.nutriscore_enum import NutriscoreEnum, check_nutriscore_enum
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -229,10 +229,8 @@ class IngredientInfo:
         nutriscore: None | str | Unset
         if isinstance(self.nutriscore, Unset):
             nutriscore = UNSET
-        elif isinstance(self.nutriscore, NutriscoreEnum) or isinstance(
-            self.nutriscore, BlankEnum
-        ):
-            nutriscore = self.nutriscore.value
+        elif isinstance(self.nutriscore, str) or isinstance(self.nutriscore, str):
+            nutriscore = self.nutriscore
         else:
             nutriscore = self.nutriscore
 
@@ -521,7 +519,7 @@ class IngredientInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                nutriscore_type_0 = NutriscoreEnum(data)
+                nutriscore_type_0 = check_nutriscore_enum(data)
 
                 return nutriscore_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -529,7 +527,7 @@ class IngredientInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                nutriscore_type_1 = BlankEnum(data)
+                nutriscore_type_1 = check_blank_enum(data)
 
                 return nutriscore_type_1
             except (TypeError, ValueError, AttributeError, KeyError):

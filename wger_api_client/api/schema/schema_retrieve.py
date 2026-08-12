@@ -5,8 +5,12 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_retrieve_format import SchemaRetrieveFormat
-from ...models.schema_retrieve_lang import SchemaRetrieveLang
+from ...models.schema_retrieve_format import (
+    SchemaRetrieveFormat,
+)
+from ...models.schema_retrieve_lang import (
+    SchemaRetrieveLang,
+)
 from ...models.schema_retrieve_response_200 import SchemaRetrieveResponse200
 from ...types import UNSET, Response, Unset
 
@@ -21,13 +25,13 @@ def _get_kwargs(
 
     json_format_: str | Unset = UNSET
     if not isinstance(format_, Unset):
-        json_format_ = format_.value
+        json_format_ = format_
 
     params["format"] = json_format_
 
     json_lang: str | Unset = UNSET
     if not isinstance(lang, Unset):
-        json_lang = lang.value
+        json_lang = lang
 
     params["lang"] = json_lang
 

@@ -8,7 +8,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.impression_enum import ImpressionEnum
+from ..models.impression_enum import ImpressionEnum, check_impression_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WorkoutSession")
@@ -70,7 +70,7 @@ class WorkoutSession:
 
         impression: str | Unset = UNSET
         if not isinstance(self.impression, Unset):
-            impression = self.impression.value
+            impression = self.impression
 
         time_start: None | str | Unset
         if isinstance(self.time_start, Unset):
@@ -155,7 +155,7 @@ class WorkoutSession:
         if isinstance(_impression, Unset):
             impression = UNSET
         else:
-            impression = ImpressionEnum(_impression)
+            impression = check_impression_enum(_impression)
 
         def _parse_time_start(data: object) -> None | str | Unset:
             if data is None:

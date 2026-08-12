@@ -8,7 +8,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from .. import types
-from ..models.style_enum import StyleEnum
+from ..models.style_enum import StyleEnum, check_style_enum
 from ..types import UNSET, File, Unset
 
 T = TypeVar("T", bound="ExerciseImageRequest")
@@ -59,7 +59,7 @@ class ExerciseImageRequest:
 
         style: str | Unset = UNSET
         if not isinstance(self.style, Unset):
-            style = self.style.value
+            style = self.style
 
         license_ = self.license_
 
@@ -127,9 +127,7 @@ class ExerciseImageRequest:
             files.append(("is_main", (None, str(self.is_main).encode(), "text/plain")))
 
         if not isinstance(self.style, Unset):
-            files.append(
-                ("style", (None, str(self.style.value).encode(), "text/plain"))
-            )
+            files.append(("style", (None, str(self.style).encode(), "text/plain")))
 
         if not isinstance(self.license_, Unset):
             files.append(("license", (None, str(self.license_).encode(), "text/plain")))
@@ -208,7 +206,7 @@ class ExerciseImageRequest:
         if isinstance(_style, Unset):
             style = UNSET
         else:
-            style = StyleEnum(_style)
+            style = check_style_enum(_style)
 
         license_ = d.pop("license", UNSET)
 

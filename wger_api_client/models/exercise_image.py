@@ -7,7 +7,7 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.style_enum import StyleEnum
+from ..models.style_enum import StyleEnum, check_style_enum
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -88,7 +88,7 @@ class ExerciseImage:
 
         style: str | Unset = UNSET
         if not isinstance(self.style, Unset):
-            style = self.style.value
+            style = self.style
 
         license_ = self.license_
 
@@ -189,7 +189,7 @@ class ExerciseImage:
         if isinstance(_style, Unset):
             style = UNSET
         else:
-            style = StyleEnum(_style)
+            style = check_style_enum(_style)
 
         license_ = d.pop("license", UNSET)
 

@@ -7,3 +7,9 @@ project_name_override: wger-api-client
 package_name_override: wger_api_client
 
 use_path_prefixes_for_title_model_names: false
+
+# Enums as Literal types instead of Enum classes. Several of wger's choices are
+# digits or symbols such as "+", which cannot become identifiers: the generator
+# names those members VALUE_0, VALUE_1, etc., by position, so they say nothing
+# and shift when a value is added. With Literals the value itself is the api.
+literal_enums: true

@@ -6,8 +6,8 @@ from typing import Any, Self, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.operation_enum import OperationEnum
-from ..models.step_enum import StepEnum
+from ..models.operation_enum import OperationEnum, check_operation_enum
+from ..models.step_enum import StepEnum, check_step_enum
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MaxRiRConfigRequest")
@@ -49,11 +49,11 @@ class MaxRiRConfigRequest:
 
         operation: str | Unset = UNSET
         if not isinstance(self.operation, Unset):
-            operation = self.operation.value
+            operation = self.operation
 
         step: str | Unset = UNSET
         if not isinstance(self.step, Unset):
-            step = self.step.value
+            step = self.step
 
         repeat = self.repeat
 
@@ -93,14 +93,14 @@ class MaxRiRConfigRequest:
         if isinstance(_operation, Unset):
             operation = UNSET
         else:
-            operation = OperationEnum(_operation)
+            operation = check_operation_enum(_operation)
 
         _step = d.pop("step", UNSET)
         step: StepEnum | Unset
         if isinstance(_step, Unset):
             step = UNSET
         else:
-            step = StepEnum(_step)
+            step = check_step_enum(_step)
 
         repeat = d.pop("repeat", UNSET)
 

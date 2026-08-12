@@ -27,9 +27,6 @@ classifiers = [
 dependencies = [
     "httpx>=0.23,<0.29",
     "attrs>=22.2",
-    # The generated code imports typing_extensions.Self unconditionally, even
-    # though openapi-python-client does not list it in the metadata it emits.
-    "typing-extensions>=4.0",
 ]
 
 [project.urls]

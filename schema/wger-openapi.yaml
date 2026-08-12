@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: wger
-  version: 2.7.0a1
+  version: 2.7.0a2
   description: |
     Self hosted FLOSS workout and fitness tracker.
 
@@ -70,6 +70,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -91,16 +92,18 @@ paths:
         schema:
           type: string
         description: The name of the django permission such as "exercises.change_muscle"
+        required: true
       tags:
       - check-permission
       security:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       - {}
       responses:
-        '201':
+        '200':
           content:
             application/json:
               schema:
@@ -165,6 +168,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -194,6 +198,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -219,6 +224,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -255,6 +261,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -290,6 +297,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -314,6 +322,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -366,6 +375,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -396,6 +406,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -437,6 +448,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -462,6 +474,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -530,6 +543,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -562,6 +576,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -592,6 +607,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -651,6 +667,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -680,6 +697,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -705,6 +723,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -741,6 +760,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -776,6 +796,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -800,6 +821,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -824,6 +846,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -863,6 +886,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -901,6 +925,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -928,6 +953,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -969,6 +995,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -998,6 +1025,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -1023,6 +1051,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1059,6 +1088,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1094,6 +1124,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1118,6 +1149,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -1155,6 +1187,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1180,6 +1213,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1225,6 +1259,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1254,6 +1289,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -1279,6 +1315,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1315,6 +1352,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1350,6 +1388,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1374,6 +1413,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -1423,6 +1463,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1452,6 +1493,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -1477,6 +1519,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1513,6 +1556,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1548,6 +1592,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1572,6 +1617,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -1593,6 +1639,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1740,6 +1787,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1768,6 +1816,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1818,6 +1867,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1844,6 +1894,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -1869,6 +1920,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1902,6 +1954,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1934,6 +1987,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -1958,6 +2012,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -2198,6 +2253,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2249,6 +2305,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2274,6 +2331,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2526,6 +2584,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2561,6 +2620,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2588,6 +2648,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2631,6 +2692,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2875,6 +2937,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2902,6 +2965,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2945,6 +3009,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -2994,6 +3059,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3019,6 +3085,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3043,6 +3110,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3088,6 +3156,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3113,6 +3182,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3162,6 +3232,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3187,6 +3258,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3268,6 +3340,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3297,6 +3370,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -3322,6 +3396,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3358,6 +3433,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3393,6 +3469,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3417,6 +3494,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -3494,6 +3572,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3523,6 +3602,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -3548,6 +3628,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3584,6 +3665,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3619,6 +3701,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3643,6 +3726,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -3720,6 +3804,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3749,6 +3834,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -3774,6 +3860,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3810,6 +3897,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3845,6 +3933,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3869,6 +3958,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -3946,6 +4036,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -3975,6 +4066,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -4000,6 +4092,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4036,6 +4129,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4071,6 +4165,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4095,6 +4190,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -4172,6 +4268,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4201,6 +4298,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -4226,6 +4324,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4262,6 +4361,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4297,6 +4397,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4321,6 +4422,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -4368,6 +4470,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4397,6 +4500,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -4423,6 +4527,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4460,6 +4565,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4496,6 +4602,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4521,6 +4628,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -4543,6 +4651,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4601,6 +4710,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4630,6 +4740,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -4656,6 +4767,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4693,6 +4805,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4729,6 +4842,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4754,6 +4868,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -4776,6 +4891,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4868,6 +4984,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4897,6 +5014,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -4947,6 +5065,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -4976,6 +5095,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -5002,6 +5122,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5039,6 +5160,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5075,6 +5197,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5100,6 +5223,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -5122,6 +5246,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5159,6 +5284,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5195,6 +5321,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5220,6 +5347,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -5235,6 +5363,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       - {}
       responses:
@@ -5255,6 +5384,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       - {}
       responses:
@@ -5305,6 +5435,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5330,6 +5461,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5414,6 +5546,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5443,6 +5576,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -5469,6 +5603,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5506,6 +5641,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5542,6 +5678,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5567,6 +5704,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -5589,6 +5727,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5641,6 +5780,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5671,6 +5811,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -5699,6 +5840,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5737,6 +5879,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5775,6 +5918,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5802,6 +5946,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -5824,6 +5969,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5876,6 +6022,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5904,6 +6051,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5930,6 +6078,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5947,6 +6096,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -5964,6 +6114,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6014,6 +6165,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6039,6 +6191,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6120,6 +6273,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6149,6 +6303,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -6174,6 +6329,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6210,6 +6366,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6245,6 +6402,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6269,6 +6427,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -6346,6 +6505,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6375,6 +6535,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -6400,6 +6561,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6436,6 +6598,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6471,6 +6634,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6495,6 +6659,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -6572,6 +6737,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6601,6 +6767,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -6626,6 +6793,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6662,6 +6830,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6697,6 +6866,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6721,6 +6891,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -6785,6 +6956,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6814,6 +6986,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -6839,6 +7012,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6875,6 +7049,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6910,6 +7085,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -6934,6 +7110,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -6992,6 +7169,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7056,6 +7234,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7120,6 +7299,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7147,6 +7327,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7172,6 +7353,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7307,6 +7489,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       - {}
       responses:
@@ -7402,6 +7585,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7431,6 +7615,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -7456,6 +7641,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7492,6 +7678,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7527,6 +7714,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7551,6 +7739,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -7588,6 +7777,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7613,6 +7803,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7654,6 +7845,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7679,6 +7871,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7728,6 +7921,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7757,6 +7951,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -7850,6 +8045,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7879,6 +8075,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -7904,6 +8101,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7940,6 +8138,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7975,6 +8174,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -7999,6 +8199,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -8020,6 +8221,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8056,6 +8258,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8091,6 +8294,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8115,6 +8319,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -8161,6 +8366,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8186,6 +8392,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8344,6 +8551,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8380,6 +8588,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8428,18 +8637,6 @@ paths:
         name: is_repeatable
         schema:
           type: boolean
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
       - name: ordering
         required: false
         in: query
@@ -8483,13 +8680,16 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedTrophyProgressList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrophyProgress'
           description: ''
   /api/v2/upload-powersync-data:
     put:
@@ -8512,6 +8712,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8545,6 +8746,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8567,6 +8769,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8619,6 +8822,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8653,6 +8857,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8797,6 +9002,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8831,6 +9037,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8849,6 +9056,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8882,6 +9090,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -8912,6 +9121,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8952,6 +9162,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -8992,6 +9203,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9021,6 +9233,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '405':
@@ -9049,6 +9262,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9067,6 +9281,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       - {}
       responses:
@@ -9121,6 +9336,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9150,6 +9366,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -9175,6 +9392,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9211,6 +9429,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9246,6 +9465,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9270,6 +9490,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -9347,6 +9568,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9376,6 +9598,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -9401,6 +9624,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9437,6 +9661,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9472,6 +9697,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9496,6 +9722,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -9587,6 +9814,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9616,6 +9844,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -9641,6 +9870,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9677,6 +9907,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9712,6 +9943,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -9736,6 +9968,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -9998,6 +10231,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10027,6 +10261,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -10053,6 +10288,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10090,6 +10326,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10126,6 +10363,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10151,6 +10389,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -10222,6 +10461,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10250,6 +10490,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '201':
@@ -10276,6 +10517,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10312,6 +10554,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10348,6 +10591,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '200':
@@ -10373,6 +10617,7 @@ paths:
       - cookieAuth: []
       - tokenAuth: []
       - headlessJwtAuth: []
+      - oidcAuth: []
       - jwtAuth: []
       responses:
         '204':
@@ -10427,8 +10672,9 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         name:
           type: string
           maxLength: 20
@@ -10454,8 +10700,9 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         name:
           type: string
           maxLength: 20
@@ -10483,8 +10730,9 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         name:
           type: string
           maxLength: 20
@@ -11745,8 +11993,9 @@ components:
           title: Date
         energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           description: In kcal per 100g
         protein:
           type: string
@@ -11904,8 +12153,9 @@ components:
           readOnly: true
         size:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         width:
           type: integer
           readOnly: true
@@ -12025,8 +12275,9 @@ components:
           title: Date
         energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           description: In kcal per 100g
         protein:
           type: string
@@ -12146,6 +12397,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/IngredientImage'
           readOnly: true
+          nullable: true
         thumbnails:
           allOf:
           - $ref: '#/components/schemas/Thumbnails'
@@ -12234,8 +12486,9 @@ components:
           readOnly: true
         gram:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           title: Amount in grams
         name:
           type: string
@@ -12463,8 +12716,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12490,8 +12744,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12519,8 +12774,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 600
@@ -12546,8 +12802,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 600
@@ -12575,8 +12832,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12602,8 +12860,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12631,8 +12890,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -12658,8 +12918,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -12687,8 +12948,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12714,8 +12976,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -12849,10 +13112,12 @@ components:
           allOf:
           - $ref: '#/components/schemas/IngredientWeightUnit'
           readOnly: true
+          nullable: true
         image:
           allOf:
           - $ref: '#/components/schemas/IngredientImage'
           readOnly: true
+          nullable: true
         order:
           type: integer
           readOnly: true
@@ -13057,28 +13322,33 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_protein:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fat:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
       required:
       - creation_date
@@ -13111,28 +13381,33 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_protein:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fat:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         meals:
           type: array
@@ -13166,28 +13441,33 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_protein:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fat:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
     NutritionalValues:
       type: object
@@ -14179,29 +14459,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trophy'
-    PaginatedTrophyProgressList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrophyProgress'
     PaginatedUserStatisticsList:
       type: object
       required:
@@ -14363,8 +14620,9 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         name:
           type: string
           maxLength: 20
@@ -14621,8 +14879,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -14643,8 +14902,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 600
@@ -14665,8 +14925,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -14687,8 +14948,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -14709,8 +14971,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -14811,28 +15074,33 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_protein:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fat:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
           nullable: true
     PatchedPowersyncUploadRequest:
       type: object
@@ -14849,8 +15117,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -14871,8 +15140,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 1800
@@ -14893,8 +15163,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -14944,8 +15215,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -14987,8 +15259,9 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 100
@@ -15003,8 +15276,9 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 200
@@ -15156,8 +15430,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -15201,8 +15476,9 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -15251,13 +15527,15 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
     PatchedWorkoutSessionRequest:
       type: object
@@ -15373,8 +15651,9 @@ components:
             * `DISTANCE` - Distance
         multiplier:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
           description: |-
             Multiplier to convert this unit to a base unit. Time units are converted
@@ -15394,8 +15673,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -15421,8 +15701,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -15450,8 +15731,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 1800
@@ -15477,8 +15759,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 1800
@@ -15506,8 +15789,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -15533,8 +15817,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -15777,8 +16062,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -15804,8 +16090,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: integer
           maximum: 50
@@ -15834,8 +16121,9 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 200
@@ -15897,8 +16185,9 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 100
@@ -15937,8 +16226,9 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 100
@@ -15960,8 +16250,9 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 100
@@ -16053,8 +16344,9 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 200
@@ -16074,8 +16366,9 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         comment:
           type: string
           maxLength: 200
@@ -16750,8 +17043,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -16777,8 +17071,9 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
         value:
           type: string
           format: decimal
@@ -16905,8 +17200,9 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -16955,13 +17251,15 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
       required:
       - exercise
@@ -16985,8 +17283,9 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -17035,13 +17334,15 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 2147483647
+          maximum: 9223372036854775807
           minimum: 0
+          format: int64
           nullable: true
       required:
       - exercise
@@ -17139,6 +17440,16 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    oidcAuth:
+      type: oauth2
+      description: Access token issued by the OAuth2/OIDC provider
+      flows:
+        authorizationCode:
+          authorizationUrl: /identity/o/authorize
+          tokenUrl: /identity/o/api/token
+          scopes:
+            api:read: View your training, nutrition and body data
+            api:write: Add and change your training, nutrition and body data
     tokenAuth:
       type: apiKey
       in: header

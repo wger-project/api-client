@@ -501,7 +501,6 @@ source = { editable = "." }
 dependencies = [
     { name = "attrs" },
     { name = "httpx" },
-    { name = "typing-extensions" },
 ]
 
 [package.dev-dependencies]
@@ -515,7 +514,6 @@ dev = [
 requires-dist = [
     { name = "attrs", specifier = ">=22.2" },
     { name = "httpx", specifier = ">=0.23,<0.29" },
-    { name = "typing-extensions", specifier = ">=4.0" },
 ]
 
 [package.metadata.requires-dev]

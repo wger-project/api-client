@@ -48,6 +48,10 @@ generate() {
 if [[ ${1:-} == --check ]]; then
     tmp=$(mktemp -d)
     trap 'rm -rf "$tmp"' EXIT
+    # the generator reads requires-python from the nearest pyproject.toml to choose
+    # between typing.Self and typing_extensions.Self, so the temporary tree needs
+    # the same one or every model differs
+    cp pyproject.toml "$tmp/"
     generate "$tmp/$PACKAGE"
     # __pycache__ is a gitignored working-tree artifact, not part of the client
     if ! diff -r -q -x '__pycache__' -x '*.pyc' "$PACKAGE" "$tmp/$PACKAGE"; then

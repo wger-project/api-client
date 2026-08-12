@@ -25,15 +25,10 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, PatchedImageRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
+    if not isinstance(body, Unset):
+        _kwargs["files"] = body.to_multipart()
 
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
-    if isinstance(body, PatchedImageRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    headers["Content-Type"] = "multipart/form-data; boundary=+++"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -75,7 +70,6 @@ def sync_detailed(
     Args:
         id (int):
         body (PatchedImageRequest | Unset): Exercise serializer
-        body (PatchedImageRequest | Unset): Exercise serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -108,7 +102,6 @@ def sync(
     Args:
         id (int):
         body (PatchedImageRequest | Unset): Exercise serializer
-        body (PatchedImageRequest | Unset): Exercise serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -135,7 +128,6 @@ async def asyncio_detailed(
 
     Args:
         id (int):
-        body (PatchedImageRequest | Unset): Exercise serializer
         body (PatchedImageRequest | Unset): Exercise serializer
 
     Raises:
@@ -166,7 +158,6 @@ async def asyncio(
 
     Args:
         id (int):
-        body (PatchedImageRequest | Unset): Exercise serializer
         body (PatchedImageRequest | Unset): Exercise serializer
 
     Raises:

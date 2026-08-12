@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
 from ..types import UNSET, Unset
 
@@ -28,8 +27,8 @@ class MealItemInfo:
         ingredient (int):
         ingredient_obj (IngredientInfo): Ingredient info serializer
         weight_unit (int):
-        weight_unit_obj (IngredientWeightUnit): IngredientWeightUnit serializer
-        image (IngredientImage): Image serializer
+        weight_unit_obj (IngredientWeightUnit | None):
+        image (IngredientImage | None):
         order (int):
         amount (str):
         id (UUID | Unset):
@@ -39,14 +38,17 @@ class MealItemInfo:
     ingredient: int
     ingredient_obj: IngredientInfo
     weight_unit: int
-    weight_unit_obj: IngredientWeightUnit
-    image: IngredientImage
+    weight_unit_obj: IngredientWeightUnit | None
+    image: IngredientImage | None
     order: int
     amount: str
     id: UUID | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.ingredient_image import IngredientImage
+        from ..models.ingredient_weight_unit import IngredientWeightUnit
+
         meal = str(self.meal)
 
         ingredient = self.ingredient
@@ -55,9 +57,17 @@ class MealItemInfo:
 
         weight_unit = self.weight_unit
 
-        weight_unit_obj = self.weight_unit_obj.to_dict()
+        weight_unit_obj: dict[str, Any] | None
+        if isinstance(self.weight_unit_obj, IngredientWeightUnit):
+            weight_unit_obj = self.weight_unit_obj.to_dict()
+        else:
+            weight_unit_obj = self.weight_unit_obj
 
-        image = self.image.to_dict()
+        image: dict[str, Any] | None
+        if isinstance(self.image, IngredientImage):
+            image = self.image.to_dict()
+        else:
+            image = self.image
 
         order = self.order
 
@@ -101,9 +111,35 @@ class MealItemInfo:
 
         weight_unit = d.pop("weight_unit")
 
-        weight_unit_obj = IngredientWeightUnit.from_dict(d.pop("weight_unit_obj"))
+        def _parse_weight_unit_obj(data: object) -> IngredientWeightUnit | None:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                weight_unit_obj_type_1 = IngredientWeightUnit.from_dict(data)
 
-        image = IngredientImage.from_dict(d.pop("image"))
+                return weight_unit_obj_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IngredientWeightUnit | None, data)
+
+        weight_unit_obj = _parse_weight_unit_obj(d.pop("weight_unit_obj"))
+
+        def _parse_image(data: object) -> IngredientImage | None:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                image_type_1 = IngredientImage.from_dict(data)
+
+                return image_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IngredientImage | None, data)
+
+        image = _parse_image(d.pop("image"))
 
         order = d.pop("order")
 

@@ -21,20 +21,10 @@ def _get_kwargs(
         "url": "/api/v2/nutritionplan/",
     }
 
-    if isinstance(body, NutritionPlanRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, NutritionPlanRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, NutritionPlanRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -75,8 +65,6 @@ def sync_detailed(
 
     Args:
         body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,8 +95,6 @@ def sync(
 
     Args:
         body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -133,8 +119,6 @@ async def asyncio_detailed(
     the information of nutritional plan(s), see /api/v2/nutritionplaninfo/
 
     Args:
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
         body (NutritionPlanRequest | Unset): Nutritional plan serializer
 
     Raises:
@@ -163,8 +147,6 @@ async def asyncio(
     the information of nutritional plan(s), see /api/v2/nutritionplaninfo/
 
     Args:
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
-        body (NutritionPlanRequest | Unset): Nutritional plan serializer
         body (NutritionPlanRequest | Unset): Nutritional plan serializer
 
     Raises:

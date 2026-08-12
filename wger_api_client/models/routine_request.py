@@ -2,13 +2,11 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Self, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="RoutineRequest")
@@ -72,41 +70,6 @@ class RoutineRequest:
             field_dict["is_public"] = is_public
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("start", (None, self.start.isoformat().encode(), "text/plain")))
-
-        files.append(("end", (None, self.end.isoformat().encode(), "text/plain")))
-
-        if not isinstance(self.name, Unset):
-            files.append(("name", (None, str(self.name).encode(), "text/plain")))
-
-        if not isinstance(self.description, Unset):
-            files.append(
-                ("description", (None, str(self.description).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.fit_in_week, Unset):
-            files.append(
-                ("fit_in_week", (None, str(self.fit_in_week).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.is_template, Unset):
-            files.append(
-                ("is_template", (None, str(self.is_template).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.is_public, Unset):
-            files.append(
-                ("is_public", (None, str(self.is_public).encode(), "text/plain"))
-            )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

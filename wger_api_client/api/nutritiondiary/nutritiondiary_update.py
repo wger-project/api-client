@@ -9,13 +9,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.log_item import LogItem
 from ...models.log_item_request import LogItemRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: UUID,
     *,
-    body: LogItemRequest | Unset = UNSET,
+    body: LogItemRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -26,17 +26,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, LogItemRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, LogItemRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, LogItemRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -71,14 +63,12 @@ def sync_detailed(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: LogItemRequest | Unset = UNSET,
+    body: LogItemRequest,
 ) -> Response[LogItem]:
     """API endpoint for a meal log item
 
     Args:
         id (UUID):
-        body (LogItemRequest): LogItem serializer
-        body (LogItemRequest): LogItem serializer
         body (LogItemRequest): LogItem serializer
 
     Raises:
@@ -105,14 +95,12 @@ def sync(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: LogItemRequest | Unset = UNSET,
+    body: LogItemRequest,
 ) -> LogItem | None:
     """API endpoint for a meal log item
 
     Args:
         id (UUID):
-        body (LogItemRequest): LogItem serializer
-        body (LogItemRequest): LogItem serializer
         body (LogItemRequest): LogItem serializer
 
     Raises:
@@ -134,14 +122,12 @@ async def asyncio_detailed(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: LogItemRequest | Unset = UNSET,
+    body: LogItemRequest,
 ) -> Response[LogItem]:
     """API endpoint for a meal log item
 
     Args:
         id (UUID):
-        body (LogItemRequest): LogItem serializer
-        body (LogItemRequest): LogItem serializer
         body (LogItemRequest): LogItem serializer
 
     Raises:
@@ -166,14 +152,12 @@ async def asyncio(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: LogItemRequest | Unset = UNSET,
+    body: LogItemRequest,
 ) -> LogItem | None:
     """API endpoint for a meal log item
 
     Args:
         id (UUID):
-        body (LogItemRequest): LogItem serializer
-        body (LogItemRequest): LogItem serializer
         body (LogItemRequest): LogItem serializer
 
     Raises:

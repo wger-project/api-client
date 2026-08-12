@@ -2,14 +2,12 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Self, TypeVar
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MeasurementRequest")
@@ -65,27 +63,6 @@ class MeasurementRequest:
             field_dict["notes"] = notes
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("category", (None, str(self.category), "text/plain")))
-
-        files.append(("value", (None, str(self.value).encode(), "text/plain")))
-
-        if not isinstance(self.id, Unset):
-            files.append(("id", (None, str(self.id), "text/plain")))
-
-        if not isinstance(self.date, Unset):
-            files.append(("date", (None, self.date.isoformat().encode(), "text/plain")))
-
-        if not isinstance(self.notes, Unset):
-            files.append(("notes", (None, str(self.notes).encode(), "text/plain")))
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

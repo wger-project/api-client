@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.image import Image
 from ...models.image_request import ImageRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,13 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, ImageRequest):
-        _kwargs["files"] = body.to_multipart()
+    _kwargs["files"] = body.to_multipart()
 
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
-    if isinstance(body, ImageRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    headers["Content-Type"] = "multipart/form-data; boundary=+++"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -66,13 +62,12 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Response[Image]:
     """API endpoint for gallery image
 
     Args:
         id (int):
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -99,13 +94,12 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Image | None:
     """API endpoint for gallery image
 
     Args:
         id (int):
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -127,13 +121,12 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Response[Image]:
     """API endpoint for gallery image
 
     Args:
         id (int):
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -158,13 +151,12 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Image | None:
     """API endpoint for gallery image
 
     Args:
         id (int):
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:

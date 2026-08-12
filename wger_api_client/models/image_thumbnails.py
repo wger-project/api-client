@@ -7,33 +7,41 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 if TYPE_CHECKING:
-    from ..models.powersync_keys_response_keys_item import PowersyncKeysResponseKeysItem
+    from ..models.thumbnail_alias import ThumbnailAlias
 
 
-T = TypeVar("T", bound="PowersyncKeysResponse")
+T = TypeVar("T", bound="ImageThumbnails")
 
 
 @_attrs_define
-class PowersyncKeysResponse:
-    """
+class ImageThumbnails:
+    """An image's thumbnails, one entry per available size, plus the original.
+
     Attributes:
-        keys (list[PowersyncKeysResponseKeysItem]):
+        small (ThumbnailAlias): One generated thumbnail: where it is and the size it was generated for.
+        medium (ThumbnailAlias): One generated thumbnail: where it is and the size it was generated for.
+        original (str):
     """
 
-    keys: list[PowersyncKeysResponseKeysItem]
+    small: ThumbnailAlias
+    medium: ThumbnailAlias
+    original: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        keys = []
-        for keys_item_data in self.keys:
-            keys_item = keys_item_data.to_dict()
-            keys.append(keys_item)
+        small = self.small.to_dict()
+
+        medium = self.medium.to_dict()
+
+        original = self.original
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "keys": keys,
+                "small": small,
+                "medium": medium,
+                "original": original,
             }
         )
 
@@ -41,24 +49,23 @@ class PowersyncKeysResponse:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.powersync_keys_response_keys_item import (
-            PowersyncKeysResponseKeysItem,
-        )
+        from ..models.thumbnail_alias import ThumbnailAlias
 
         d = dict(src_dict)
-        keys = []
-        _keys = d.pop("keys")
-        for keys_item_data in _keys:
-            keys_item = PowersyncKeysResponseKeysItem.from_dict(keys_item_data)
+        small = ThumbnailAlias.from_dict(d.pop("small"))
 
-            keys.append(keys_item)
+        medium = ThumbnailAlias.from_dict(d.pop("medium"))
 
-        powersync_keys_response = cls(
-            keys=keys,
+        original = d.pop("original")
+
+        image_thumbnails = cls(
+            small=small,
+            medium=medium,
+            original=original,
         )
 
-        powersync_keys_response.additional_properties = d
-        return powersync_keys_response
+        image_thumbnails.additional_properties = d
+        return image_thumbnails
 
     @property
     def additional_keys(self) -> list[str]:

@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.set_nr_config import SetNrConfig
 from ...models.set_nr_config_request import SetNrConfigRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: SetNrConfigRequest | Unset = UNSET,
+    body: SetNrConfigRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/sets-config/",
     }
 
-    if isinstance(body, SetNrConfigRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, SetNrConfigRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, SetNrConfigRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: SetNrConfigRequest | Unset = UNSET,
+    body: SetNrConfigRequest,
 ) -> Response[SetNrConfig]:
     """API endpoint for set config objects
 
     Args:
-        body (SetNrConfigRequest): Set Nr config serializer
-        body (SetNrConfigRequest): Set Nr config serializer
         body (SetNrConfigRequest): Set Nr config serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: SetNrConfigRequest | Unset = UNSET,
+    body: SetNrConfigRequest,
 ) -> SetNrConfig | None:
     """API endpoint for set config objects
 
     Args:
-        body (SetNrConfigRequest): Set Nr config serializer
-        body (SetNrConfigRequest): Set Nr config serializer
         body (SetNrConfigRequest): Set Nr config serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: SetNrConfigRequest | Unset = UNSET,
+    body: SetNrConfigRequest,
 ) -> Response[SetNrConfig]:
     """API endpoint for set config objects
 
     Args:
-        body (SetNrConfigRequest): Set Nr config serializer
-        body (SetNrConfigRequest): Set Nr config serializer
         body (SetNrConfigRequest): Set Nr config serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: SetNrConfigRequest | Unset = UNSET,
+    body: SetNrConfigRequest,
 ) -> SetNrConfig | None:
     """API endpoint for set config objects
 
     Args:
-        body (SetNrConfigRequest): Set Nr config serializer
-        body (SetNrConfigRequest): Set Nr config serializer
         body (SetNrConfigRequest): Set Nr config serializer
 
     Raises:

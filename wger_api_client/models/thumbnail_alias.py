@@ -1,78 +1,63 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, Self, TypeVar
+from typing import TYPE_CHECKING, Any, Self, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
+if TYPE_CHECKING:
+    from ..models.thumbnail_alias_settings import ThumbnailAliasSettings
 
-T = TypeVar("T", bound="SlotRequest")
+
+T = TypeVar("T", bound="ThumbnailAlias")
 
 
 @_attrs_define
-class SlotRequest:
-    """Slot
+class ThumbnailAlias:
+    """One generated thumbnail: where it is and the size it was generated for.
 
     Attributes:
-        day (int):
-        order (int | Unset):
-        comment (str | Unset):
-        config (Any | Unset):
+        url (str):
+        settings (ThumbnailAliasSettings):
     """
 
-    day: int
-    order: int | Unset = UNSET
-    comment: str | Unset = UNSET
-    config: Any | Unset = UNSET
+    url: str
+    settings: ThumbnailAliasSettings
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        day = self.day
+        url = self.url
 
-        order = self.order
-
-        comment = self.comment
-
-        config = self.config
+        settings = self.settings.to_dict()
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "day": day,
+                "url": url,
+                "settings": settings,
             }
         )
-        if order is not UNSET:
-            field_dict["order"] = order
-        if comment is not UNSET:
-            field_dict["comment"] = comment
-        if config is not UNSET:
-            field_dict["config"] = config
 
         return field_dict
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
+        from ..models.thumbnail_alias_settings import ThumbnailAliasSettings
+
         d = dict(src_dict)
-        day = d.pop("day")
+        url = d.pop("url")
 
-        order = d.pop("order", UNSET)
+        settings = ThumbnailAliasSettings.from_dict(d.pop("settings"))
 
-        comment = d.pop("comment", UNSET)
-
-        config = d.pop("config", UNSET)
-
-        slot_request = cls(
-            day=day,
-            order=order,
-            comment=comment,
-            config=config,
+        thumbnail_alias = cls(
+            url=url,
+            settings=settings,
         )
 
-        slot_request.additional_properties = d
-        return slot_request
+        thumbnail_alias.additional_properties = d
+        return thumbnail_alias
 
     @property
     def additional_keys(self) -> list[str]:

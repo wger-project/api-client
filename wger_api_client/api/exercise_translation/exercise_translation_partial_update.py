@@ -27,20 +27,10 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, PatchedExerciseTranslationRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, PatchedExerciseTranslationRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, PatchedExerciseTranslationRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -82,8 +72,6 @@ def sync_detailed(
     Args:
         id (int):
         body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -116,8 +104,6 @@ def sync(
     Args:
         id (int):
         body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -144,8 +130,6 @@ async def asyncio_detailed(
 
     Args:
         id (int):
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
         body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
 
     Raises:
@@ -176,8 +160,6 @@ async def asyncio(
 
     Args:
         id (int):
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
-        body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
         body (PatchedExerciseTranslationRequest | Unset): Exercise translation serializer
 
     Raises:

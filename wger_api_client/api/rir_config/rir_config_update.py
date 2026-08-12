@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.ri_r_config import RiRConfig
 from ...models.ri_r_config_request import RiRConfigRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: RiRConfigRequest | Unset = UNSET,
+    body: RiRConfigRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,17 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, RiRConfigRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, RiRConfigRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, RiRConfigRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -70,14 +62,12 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: RiRConfigRequest | Unset = UNSET,
+    body: RiRConfigRequest,
 ) -> Response[RiRConfig]:
     """API endpoint for set config objects
 
     Args:
         id (int):
-        body (RiRConfigRequest): RiR Config serializer
-        body (RiRConfigRequest): RiR Config serializer
         body (RiRConfigRequest): RiR Config serializer
 
     Raises:
@@ -104,14 +94,12 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: RiRConfigRequest | Unset = UNSET,
+    body: RiRConfigRequest,
 ) -> RiRConfig | None:
     """API endpoint for set config objects
 
     Args:
         id (int):
-        body (RiRConfigRequest): RiR Config serializer
-        body (RiRConfigRequest): RiR Config serializer
         body (RiRConfigRequest): RiR Config serializer
 
     Raises:
@@ -133,14 +121,12 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: RiRConfigRequest | Unset = UNSET,
+    body: RiRConfigRequest,
 ) -> Response[RiRConfig]:
     """API endpoint for set config objects
 
     Args:
         id (int):
-        body (RiRConfigRequest): RiR Config serializer
-        body (RiRConfigRequest): RiR Config serializer
         body (RiRConfigRequest): RiR Config serializer
 
     Raises:
@@ -165,14 +151,12 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: RiRConfigRequest | Unset = UNSET,
+    body: RiRConfigRequest,
 ) -> RiRConfig | None:
     """API endpoint for set config objects
 
     Args:
         id (int):
-        body (RiRConfigRequest): RiR Config serializer
-        body (RiRConfigRequest): RiR Config serializer
         body (RiRConfigRequest): RiR Config serializer
 
     Raises:

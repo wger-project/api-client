@@ -21,20 +21,10 @@ def _get_kwargs(
         "url": "/api/v2/userprofile/verify-email/",
     }
 
-    if isinstance(body, UserprofileRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, UserprofileRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, UserprofileRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -76,8 +66,6 @@ def sync_detailed(
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -109,8 +97,6 @@ def sync(
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -136,8 +122,6 @@ async def asyncio_detailed(
     POST only, a GET must not send out emails as a side effect
 
     Args:
-        body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
@@ -167,8 +151,6 @@ async def asyncio(
     POST only, a GET must not send out emails as a side effect
 
     Args:
-        body (UserprofileRequest | Unset): Workout session serializer
-        body (UserprofileRequest | Unset): Workout session serializer
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:

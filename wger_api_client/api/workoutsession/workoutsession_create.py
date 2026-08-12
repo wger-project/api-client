@@ -21,20 +21,10 @@ def _get_kwargs(
         "url": "/api/v2/workoutsession/",
     }
 
-    if isinstance(body, WorkoutSessionRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, WorkoutSessionRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, WorkoutSessionRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -74,8 +64,6 @@ def sync_detailed(
 
     Args:
         body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -105,8 +93,6 @@ def sync(
 
     Args:
         body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -130,8 +116,6 @@ async def asyncio_detailed(
     """API endpoint for workout sessions objects
 
     Args:
-        body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
         body (WorkoutSessionRequest | Unset): Workout session serializer
 
     Raises:
@@ -159,8 +143,6 @@ async def asyncio(
     """API endpoint for workout sessions objects
 
     Args:
-        body (WorkoutSessionRequest | Unset): Workout session serializer
-        body (WorkoutSessionRequest | Unset): Workout session serializer
         body (WorkoutSessionRequest | Unset): Workout session serializer
 
     Raises:

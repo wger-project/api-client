@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.exercise_translation import ExerciseTranslation
 from ...models.exercise_translation_request import ExerciseTranslationRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: ExerciseTranslationRequest | Unset = UNSET,
+    body: ExerciseTranslationRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,17 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, ExerciseTranslationRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, ExerciseTranslationRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, ExerciseTranslationRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -70,14 +62,12 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseTranslationRequest | Unset = UNSET,
+    body: ExerciseTranslationRequest,
 ) -> Response[ExerciseTranslation]:
     """API endpoint for editing or adding exercise translation objects.
 
     Args:
         id (int):
-        body (ExerciseTranslationRequest): Exercise translation serializer
-        body (ExerciseTranslationRequest): Exercise translation serializer
         body (ExerciseTranslationRequest): Exercise translation serializer
 
     Raises:
@@ -104,14 +94,12 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseTranslationRequest | Unset = UNSET,
+    body: ExerciseTranslationRequest,
 ) -> ExerciseTranslation | None:
     """API endpoint for editing or adding exercise translation objects.
 
     Args:
         id (int):
-        body (ExerciseTranslationRequest): Exercise translation serializer
-        body (ExerciseTranslationRequest): Exercise translation serializer
         body (ExerciseTranslationRequest): Exercise translation serializer
 
     Raises:
@@ -133,14 +121,12 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseTranslationRequest | Unset = UNSET,
+    body: ExerciseTranslationRequest,
 ) -> Response[ExerciseTranslation]:
     """API endpoint for editing or adding exercise translation objects.
 
     Args:
         id (int):
-        body (ExerciseTranslationRequest): Exercise translation serializer
-        body (ExerciseTranslationRequest): Exercise translation serializer
         body (ExerciseTranslationRequest): Exercise translation serializer
 
     Raises:
@@ -165,14 +151,12 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseTranslationRequest | Unset = UNSET,
+    body: ExerciseTranslationRequest,
 ) -> ExerciseTranslation | None:
     """API endpoint for editing or adding exercise translation objects.
 
     Args:
         id (int):
-        body (ExerciseTranslationRequest): Exercise translation serializer
-        body (ExerciseTranslationRequest): Exercise translation serializer
         body (ExerciseTranslationRequest): Exercise translation serializer
 
     Raises:

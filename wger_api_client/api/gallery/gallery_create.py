@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.image import Image
 from ...models.image_request import ImageRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,13 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/gallery/",
     }
 
-    if isinstance(body, ImageRequest):
-        _kwargs["files"] = body.to_multipart()
+    _kwargs["files"] = body.to_multipart()
 
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
-    if isinstance(body, ImageRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    headers["Content-Type"] = "multipart/form-data; boundary=+++"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -61,12 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Response[Image]:
     """API endpoint for gallery image
 
     Args:
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -91,12 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Image | None:
     """API endpoint for gallery image
 
     Args:
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -116,12 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Response[Image]:
     """API endpoint for gallery image
 
     Args:
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:
@@ -144,12 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: ImageRequest | Unset = UNSET,
+    body: ImageRequest,
 ) -> Image | None:
     """API endpoint for gallery image
 
     Args:
-        body (ImageRequest): Exercise serializer
         body (ImageRequest): Exercise serializer
 
     Raises:

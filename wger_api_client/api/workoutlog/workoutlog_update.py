@@ -9,13 +9,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.workout_log import WorkoutLog
 from ...models.workout_log_request import WorkoutLogRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: UUID,
     *,
-    body: WorkoutLogRequest | Unset = UNSET,
+    body: WorkoutLogRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -26,17 +26,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, WorkoutLogRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, WorkoutLogRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, WorkoutLogRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -71,14 +63,12 @@ def sync_detailed(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: WorkoutLogRequest | Unset = UNSET,
+    body: WorkoutLogRequest,
 ) -> Response[WorkoutLog]:
     """API endpoint for workout log objects
 
     Args:
         id (UUID):
-        body (WorkoutLogRequest): Workout log serializer
-        body (WorkoutLogRequest): Workout log serializer
         body (WorkoutLogRequest): Workout log serializer
 
     Raises:
@@ -105,14 +95,12 @@ def sync(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: WorkoutLogRequest | Unset = UNSET,
+    body: WorkoutLogRequest,
 ) -> WorkoutLog | None:
     """API endpoint for workout log objects
 
     Args:
         id (UUID):
-        body (WorkoutLogRequest): Workout log serializer
-        body (WorkoutLogRequest): Workout log serializer
         body (WorkoutLogRequest): Workout log serializer
 
     Raises:
@@ -134,14 +122,12 @@ async def asyncio_detailed(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: WorkoutLogRequest | Unset = UNSET,
+    body: WorkoutLogRequest,
 ) -> Response[WorkoutLog]:
     """API endpoint for workout log objects
 
     Args:
         id (UUID):
-        body (WorkoutLogRequest): Workout log serializer
-        body (WorkoutLogRequest): Workout log serializer
         body (WorkoutLogRequest): Workout log serializer
 
     Raises:
@@ -166,14 +152,12 @@ async def asyncio(
     id: UUID,
     *,
     client: AuthenticatedClient,
-    body: WorkoutLogRequest | Unset = UNSET,
+    body: WorkoutLogRequest,
 ) -> WorkoutLog | None:
     """API endpoint for workout log objects
 
     Args:
         id (UUID):
-        body (WorkoutLogRequest): Workout log serializer
-        body (WorkoutLogRequest): Workout log serializer
         body (WorkoutLogRequest): Workout log serializer
 
     Raises:

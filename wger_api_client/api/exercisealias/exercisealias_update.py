@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.exercise_alias import ExerciseAlias
 from ...models.exercise_alias_request import ExerciseAliasRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: ExerciseAliasRequest | Unset = UNSET,
+    body: ExerciseAliasRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,17 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, ExerciseAliasRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, ExerciseAliasRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, ExerciseAliasRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -70,14 +62,12 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseAliasRequest | Unset = UNSET,
+    body: ExerciseAliasRequest,
 ) -> Response[ExerciseAlias]:
     """API endpoint for exercise aliases objects
 
     Args:
         id (int):
-        body (ExerciseAliasRequest): ExerciseAlias serializer
-        body (ExerciseAliasRequest): ExerciseAlias serializer
         body (ExerciseAliasRequest): ExerciseAlias serializer
 
     Raises:
@@ -104,14 +94,12 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseAliasRequest | Unset = UNSET,
+    body: ExerciseAliasRequest,
 ) -> ExerciseAlias | None:
     """API endpoint for exercise aliases objects
 
     Args:
         id (int):
-        body (ExerciseAliasRequest): ExerciseAlias serializer
-        body (ExerciseAliasRequest): ExerciseAlias serializer
         body (ExerciseAliasRequest): ExerciseAlias serializer
 
     Raises:
@@ -133,14 +121,12 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseAliasRequest | Unset = UNSET,
+    body: ExerciseAliasRequest,
 ) -> Response[ExerciseAlias]:
     """API endpoint for exercise aliases objects
 
     Args:
         id (int):
-        body (ExerciseAliasRequest): ExerciseAlias serializer
-        body (ExerciseAliasRequest): ExerciseAlias serializer
         body (ExerciseAliasRequest): ExerciseAlias serializer
 
     Raises:
@@ -165,14 +151,12 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseAliasRequest | Unset = UNSET,
+    body: ExerciseAliasRequest,
 ) -> ExerciseAlias | None:
     """API endpoint for exercise aliases objects
 
     Args:
         id (int):
-        body (ExerciseAliasRequest): ExerciseAlias serializer
-        body (ExerciseAliasRequest): ExerciseAlias serializer
         body (ExerciseAliasRequest): ExerciseAlias serializer
 
     Raises:

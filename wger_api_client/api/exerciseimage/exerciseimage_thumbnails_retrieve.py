@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.exercise_image import ExerciseImage
+from ...models.image_thumbnails import ImageThumbnails
 from ...types import Response
 
 
@@ -26,9 +26,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ExerciseImage | None:
+) -> ImageThumbnails | None:
     if response.status_code == 200:
-        response_200 = ExerciseImage.from_dict(response.json())
+        response_200 = ImageThumbnails.from_dict(response.json())
 
         return response_200
 
@@ -40,7 +40,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ExerciseImage]:
+) -> Response[ImageThumbnails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -53,8 +53,8 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Response[ExerciseImage]:
-    """Return a list of the image's thumbnails
+) -> Response[ImageThumbnails]:
+    """Return the image's thumbnails, one per configured alias
 
     Args:
         id (int):
@@ -64,7 +64,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ExerciseImage]
+        Response[ImageThumbnails]
     """
 
     kwargs = _get_kwargs(
@@ -82,8 +82,8 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> ExerciseImage | None:
-    """Return a list of the image's thumbnails
+) -> ImageThumbnails | None:
+    """Return the image's thumbnails, one per configured alias
 
     Args:
         id (int):
@@ -93,7 +93,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ExerciseImage
+        ImageThumbnails
     """
 
     return sync_detailed(
@@ -106,8 +106,8 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Response[ExerciseImage]:
-    """Return a list of the image's thumbnails
+) -> Response[ImageThumbnails]:
+    """Return the image's thumbnails, one per configured alias
 
     Args:
         id (int):
@@ -117,7 +117,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ExerciseImage]
+        Response[ImageThumbnails]
     """
 
     kwargs = _get_kwargs(
@@ -133,8 +133,8 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> ExerciseImage | None:
-    """Return a list of the image's thumbnails
+) -> ImageThumbnails | None:
+    """Return the image's thumbnails, one per configured alias
 
     Args:
         id (int):
@@ -144,7 +144,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ExerciseImage
+        ImageThumbnails
     """
 
     return (

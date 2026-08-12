@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.meal_item import MealItem
 from ...models.meal_item_request import MealItemRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: MealItemRequest | Unset = UNSET,
+    body: MealItemRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/mealitem/",
     }
 
-    if isinstance(body, MealItemRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, MealItemRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, MealItemRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: MealItemRequest | Unset = UNSET,
+    body: MealItemRequest,
 ) -> Response[MealItem]:
     """API endpoint for meal item objects
 
     Args:
-        body (MealItemRequest): MealItem serializer
-        body (MealItemRequest): MealItem serializer
         body (MealItemRequest): MealItem serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: MealItemRequest | Unset = UNSET,
+    body: MealItemRequest,
 ) -> MealItem | None:
     """API endpoint for meal item objects
 
     Args:
-        body (MealItemRequest): MealItem serializer
-        body (MealItemRequest): MealItem serializer
         body (MealItemRequest): MealItem serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: MealItemRequest | Unset = UNSET,
+    body: MealItemRequest,
 ) -> Response[MealItem]:
     """API endpoint for meal item objects
 
     Args:
-        body (MealItemRequest): MealItem serializer
-        body (MealItemRequest): MealItem serializer
         body (MealItemRequest): MealItem serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: MealItemRequest | Unset = UNSET,
+    body: MealItemRequest,
 ) -> MealItem | None:
     """API endpoint for meal item objects
 
     Args:
-        body (MealItemRequest): MealItem serializer
-        body (MealItemRequest): MealItem serializer
         body (MealItemRequest): MealItem serializer
 
     Raises:

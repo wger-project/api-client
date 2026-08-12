@@ -41,6 +41,7 @@ from .grouped_log_data_iteration import GroupedLogDataIteration
 from .grouped_log_data_weekly import GroupedLogDataWeekly
 from .image import Image
 from .image_request import ImageRequest
+from .image_thumbnails import ImageThumbnails
 from .impression_enum import ImpressionEnum
 from .ingredient import Ingredient
 from .ingredient_image import IngredientImage
@@ -140,7 +141,6 @@ from .paginated_set_nr_config_list import PaginatedSetNrConfigList
 from .paginated_slot_entry_list import PaginatedSlotEntryList
 from .paginated_slot_list import PaginatedSlotList
 from .paginated_trophy_list import PaginatedTrophyList
-from .paginated_trophy_progress_list import PaginatedTrophyProgressList
 from .paginated_user_statistics_list import PaginatedUserStatisticsList
 from .paginated_user_trophy_list import PaginatedUserTrophyList
 from .paginated_weight_config_list import PaginatedWeightConfigList
@@ -221,6 +221,8 @@ from .slot_request import SlotRequest
 from .slot_structure import SlotStructure
 from .step_enum import StepEnum
 from .style_enum import StyleEnum
+from .thumbnail_alias import ThumbnailAlias
+from .thumbnail_alias_settings import ThumbnailAliasSettings
 from .thumbnails import Thumbnails
 from .token_refresh import TokenRefresh
 from .token_refresh_request import TokenRefreshRequest
@@ -292,6 +294,7 @@ __all__ = (
     "GroupedLogDataWeekly",
     "Image",
     "ImageRequest",
+    "ImageThumbnails",
     "ImpressionEnum",
     "Ingredient",
     "IngredientImage",
@@ -391,7 +394,6 @@ __all__ = (
     "PaginatedSlotEntryList",
     "PaginatedSlotList",
     "PaginatedTrophyList",
-    "PaginatedTrophyProgressList",
     "PaginatedUserStatisticsList",
     "PaginatedUserTrophyList",
     "PaginatedWeightConfigList",
@@ -472,6 +474,8 @@ __all__ = (
     "SlotStructure",
     "StepEnum",
     "StyleEnum",
+    "ThumbnailAlias",
+    "ThumbnailAliasSettings",
     "Thumbnails",
     "TokenRefresh",
     "TokenRefreshRequest",

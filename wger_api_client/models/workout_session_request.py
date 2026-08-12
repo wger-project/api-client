@@ -2,14 +2,12 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..models.impression_enum import ImpressionEnum
 from ..types import UNSET, Unset
 
@@ -107,70 +105,6 @@ class WorkoutSessionRequest:
             field_dict["time_end"] = time_end
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        if not isinstance(self.id, Unset):
-            files.append(("id", (None, str(self.id), "text/plain")))
-
-        if not isinstance(self.routine, Unset):
-            if isinstance(self.routine, int):
-                files.append(
-                    ("routine", (None, str(self.routine).encode(), "text/plain"))
-                )
-            else:
-                files.append(
-                    ("routine", (None, str(self.routine).encode(), "text/plain"))
-                )
-
-        if not isinstance(self.day, Unset):
-            if isinstance(self.day, int):
-                files.append(("day", (None, str(self.day).encode(), "text/plain")))
-            else:
-                files.append(("day", (None, str(self.day).encode(), "text/plain")))
-
-        if not isinstance(self.date, Unset):
-            files.append(("date", (None, self.date.isoformat().encode(), "text/plain")))
-
-        if not isinstance(self.notes, Unset):
-            if isinstance(self.notes, str):
-                files.append(("notes", (None, str(self.notes).encode(), "text/plain")))
-            else:
-                files.append(("notes", (None, str(self.notes).encode(), "text/plain")))
-
-        if not isinstance(self.impression, Unset):
-            files.append(
-                (
-                    "impression",
-                    (None, str(self.impression.value).encode(), "text/plain"),
-                )
-            )
-
-        if not isinstance(self.time_start, Unset):
-            if isinstance(self.time_start, str):
-                files.append(
-                    ("time_start", (None, str(self.time_start).encode(), "text/plain"))
-                )
-            else:
-                files.append(
-                    ("time_start", (None, str(self.time_start).encode(), "text/plain"))
-                )
-
-        if not isinstance(self.time_end, Unset):
-            if isinstance(self.time_end, str):
-                files.append(
-                    ("time_end", (None, str(self.time_end).encode(), "text/plain"))
-                )
-            else:
-                files.append(
-                    ("time_end", (None, str(self.time_end).encode(), "text/plain"))
-                )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

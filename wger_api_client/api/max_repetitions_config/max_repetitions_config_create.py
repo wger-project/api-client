@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.max_repetitions_config import MaxRepetitionsConfig
 from ...models.max_repetitions_config_request import MaxRepetitionsConfigRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: MaxRepetitionsConfigRequest | Unset = UNSET,
+    body: MaxRepetitionsConfigRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/max-repetitions-config/",
     }
 
-    if isinstance(body, MaxRepetitionsConfigRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, MaxRepetitionsConfigRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, MaxRepetitionsConfigRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: MaxRepetitionsConfigRequest | Unset = UNSET,
+    body: MaxRepetitionsConfigRequest,
 ) -> Response[MaxRepetitionsConfig]:
     """API endpoint for max reps config objects
 
     Args:
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
         body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: MaxRepetitionsConfigRequest | Unset = UNSET,
+    body: MaxRepetitionsConfigRequest,
 ) -> MaxRepetitionsConfig | None:
     """API endpoint for max reps config objects
 
     Args:
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
         body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: MaxRepetitionsConfigRequest | Unset = UNSET,
+    body: MaxRepetitionsConfigRequest,
 ) -> Response[MaxRepetitionsConfig]:
     """API endpoint for max reps config objects
 
     Args:
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
         body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: MaxRepetitionsConfigRequest | Unset = UNSET,
+    body: MaxRepetitionsConfigRequest,
 ) -> MaxRepetitionsConfig | None:
     """API endpoint for max reps config objects
 
     Args:
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
-        body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
         body (MaxRepetitionsConfigRequest): Max Repetition Config serializer
 
     Raises:

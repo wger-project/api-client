@@ -2,14 +2,12 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PatchedNutritionPlanRequest")
@@ -120,108 +118,6 @@ class PatchedNutritionPlanRequest:
             field_dict["goal_fiber"] = goal_fiber
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        if not isinstance(self.id, Unset):
-            files.append(("id", (None, str(self.id), "text/plain")))
-
-        if not isinstance(self.start, Unset):
-            files.append(
-                ("start", (None, self.start.isoformat().encode(), "text/plain"))
-            )
-
-        if not isinstance(self.end, Unset):
-            if isinstance(self.end, datetime.date):
-                files.append(
-                    ("end", (None, self.end.isoformat().encode(), "text/plain"))
-                )
-            else:
-                files.append(("end", (None, str(self.end).encode(), "text/plain")))
-
-        if not isinstance(self.description, Unset):
-            files.append(
-                ("description", (None, str(self.description).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.only_logging, Unset):
-            files.append(
-                ("only_logging", (None, str(self.only_logging).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.goal_energy, Unset):
-            if isinstance(self.goal_energy, int):
-                files.append(
-                    (
-                        "goal_energy",
-                        (None, str(self.goal_energy).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "goal_energy",
-                        (None, str(self.goal_energy).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.goal_protein, Unset):
-            if isinstance(self.goal_protein, int):
-                files.append(
-                    (
-                        "goal_protein",
-                        (None, str(self.goal_protein).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "goal_protein",
-                        (None, str(self.goal_protein).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.goal_carbohydrates, Unset):
-            if isinstance(self.goal_carbohydrates, int):
-                files.append(
-                    (
-                        "goal_carbohydrates",
-                        (None, str(self.goal_carbohydrates).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "goal_carbohydrates",
-                        (None, str(self.goal_carbohydrates).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.goal_fat, Unset):
-            if isinstance(self.goal_fat, int):
-                files.append(
-                    ("goal_fat", (None, str(self.goal_fat).encode(), "text/plain"))
-                )
-            else:
-                files.append(
-                    ("goal_fat", (None, str(self.goal_fat).encode(), "text/plain"))
-                )
-
-        if not isinstance(self.goal_fiber, Unset):
-            if isinstance(self.goal_fiber, int):
-                files.append(
-                    ("goal_fiber", (None, str(self.goal_fiber).encode(), "text/plain"))
-                )
-            else:
-                files.append(
-                    ("goal_fiber", (None, str(self.goal_fiber).encode(), "text/plain"))
-                )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

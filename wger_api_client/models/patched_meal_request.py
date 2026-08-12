@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PatchedMealRequest")
@@ -61,29 +59,6 @@ class PatchedMealRequest:
             field_dict["name"] = name
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        if not isinstance(self.id, Unset):
-            files.append(("id", (None, str(self.id), "text/plain")))
-
-        if not isinstance(self.plan, Unset):
-            files.append(("plan", (None, str(self.plan), "text/plain")))
-
-        if not isinstance(self.time, Unset):
-            if isinstance(self.time, str):
-                files.append(("time", (None, str(self.time).encode(), "text/plain")))
-            else:
-                files.append(("time", (None, str(self.time).encode(), "text/plain")))
-
-        if not isinstance(self.name, Unset):
-            files.append(("name", (None, str(self.name).encode(), "text/plain")))
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

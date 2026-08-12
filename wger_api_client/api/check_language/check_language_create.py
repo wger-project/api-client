@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.language_check_request import LanguageCheckRequest
 from ...models.language_check_response import LanguageCheckResponse
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: LanguageCheckRequest | Unset = UNSET,
+    body: LanguageCheckRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/check-language/",
     }
 
-    if isinstance(body, LanguageCheckRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, LanguageCheckRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, LanguageCheckRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -69,13 +61,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: LanguageCheckRequest | Unset = UNSET,
+    body: LanguageCheckRequest,
 ) -> Response[Any | LanguageCheckResponse]:
     """Checks the language of a string
 
     Args:
-        body (LanguageCheckRequest): Serializer for language check
-        body (LanguageCheckRequest): Serializer for language check
         body (LanguageCheckRequest): Serializer for language check
 
     Raises:
@@ -100,13 +90,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: LanguageCheckRequest | Unset = UNSET,
+    body: LanguageCheckRequest,
 ) -> Any | LanguageCheckResponse | None:
     """Checks the language of a string
 
     Args:
-        body (LanguageCheckRequest): Serializer for language check
-        body (LanguageCheckRequest): Serializer for language check
         body (LanguageCheckRequest): Serializer for language check
 
     Raises:
@@ -126,13 +114,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: LanguageCheckRequest | Unset = UNSET,
+    body: LanguageCheckRequest,
 ) -> Response[Any | LanguageCheckResponse]:
     """Checks the language of a string
 
     Args:
-        body (LanguageCheckRequest): Serializer for language check
-        body (LanguageCheckRequest): Serializer for language check
         body (LanguageCheckRequest): Serializer for language check
 
     Raises:
@@ -155,13 +141,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: LanguageCheckRequest | Unset = UNSET,
+    body: LanguageCheckRequest,
 ) -> Any | LanguageCheckResponse | None:
     """Checks the language of a string
 
     Args:
-        body (LanguageCheckRequest): Serializer for language check
-        body (LanguageCheckRequest): Serializer for language check
         body (LanguageCheckRequest): Serializer for language check
 
     Raises:

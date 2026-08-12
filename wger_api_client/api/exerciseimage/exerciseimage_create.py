@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.exercise_image import ExerciseImage
 from ...models.exercise_image_request import ExerciseImageRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: ExerciseImageRequest | Unset = UNSET,
+    body: ExerciseImageRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/exerciseimage/",
     }
 
-    if isinstance(body, ExerciseImageRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["files"] = body.to_multipart()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, ExerciseImageRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, ExerciseImageRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "multipart/form-data; boundary=+++"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: ExerciseImageRequest | Unset = UNSET,
+    body: ExerciseImageRequest,
 ) -> Response[ExerciseImage]:
     """API endpoint for exercise image objects
 
     Args:
-        body (ExerciseImageRequest): ExerciseImage serializer
-        body (ExerciseImageRequest): ExerciseImage serializer
         body (ExerciseImageRequest): ExerciseImage serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: ExerciseImageRequest | Unset = UNSET,
+    body: ExerciseImageRequest,
 ) -> ExerciseImage | None:
     """API endpoint for exercise image objects
 
     Args:
-        body (ExerciseImageRequest): ExerciseImage serializer
-        body (ExerciseImageRequest): ExerciseImage serializer
         body (ExerciseImageRequest): ExerciseImage serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: ExerciseImageRequest | Unset = UNSET,
+    body: ExerciseImageRequest,
 ) -> Response[ExerciseImage]:
     """API endpoint for exercise image objects
 
     Args:
-        body (ExerciseImageRequest): ExerciseImage serializer
-        body (ExerciseImageRequest): ExerciseImage serializer
         body (ExerciseImageRequest): ExerciseImage serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: ExerciseImageRequest | Unset = UNSET,
+    body: ExerciseImageRequest,
 ) -> ExerciseImage | None:
     """API endpoint for exercise image objects
 
     Args:
-        body (ExerciseImageRequest): ExerciseImage serializer
-        body (ExerciseImageRequest): ExerciseImage serializer
         body (ExerciseImageRequest): ExerciseImage serializer
 
     Raises:

@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Self, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..models.day_type_enum import DayTypeEnum
 from ..types import UNSET, Unset
 
@@ -88,44 +86,6 @@ class DayRequest:
             field_dict["config"] = config
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("routine", (None, str(self.routine).encode(), "text/plain")))
-
-        if not isinstance(self.order, Unset):
-            files.append(("order", (None, str(self.order).encode(), "text/plain")))
-
-        if not isinstance(self.name, Unset):
-            files.append(("name", (None, str(self.name).encode(), "text/plain")))
-
-        if not isinstance(self.description, Unset):
-            files.append(
-                ("description", (None, str(self.description).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.is_rest, Unset):
-            files.append(("is_rest", (None, str(self.is_rest).encode(), "text/plain")))
-
-        if not isinstance(self.need_logs_to_advance, Unset):
-            files.append(
-                (
-                    "need_logs_to_advance",
-                    (None, str(self.need_logs_to_advance).encode(), "text/plain"),
-                )
-            )
-
-        if not isinstance(self.type_, Unset):
-            files.append(("type", (None, str(self.type_.value).encode(), "text/plain")))
-
-        if not isinstance(self.config, Unset):
-            files.append(("config", (None, str(self.config).encode(), "text/plain")))
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

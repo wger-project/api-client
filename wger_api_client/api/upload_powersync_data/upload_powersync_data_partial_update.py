@@ -21,20 +21,10 @@ def _get_kwargs(
         "url": "/api/v2/upload-powersync-data",
     }
 
-    if isinstance(body, PatchedPowersyncUploadRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, PatchedPowersyncUploadRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, PatchedPowersyncUploadRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -85,8 +75,6 @@ def sync_detailed(
     """
     Args:
         body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,8 +103,6 @@ def sync(
     """
     Args:
         body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -139,8 +125,6 @@ async def asyncio_detailed(
 ) -> Response[Any | PowersyncUploadResponse]:
     """
     Args:
-        body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
         body (PatchedPowersyncUploadRequest | Unset):
 
     Raises:
@@ -167,8 +151,6 @@ async def asyncio(
 ) -> Any | PowersyncUploadResponse | None:
     """
     Args:
-        body (PatchedPowersyncUploadRequest | Unset):
-        body (PatchedPowersyncUploadRequest | Unset):
         body (PatchedPowersyncUploadRequest | Unset):
 
     Raises:

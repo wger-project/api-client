@@ -26,20 +26,10 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, PatchedMealRequest):
-        if not isinstance(body, Unset):
-            _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, PatchedMealRequest):
-        if not isinstance(body, Unset):
-            _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, PatchedMealRequest):
-        if not isinstance(body, Unset):
-            _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -81,8 +71,6 @@ def sync_detailed(
     Args:
         id (UUID):
         body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,8 +103,6 @@ def sync(
     Args:
         id (UUID):
         body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,8 +129,6 @@ async def asyncio_detailed(
 
     Args:
         id (UUID):
-        body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
         body (PatchedMealRequest | Unset): Meal serializer
 
     Raises:
@@ -175,8 +159,6 @@ async def asyncio(
 
     Args:
         id (UUID):
-        body (PatchedMealRequest | Unset): Meal serializer
-        body (PatchedMealRequest | Unset): Meal serializer
         body (PatchedMealRequest | Unset): Meal serializer
 
     Raises:

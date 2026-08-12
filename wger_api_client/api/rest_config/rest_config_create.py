@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.rest_config import RestConfig
 from ...models.rest_config_request import RestConfigRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: RestConfigRequest | Unset = UNSET,
+    body: RestConfigRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/rest-config/",
     }
 
-    if isinstance(body, RestConfigRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, RestConfigRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, RestConfigRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: RestConfigRequest | Unset = UNSET,
+    body: RestConfigRequest,
 ) -> Response[RestConfig]:
     """API endpoint for set config objects
 
     Args:
-        body (RestConfigRequest): Rest Config serializer
-        body (RestConfigRequest): Rest Config serializer
         body (RestConfigRequest): Rest Config serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: RestConfigRequest | Unset = UNSET,
+    body: RestConfigRequest,
 ) -> RestConfig | None:
     """API endpoint for set config objects
 
     Args:
-        body (RestConfigRequest): Rest Config serializer
-        body (RestConfigRequest): Rest Config serializer
         body (RestConfigRequest): Rest Config serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: RestConfigRequest | Unset = UNSET,
+    body: RestConfigRequest,
 ) -> Response[RestConfig]:
     """API endpoint for set config objects
 
     Args:
-        body (RestConfigRequest): Rest Config serializer
-        body (RestConfigRequest): Rest Config serializer
         body (RestConfigRequest): Rest Config serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: RestConfigRequest | Unset = UNSET,
+    body: RestConfigRequest,
 ) -> RestConfig | None:
     """API endpoint for set config objects
 
     Args:
-        body (RestConfigRequest): Rest Config serializer
-        body (RestConfigRequest): Rest Config serializer
         body (RestConfigRequest): Rest Config serializer
 
     Raises:

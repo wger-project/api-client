@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
 from ..models.blank_enum import BlankEnum
 from ..models.nutriscore_enum import NutriscoreEnum
@@ -42,7 +41,7 @@ class IngredientInfo:
         weight_units (list[IngredientWeightUnit]):
         language (Language): Language serializer
         license_ (License): License serializer
-        image (IngredientImage): Image serializer
+        image (IngredientImage | None):
         thumbnails (None | Thumbnails):
         remote_id (None | str | Unset):
         source_name (None | str | Unset):
@@ -84,7 +83,7 @@ class IngredientInfo:
     weight_units: list[IngredientWeightUnit]
     language: Language
     license_: License
-    image: IngredientImage
+    image: IngredientImage | None
     thumbnails: None | Thumbnails
     remote_id: None | str | Unset = UNSET
     source_name: None | str | Unset = UNSET
@@ -107,6 +106,7 @@ class IngredientInfo:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.ingredient_image import IngredientImage
         from ..models.thumbnails import Thumbnails
 
         id = self.id
@@ -142,7 +142,11 @@ class IngredientInfo:
 
         license_ = self.license_.to_dict()
 
-        image = self.image.to_dict()
+        image: dict[str, Any] | None
+        if isinstance(self.image, IngredientImage):
+            image = self.image.to_dict()
+        else:
+            image = self.image
 
         thumbnails: dict[str, Any] | None
         if isinstance(self.thumbnails, Thumbnails):
@@ -367,7 +371,20 @@ class IngredientInfo:
 
         license_ = License.from_dict(d.pop("license"))
 
-        image = IngredientImage.from_dict(d.pop("image"))
+        def _parse_image(data: object) -> IngredientImage | None:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                image_type_1 = IngredientImage.from_dict(data)
+
+                return image_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(IngredientImage | None, data)
+
+        image = _parse_image(d.pop("image"))
 
         def _parse_thumbnails(data: object) -> None | Thumbnails:
             if data is None:

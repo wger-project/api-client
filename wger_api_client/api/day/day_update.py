@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.day import Day
 from ...models.day_request import DayRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: DayRequest | Unset = UNSET,
+    body: DayRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,17 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, DayRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, DayRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, DayRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -70,14 +62,12 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: DayRequest | Unset = UNSET,
+    body: DayRequest,
 ) -> Response[Day]:
     """API endpoint for routine day objects
 
     Args:
         id (int):
-        body (DayRequest): Day serializer
-        body (DayRequest): Day serializer
         body (DayRequest): Day serializer
 
     Raises:
@@ -104,14 +94,12 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: DayRequest | Unset = UNSET,
+    body: DayRequest,
 ) -> Day | None:
     """API endpoint for routine day objects
 
     Args:
         id (int):
-        body (DayRequest): Day serializer
-        body (DayRequest): Day serializer
         body (DayRequest): Day serializer
 
     Raises:
@@ -133,14 +121,12 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: DayRequest | Unset = UNSET,
+    body: DayRequest,
 ) -> Response[Day]:
     """API endpoint for routine day objects
 
     Args:
         id (int):
-        body (DayRequest): Day serializer
-        body (DayRequest): Day serializer
         body (DayRequest): Day serializer
 
     Raises:
@@ -165,14 +151,12 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: DayRequest | Unset = UNSET,
+    body: DayRequest,
 ) -> Day | None:
     """API endpoint for routine day objects
 
     Args:
         id (int):
-        body (DayRequest): Day serializer
-        body (DayRequest): Day serializer
         body (DayRequest): Day serializer
 
     Raises:

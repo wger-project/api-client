@@ -6,12 +6,12 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.permission_response import PermissionResponse
-from ...types import UNSET, Response, Unset
+from ...types import UNSET, Response
 
 
 def _get_kwargs(
     *,
-    permission: str | Unset = UNSET,
+    permission: str,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -32,10 +32,10 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Any | PermissionResponse | None:
-    if response.status_code == 201:
-        response_201 = PermissionResponse.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = PermissionResponse.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if response.status_code == 400:
         response_400 = cast(Any, None)
@@ -61,12 +61,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    permission: str | Unset = UNSET,
+    permission: str,
 ) -> Response[Any | PermissionResponse]:
     """Checks whether the user has a django permission
 
     Args:
-        permission (str | Unset):
+        permission (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -90,12 +90,12 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    permission: str | Unset = UNSET,
+    permission: str,
 ) -> Any | PermissionResponse | None:
     """Checks whether the user has a django permission
 
     Args:
-        permission (str | Unset):
+        permission (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -114,12 +114,12 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    permission: str | Unset = UNSET,
+    permission: str,
 ) -> Response[Any | PermissionResponse]:
     """Checks whether the user has a django permission
 
     Args:
-        permission (str | Unset):
+        permission (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -141,12 +141,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    permission: str | Unset = UNSET,
+    permission: str,
 ) -> Any | PermissionResponse | None:
     """Checks whether the user has a django permission
 
     Args:
-        permission (str | Unset):
+        permission (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

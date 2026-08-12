@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Self, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ExerciseTranslationRequest")
@@ -57,35 +55,6 @@ class ExerciseTranslationRequest:
             field_dict["license_author"] = license_author
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("name", (None, str(self.name).encode(), "text/plain")))
-
-        files.append(("exercise", (None, str(self.exercise).encode(), "text/plain")))
-
-        files.append(
-            (
-                "description_source",
-                (None, str(self.description_source).encode(), "text/plain"),
-            )
-        )
-
-        files.append(("language", (None, str(self.language).encode(), "text/plain")))
-
-        if not isinstance(self.license_author, Unset):
-            files.append(
-                (
-                    "license_author",
-                    (None, str(self.license_author).encode(), "text/plain"),
-                )
-            )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

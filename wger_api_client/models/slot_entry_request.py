@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, Self, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..models.exercise_type_enum import ExerciseTypeEnum
 from ..types import UNSET, Unset
 
@@ -116,94 +114,6 @@ class SlotEntryRequest:
             field_dict["config"] = config
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("slot", (None, str(self.slot).encode(), "text/plain")))
-
-        files.append(("exercise", (None, str(self.exercise).encode(), "text/plain")))
-
-        if not isinstance(self.type_, Unset):
-            files.append(("type", (None, str(self.type_.value).encode(), "text/plain")))
-
-        if not isinstance(self.repetition_unit, Unset):
-            if isinstance(self.repetition_unit, int):
-                files.append(
-                    (
-                        "repetition_unit",
-                        (None, str(self.repetition_unit).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "repetition_unit",
-                        (None, str(self.repetition_unit).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.repetition_rounding, Unset):
-            if isinstance(self.repetition_rounding, str):
-                files.append(
-                    (
-                        "repetition_rounding",
-                        (None, str(self.repetition_rounding).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "repetition_rounding",
-                        (None, str(self.repetition_rounding).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.weight_unit, Unset):
-            if isinstance(self.weight_unit, int):
-                files.append(
-                    (
-                        "weight_unit",
-                        (None, str(self.weight_unit).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "weight_unit",
-                        (None, str(self.weight_unit).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.weight_rounding, Unset):
-            if isinstance(self.weight_rounding, str):
-                files.append(
-                    (
-                        "weight_rounding",
-                        (None, str(self.weight_rounding).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "weight_rounding",
-                        (None, str(self.weight_rounding).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.order, Unset):
-            files.append(("order", (None, str(self.order).encode(), "text/plain")))
-
-        if not isinstance(self.comment, Unset):
-            files.append(("comment", (None, str(self.comment).encode(), "text/plain")))
-
-        if not isinstance(self.config, Unset):
-            files.append(("config", (None, str(self.config).encode(), "text/plain")))
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

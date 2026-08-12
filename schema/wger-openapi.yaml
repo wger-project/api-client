@@ -59,12 +59,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LanguageCheckRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/LanguageCheckRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/LanguageCheckRequest'
         required: true
       security:
       - cookieAuth: []
@@ -187,12 +181,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DayRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/DayRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/DayRequest'
         required: true
       security:
       - cookieAuth: []
@@ -250,12 +238,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DayRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/DayRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/DayRequest'
         required: true
       security:
       - cookieAuth: []
@@ -285,12 +267,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedDayRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedDayRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedDayRequest'
       security:
@@ -565,12 +541,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseRequest'
         required: true
       security:
       - cookieAuth: []
@@ -594,12 +564,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/ExerciseSubmissionRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseSubmissionRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/ExerciseSubmissionRequest'
         required: true
@@ -686,12 +650,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseTranslationRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseTranslationRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseTranslationRequest'
         required: true
       security:
       - cookieAuth: []
@@ -749,12 +707,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseTranslationRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseTranslationRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseTranslationRequest'
         required: true
       security:
       - cookieAuth: []
@@ -784,12 +736,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseTranslationRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseTranslationRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseTranslationRequest'
       security:
@@ -875,12 +821,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseRequest'
         required: true
       security:
       - cookieAuth: []
@@ -913,12 +853,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseRequest'
       security:
@@ -1014,12 +948,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseAliasRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseAliasRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseAliasRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1077,12 +1005,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseAliasRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseAliasRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseAliasRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1112,12 +1034,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseAliasRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseAliasRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseAliasRequest'
       security:
@@ -1278,12 +1194,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseCommentRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseCommentRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseCommentRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1341,12 +1251,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExerciseCommentRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseCommentRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ExerciseCommentRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1376,12 +1280,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseCommentRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseCommentRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseCommentRequest'
       security:
@@ -1479,12 +1377,6 @@ paths:
       - exerciseimage
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExerciseImageRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseImageRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ExerciseImageRequest'
@@ -1542,12 +1434,6 @@ paths:
       - exerciseimage
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExerciseImageRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseImageRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ExerciseImageRequest'
@@ -1579,12 +1465,6 @@ paths:
       - exerciseimage
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseImageRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseImageRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseImageRequest'
@@ -1625,7 +1505,7 @@ paths:
   /api/v2/exerciseimage/{id}/thumbnails/:
     get:
       operationId: exerciseimage_thumbnails_retrieve
-      description: Return a list of the image's thumbnails
+      description: Return the image's thumbnails, one per configured alias
       parameters:
       - in: path
         name: id
@@ -1646,7 +1526,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExerciseImage'
+                $ref: '#/components/schemas/ImageThumbnails'
           description: ''
   /api/v2/exerciseinfo/:
     get:
@@ -1886,9 +1766,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ImageRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ImageRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1946,9 +1823,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ImageRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ImageRequest'
         required: true
       security:
       - cookieAuth: []
@@ -1978,9 +1852,6 @@ paths:
       requestBody:
         content:
           multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedImageRequest'
-          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/PatchedImageRequest'
       security:
@@ -3359,12 +3230,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3422,12 +3287,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRepetitionsConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3457,12 +3316,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRepetitionsConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMaxRepetitionsConfigRequest'
       security:
@@ -3591,12 +3444,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRestConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRestConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3654,12 +3501,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRestConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRestConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3689,12 +3530,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRestConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMaxRestConfigRequest'
       security:
@@ -3823,12 +3658,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRiRConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRiRConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3886,12 +3715,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxRiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxRiRConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxRiRConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -3921,12 +3744,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxRiRConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMaxRiRConfigRequest'
       security:
@@ -4055,12 +3872,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxSetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxSetNrConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxSetNrConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4118,12 +3929,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxSetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxSetNrConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxSetNrConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4153,12 +3958,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxSetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxSetNrConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMaxSetNrConfigRequest'
       security:
@@ -4287,12 +4086,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxWeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxWeightConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxWeightConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4350,12 +4143,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MaxWeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MaxWeightConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MaxWeightConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4385,12 +4172,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxWeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMaxWeightConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMaxWeightConfigRequest'
       security:
@@ -4489,12 +4270,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MealRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MealRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MealRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4554,12 +4329,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MealRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MealRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MealRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4590,12 +4359,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMealRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMealRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMealRequest'
       security:
@@ -4729,12 +4492,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MealItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MealItemRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MealItemRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4794,12 +4551,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MealItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MealItemRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MealItemRequest'
         required: true
       security:
       - cookieAuth: []
@@ -4830,12 +4581,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMealItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMealItemRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMealItemRequest'
       security:
@@ -5003,12 +4748,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MeasurementRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MeasurementRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MeasurementRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5084,12 +4823,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CategoryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/CategoryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CategoryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5149,12 +4882,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CategoryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/CategoryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CategoryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5185,12 +4912,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedCategoryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedCategoryRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedCategoryRequest'
       security:
@@ -5273,12 +4994,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MeasurementRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/MeasurementRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/MeasurementRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5309,12 +5024,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedMeasurementRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedMeasurementRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedMeasurementRequest'
       security:
@@ -5565,12 +5274,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/LogItemRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/LogItemRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5630,12 +5333,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/LogItemRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/LogItemRequest'
         required: true
       security:
       - cookieAuth: []
@@ -5666,12 +5363,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedLogItemRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedLogItemRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedLogItemRequest'
       security:
@@ -5801,12 +5492,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NutritionPlanRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/NutritionPlanRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/NutritionPlanRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -5869,12 +5554,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NutritionPlanRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/NutritionPlanRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/NutritionPlanRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -5906,12 +5585,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedNutritionPlanRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedNutritionPlanRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedNutritionPlanRequest'
       security:
@@ -6292,12 +5965,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RepetitionsConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RepetitionsConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6355,12 +6022,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RepetitionsConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RepetitionsConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6390,12 +6051,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedRepetitionsConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedRepetitionsConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedRepetitionsConfigRequest'
       security:
@@ -6524,12 +6179,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RestConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RestConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6587,12 +6236,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RestConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RestConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6622,12 +6265,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedRestConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedRestConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedRestConfigRequest'
       security:
@@ -6756,12 +6393,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RiRConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RiRConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6819,12 +6450,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RiRConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RiRConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -6854,12 +6479,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedRiRConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedRiRConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedRiRConfigRequest'
       security:
@@ -6975,12 +6594,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoutineRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RoutineRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RoutineRequest'
         required: true
       security:
       - cookieAuth: []
@@ -7038,12 +6651,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoutineRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RoutineRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RoutineRequest'
         required: true
       security:
       - cookieAuth: []
@@ -7073,12 +6680,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedRoutineRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedRoutineRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedRoutineRequest'
       security:
@@ -7604,12 +7205,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SetNrConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SetNrConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -7667,12 +7262,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SetNrConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SetNrConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -7702,12 +7291,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedSetNrConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedSetNrConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedSetNrConfigRequest'
       security:
@@ -7940,12 +7523,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SlotRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SlotRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SlotRequest'
         required: true
       security:
       - cookieAuth: []
@@ -8064,12 +7641,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SlotEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SlotEntryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SlotEntryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -8127,12 +7698,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SlotEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SlotEntryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SlotEntryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -8162,12 +7727,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedSlotEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedSlotEntryRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedSlotEntryRequest'
       security:
@@ -8247,12 +7806,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SlotRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SlotRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SlotRequest'
         required: true
       security:
       - cookieAuth: []
@@ -8282,12 +7835,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedSlotRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedSlotRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedSlotRequest'
       security:
@@ -8414,12 +7961,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TokenRefreshRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenRefreshRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TokenRefreshRequest'
         required: true
       responses:
         '200':
@@ -8439,12 +7980,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/TokenVerifyRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenVerifyRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/TokenVerifyRequest'
         required: true
@@ -8701,12 +8236,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PowersyncUploadRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PowersyncUploadRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PowersyncUploadRequest'
         required: true
       security:
       - cookieAuth: []
@@ -8734,12 +8263,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedPowersyncUploadRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedPowersyncUploadRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedPowersyncUploadRequest'
       security:
@@ -9080,12 +8603,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserprofileRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -9152,12 +8669,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserprofileRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -9191,12 +8702,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedUserprofileRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedUserprofileRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedUserprofileRequest'
       security:
@@ -9250,12 +8755,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/UserprofileRequest'
       security:
@@ -9352,12 +8851,6 @@ paths:
       - video
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExerciseVideoRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseVideoRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ExerciseVideoRequest'
@@ -9415,12 +8908,6 @@ paths:
       - video
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExerciseVideoRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ExerciseVideoRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ExerciseVideoRequest'
@@ -9452,12 +8939,6 @@ paths:
       - video
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseVideoRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedExerciseVideoRequest'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedExerciseVideoRequest'
@@ -9587,12 +9068,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WeightConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WeightConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -9650,12 +9125,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WeightConfigRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WeightConfigRequest'
         required: true
       security:
       - cookieAuth: []
@@ -9685,12 +9154,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedWeightConfigRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWeightConfigRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedWeightConfigRequest'
       security:
@@ -9833,12 +9296,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WeightEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WeightEntryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WeightEntryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -9896,12 +9353,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WeightEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WeightEntryRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WeightEntryRequest'
         required: true
       security:
       - cookieAuth: []
@@ -9931,12 +9382,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedWeightEntryRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWeightEntryRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedWeightEntryRequest'
       security:
@@ -10250,12 +9695,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkoutLogRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkoutLogRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkoutLogRequest'
         required: true
       security:
       - cookieAuth: []
@@ -10315,12 +9754,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkoutLogRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkoutLogRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkoutLogRequest'
         required: true
       security:
       - cookieAuth: []
@@ -10351,12 +9784,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkoutLogRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkoutLogRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedWorkoutLogRequest'
       security:
@@ -10480,12 +9907,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkoutSessionRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkoutSessionRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkoutSessionRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -10544,12 +9965,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkoutSessionRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkoutSessionRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkoutSessionRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -10579,12 +9994,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkoutSessionRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkoutSessionRequest'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PatchedWorkoutSessionRequest'
       security:
@@ -10672,9 +10081,8 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         name:
           type: string
           maxLength: 20
@@ -10700,9 +10108,8 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         name:
           type: string
           maxLength: 20
@@ -10730,9 +10137,8 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         name:
           type: string
           maxLength: 20
@@ -11919,6 +11325,21 @@ components:
       required:
       - date
       - image
+    ImageThumbnails:
+      type: object
+      description: An image's thumbnails, one entry per available size, plus the original.
+      properties:
+        small:
+          $ref: '#/components/schemas/ThumbnailAlias'
+        medium:
+          $ref: '#/components/schemas/ThumbnailAlias'
+        original:
+          type: string
+          format: uri
+      required:
+      - medium
+      - original
+      - small
     ImpressionEnum:
       enum:
       - '1'
@@ -11993,9 +11414,8 @@ components:
           title: Date
         energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           description: In kcal per 100g
         protein:
           type: string
@@ -12153,9 +11573,8 @@ components:
           readOnly: true
         size:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         width:
           type: integer
           readOnly: true
@@ -12275,9 +11694,8 @@ components:
           title: Date
         energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           description: In kcal per 100g
         protein:
           type: string
@@ -12486,9 +11904,8 @@ components:
           readOnly: true
         gram:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           title: Amount in grams
         name:
           type: string
@@ -12716,9 +12133,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -12744,9 +12160,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -12774,9 +12189,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 600
@@ -12802,9 +12216,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 600
@@ -12832,9 +12245,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -12860,9 +12272,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -12890,9 +12301,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -12918,9 +12328,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -12948,9 +12357,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -12976,9 +12384,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -13322,33 +12729,28 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_protein:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fat:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
       required:
       - creation_date
@@ -13381,33 +12783,28 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_protein:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fat:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         meals:
           type: array
@@ -13441,33 +12838,28 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_protein:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fat:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
     NutritionalValues:
       type: object
@@ -14620,9 +14012,8 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         name:
           type: string
           maxLength: 20
@@ -14879,9 +14270,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -14902,9 +14292,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 600
@@ -14925,9 +14314,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -14948,9 +14336,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -14971,9 +14358,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15074,33 +14460,28 @@ components:
           type: boolean
         goal_energy:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_protein:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_carbohydrates:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fat:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
         goal_fiber:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
     PatchedPowersyncUploadRequest:
       type: object
@@ -15117,9 +14498,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15140,9 +14520,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 1800
@@ -15163,9 +14542,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15215,9 +14593,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -15259,9 +14636,8 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 100
@@ -15276,9 +14652,8 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 200
@@ -15430,9 +14805,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15476,9 +14850,8 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -15527,15 +14900,13 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
     PatchedWorkoutSessionRequest:
       type: object
@@ -15651,9 +15022,8 @@ components:
             * `DISTANCE` - Distance
         multiplier:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
           description: |-
             Multiplier to convert this unit to a base unit. Time units are converted
@@ -15673,9 +15043,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15701,9 +15070,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15731,9 +15099,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 1800
@@ -15759,9 +15126,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 1800
@@ -15789,9 +15155,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -15817,9 +15182,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -16062,9 +15426,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -16090,9 +15453,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: integer
           maximum: 50
@@ -16121,9 +15483,8 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 200
@@ -16185,9 +15546,8 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 100
@@ -16226,9 +15586,8 @@ components:
           nullable: true
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 100
@@ -16250,9 +15609,8 @@ components:
           type: integer
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 100
@@ -16344,9 +15702,8 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 200
@@ -16366,9 +15723,8 @@ components:
           title: Exercise day
         order:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         comment:
           type: string
           maxLength: 200
@@ -16406,6 +15762,20 @@ components:
         * `3` - Low-poly
         * `4` - Photo
         * `5` - Other
+    ThumbnailAlias:
+      type: object
+      description: 'One generated thumbnail: where it is and the size it was generated
+        for.'
+      properties:
+        url:
+          type: string
+          format: uri
+        settings:
+          type: object
+          additionalProperties: {}
+      required:
+      - settings
+      - url
     Thumbnails:
       type: object
       description: |-
@@ -17043,9 +16413,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -17071,9 +16440,8 @@ components:
           type: integer
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
         value:
           type: string
           format: decimal
@@ -17200,9 +16568,8 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -17251,15 +16618,13 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
       required:
       - exercise
@@ -17283,9 +16648,8 @@ components:
           title: Workout
         iteration:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         slot_entry:
           type: integer
@@ -17334,15 +16698,13 @@ components:
           nullable: true
         rest:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
         rest_target:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 0
-          format: int64
           nullable: true
       required:
       - exercise

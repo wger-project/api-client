@@ -7,12 +7,12 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.exercise_comment import ExerciseComment
 from ...models.exercise_comment_request import ExerciseCommentRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: ExerciseCommentRequest | Unset = UNSET,
+    body: ExerciseCommentRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -21,17 +21,9 @@ def _get_kwargs(
         "url": "/api/v2/exercisecomment/",
     }
 
-    if isinstance(body, ExerciseCommentRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, ExerciseCommentRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, ExerciseCommentRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -65,13 +57,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: ExerciseCommentRequest | Unset = UNSET,
+    body: ExerciseCommentRequest,
 ) -> Response[ExerciseComment]:
     """API endpoint for exercise comment objects
 
     Args:
-        body (ExerciseCommentRequest): ExerciseComment serializer
-        body (ExerciseCommentRequest): ExerciseComment serializer
         body (ExerciseCommentRequest): ExerciseComment serializer
 
     Raises:
@@ -96,13 +86,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: ExerciseCommentRequest | Unset = UNSET,
+    body: ExerciseCommentRequest,
 ) -> ExerciseComment | None:
     """API endpoint for exercise comment objects
 
     Args:
-        body (ExerciseCommentRequest): ExerciseComment serializer
-        body (ExerciseCommentRequest): ExerciseComment serializer
         body (ExerciseCommentRequest): ExerciseComment serializer
 
     Raises:
@@ -122,13 +110,11 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: ExerciseCommentRequest | Unset = UNSET,
+    body: ExerciseCommentRequest,
 ) -> Response[ExerciseComment]:
     """API endpoint for exercise comment objects
 
     Args:
-        body (ExerciseCommentRequest): ExerciseComment serializer
-        body (ExerciseCommentRequest): ExerciseComment serializer
         body (ExerciseCommentRequest): ExerciseComment serializer
 
     Raises:
@@ -151,13 +137,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: ExerciseCommentRequest | Unset = UNSET,
+    body: ExerciseCommentRequest,
 ) -> ExerciseComment | None:
     """API endpoint for exercise comment objects
 
     Args:
-        body (ExerciseCommentRequest): ExerciseComment serializer
-        body (ExerciseCommentRequest): ExerciseComment serializer
         body (ExerciseCommentRequest): ExerciseComment serializer
 
     Raises:

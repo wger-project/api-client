@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Self, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..models.operation_enum import OperationEnum
 from ..models.step_enum import StepEnum
 from ..types import UNSET, Unset
@@ -80,43 +78,6 @@ class PatchedMaxRestConfigRequest:
             field_dict["requirements"] = requirements
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        if not isinstance(self.slot_entry, Unset):
-            files.append(
-                ("slot_entry", (None, str(self.slot_entry).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.iteration, Unset):
-            files.append(
-                ("iteration", (None, str(self.iteration).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.value, Unset):
-            files.append(("value", (None, str(self.value).encode(), "text/plain")))
-
-        if not isinstance(self.operation, Unset):
-            files.append(
-                ("operation", (None, str(self.operation.value).encode(), "text/plain"))
-            )
-
-        if not isinstance(self.step, Unset):
-            files.append(("step", (None, str(self.step.value).encode(), "text/plain")))
-
-        if not isinstance(self.repeat, Unset):
-            files.append(("repeat", (None, str(self.repeat).encode(), "text/plain")))
-
-        if not isinstance(self.requirements, Unset):
-            files.append(
-                ("requirements", (None, str(self.requirements).encode(), "text/plain"))
-            )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

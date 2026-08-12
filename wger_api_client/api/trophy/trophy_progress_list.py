@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.paginated_trophy_progress_list import PaginatedTrophyProgressList
+from ...models.trophy_progress import TrophyProgress
 from ...models.trophy_progress_list_trophy_type import TrophyProgressListTrophyType
 from ...types import UNSET, Response, Unset
 
@@ -18,8 +18,6 @@ def _get_kwargs(
     is_hidden: bool | Unset = UNSET,
     is_progressive: bool | Unset = UNSET,
     is_repeatable: bool | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
     trophy_type: TrophyProgressListTrophyType | Unset = UNSET,
     trophy_type_in: list[str] | Unset = UNSET,
@@ -42,10 +40,6 @@ def _get_kwargs(
     params["is_progressive"] = is_progressive
 
     params["is_repeatable"] = is_repeatable
-
-    params["limit"] = limit
-
-    params["offset"] = offset
 
     params["ordering"] = ordering
 
@@ -74,9 +68,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> PaginatedTrophyProgressList | None:
+) -> list[TrophyProgress] | None:
     if response.status_code == 200:
-        response_200 = PaginatedTrophyProgressList.from_dict(response.json())
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = TrophyProgress.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
 
         return response_200
 
@@ -88,7 +87,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[PaginatedTrophyProgressList]:
+) -> Response[list[TrophyProgress]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -106,12 +105,10 @@ def sync_detailed(
     is_hidden: bool | Unset = UNSET,
     is_progressive: bool | Unset = UNSET,
     is_repeatable: bool | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
     trophy_type: TrophyProgressListTrophyType | Unset = UNSET,
     trophy_type_in: list[str] | Unset = UNSET,
-) -> Response[PaginatedTrophyProgressList]:
+) -> Response[list[TrophyProgress]]:
     """Get trophy progress
 
 
@@ -134,8 +131,6 @@ def sync_detailed(
         is_hidden (bool | Unset):
         is_progressive (bool | Unset):
         is_repeatable (bool | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
         trophy_type (TrophyProgressListTrophyType | Unset):
         trophy_type_in (list[str] | Unset):
@@ -145,7 +140,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedTrophyProgressList]
+        Response[list[TrophyProgress]]
     """
 
     kwargs = _get_kwargs(
@@ -155,8 +150,6 @@ def sync_detailed(
         is_hidden=is_hidden,
         is_progressive=is_progressive,
         is_repeatable=is_repeatable,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
         trophy_type=trophy_type,
         trophy_type_in=trophy_type_in,
@@ -178,12 +171,10 @@ def sync(
     is_hidden: bool | Unset = UNSET,
     is_progressive: bool | Unset = UNSET,
     is_repeatable: bool | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
     trophy_type: TrophyProgressListTrophyType | Unset = UNSET,
     trophy_type_in: list[str] | Unset = UNSET,
-) -> PaginatedTrophyProgressList | None:
+) -> list[TrophyProgress] | None:
     """Get trophy progress
 
 
@@ -206,8 +197,6 @@ def sync(
         is_hidden (bool | Unset):
         is_progressive (bool | Unset):
         is_repeatable (bool | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
         trophy_type (TrophyProgressListTrophyType | Unset):
         trophy_type_in (list[str] | Unset):
@@ -217,7 +206,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedTrophyProgressList
+        list[TrophyProgress]
     """
 
     return sync_detailed(
@@ -228,8 +217,6 @@ def sync(
         is_hidden=is_hidden,
         is_progressive=is_progressive,
         is_repeatable=is_repeatable,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
         trophy_type=trophy_type,
         trophy_type_in=trophy_type_in,
@@ -245,12 +232,10 @@ async def asyncio_detailed(
     is_hidden: bool | Unset = UNSET,
     is_progressive: bool | Unset = UNSET,
     is_repeatable: bool | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
     trophy_type: TrophyProgressListTrophyType | Unset = UNSET,
     trophy_type_in: list[str] | Unset = UNSET,
-) -> Response[PaginatedTrophyProgressList]:
+) -> Response[list[TrophyProgress]]:
     """Get trophy progress
 
 
@@ -273,8 +258,6 @@ async def asyncio_detailed(
         is_hidden (bool | Unset):
         is_progressive (bool | Unset):
         is_repeatable (bool | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
         trophy_type (TrophyProgressListTrophyType | Unset):
         trophy_type_in (list[str] | Unset):
@@ -284,7 +267,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedTrophyProgressList]
+        Response[list[TrophyProgress]]
     """
 
     kwargs = _get_kwargs(
@@ -294,8 +277,6 @@ async def asyncio_detailed(
         is_hidden=is_hidden,
         is_progressive=is_progressive,
         is_repeatable=is_repeatable,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
         trophy_type=trophy_type,
         trophy_type_in=trophy_type_in,
@@ -315,12 +296,10 @@ async def asyncio(
     is_hidden: bool | Unset = UNSET,
     is_progressive: bool | Unset = UNSET,
     is_repeatable: bool | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
     trophy_type: TrophyProgressListTrophyType | Unset = UNSET,
     trophy_type_in: list[str] | Unset = UNSET,
-) -> PaginatedTrophyProgressList | None:
+) -> list[TrophyProgress] | None:
     """Get trophy progress
 
 
@@ -343,8 +322,6 @@ async def asyncio(
         is_hidden (bool | Unset):
         is_progressive (bool | Unset):
         is_repeatable (bool | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
         trophy_type (TrophyProgressListTrophyType | Unset):
         trophy_type_in (list[str] | Unset):
@@ -354,7 +331,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedTrophyProgressList
+        list[TrophyProgress]
     """
 
     return (
@@ -366,8 +343,6 @@ async def asyncio(
             is_hidden=is_hidden,
             is_progressive=is_progressive,
             is_repeatable=is_repeatable,
-            limit=limit,
-            offset=offset,
             ordering=ordering,
             trophy_type=trophy_type,
             trophy_type_in=trophy_type_in,

@@ -8,13 +8,13 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.exercise import Exercise
 from ...models.exercise_request import ExerciseRequest
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     id: int,
     *,
-    body: ExerciseRequest | Unset = UNSET,
+    body: ExerciseRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -25,17 +25,9 @@ def _get_kwargs(
         ),
     }
 
-    if isinstance(body, ExerciseRequest):
-        _kwargs["json"] = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-        headers["Content-Type"] = "application/json"
-    if isinstance(body, ExerciseRequest):
-        _kwargs["data"] = body.to_dict()
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-    if isinstance(body, ExerciseRequest):
-        _kwargs["files"] = body.to_multipart()
-
-        headers["Content-Type"] = "multipart/form-data; boundary=+++"
+    headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -70,7 +62,7 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseRequest | Unset = UNSET,
+    body: ExerciseRequest,
 ) -> Response[Exercise]:
     """API endpoint for exercise objects.
 
@@ -78,8 +70,6 @@ def sync_detailed(
 
     Args:
         id (int):
-        body (ExerciseRequest): Exercise serializer
-        body (ExerciseRequest): Exercise serializer
         body (ExerciseRequest): Exercise serializer
 
     Raises:
@@ -106,7 +96,7 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseRequest | Unset = UNSET,
+    body: ExerciseRequest,
 ) -> Exercise | None:
     """API endpoint for exercise objects.
 
@@ -114,8 +104,6 @@ def sync(
 
     Args:
         id (int):
-        body (ExerciseRequest): Exercise serializer
-        body (ExerciseRequest): Exercise serializer
         body (ExerciseRequest): Exercise serializer
 
     Raises:
@@ -137,7 +125,7 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseRequest | Unset = UNSET,
+    body: ExerciseRequest,
 ) -> Response[Exercise]:
     """API endpoint for exercise objects.
 
@@ -145,8 +133,6 @@ async def asyncio_detailed(
 
     Args:
         id (int):
-        body (ExerciseRequest): Exercise serializer
-        body (ExerciseRequest): Exercise serializer
         body (ExerciseRequest): Exercise serializer
 
     Raises:
@@ -171,7 +157,7 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-    body: ExerciseRequest | Unset = UNSET,
+    body: ExerciseRequest,
 ) -> Exercise | None:
     """API endpoint for exercise objects.
 
@@ -179,8 +165,6 @@ async def asyncio(
 
     Args:
         id (int):
-        body (ExerciseRequest): Exercise serializer
-        body (ExerciseRequest): Exercise serializer
         body (ExerciseRequest): Exercise serializer
 
     Raises:

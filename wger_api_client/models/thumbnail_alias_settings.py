@@ -2,65 +2,33 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from typing import Any, Self, TypeVar
-from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="ExerciseAlias")
+T = TypeVar("T", bound="ThumbnailAliasSettings")
 
 
 @_attrs_define
-class ExerciseAlias:
-    """ExerciseAlias serializer
+class ThumbnailAliasSettings:
+    """ """
 
-    Attributes:
-        id (int):
-        uuid (UUID):
-        alias (str):
-    """
-
-    id: int
-    uuid: UUID
-    alias: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        id = self.id
-
-        uuid = str(self.uuid)
-
-        alias = self.alias
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "uuid": uuid,
-                "alias": alias,
-            }
-        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
-        id = d.pop("id")
+        thumbnail_alias_settings = cls()
 
-        uuid = UUID(d.pop("uuid"))
-
-        alias = d.pop("alias")
-
-        exercise_alias = cls(
-            id=id,
-            uuid=uuid,
-            alias=alias,
-        )
-
-        exercise_alias.additional_properties = d
-        return exercise_alias
+        thumbnail_alias_settings.additional_properties = d
+        return thumbnail_alias_settings
 
     @property
     def additional_keys(self) -> list[str]:

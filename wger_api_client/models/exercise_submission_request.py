@@ -1,15 +1,12 @@
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Self, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from typing_extensions import Self
 
-from .. import types
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -111,99 +108,6 @@ class ExerciseSubmissionRequest:
             field_dict["license_author"] = license_author
 
         return field_dict
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("category", (None, str(self.category).encode(), "text/plain")))
-
-        for translations_item_element in self.translations:
-            files.append(
-                (
-                    "translations",
-                    (
-                        None,
-                        json.dumps(translations_item_element.to_dict()).encode(),
-                        "application/json",
-                    ),
-                )
-            )
-
-        if not isinstance(self.muscles, Unset):
-            for muscles_item_element in self.muscles:
-                files.append(
-                    (
-                        "muscles",
-                        (None, str(muscles_item_element).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.muscles_secondary, Unset):
-            for muscles_secondary_item_element in self.muscles_secondary:
-                files.append(
-                    (
-                        "muscles_secondary",
-                        (
-                            None,
-                            str(muscles_secondary_item_element).encode(),
-                            "text/plain",
-                        ),
-                    )
-                )
-
-        if not isinstance(self.equipment, Unset):
-            for equipment_item_element in self.equipment:
-                files.append(
-                    (
-                        "equipment",
-                        (None, str(equipment_item_element).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.variation_group, Unset):
-            if isinstance(self.variation_group, UUID):
-                files.append(
-                    ("variation_group", (None, str(self.variation_group), "text/plain"))
-                )
-            else:
-                files.append(
-                    (
-                        "variation_group",
-                        (None, str(self.variation_group).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.variations_connect_to, Unset):
-            if isinstance(self.variations_connect_to, int):
-                files.append(
-                    (
-                        "variations_connect_to",
-                        (None, str(self.variations_connect_to).encode(), "text/plain"),
-                    )
-                )
-            else:
-                files.append(
-                    (
-                        "variations_connect_to",
-                        (None, str(self.variations_connect_to).encode(), "text/plain"),
-                    )
-                )
-
-        if not isinstance(self.license_, Unset):
-            files.append(("license", (None, str(self.license_).encode(), "text/plain")))
-
-        if not isinstance(self.license_author, Unset):
-            files.append(
-                (
-                    "license_author",
-                    (None, str(self.license_author).encode(), "text/plain"),
-                )
-            )
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-        return files
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:

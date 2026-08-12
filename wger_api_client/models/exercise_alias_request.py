@@ -14,19 +14,24 @@ class ExerciseAliasRequest:
     """ExerciseAlias serializer
 
     Attributes:
+        translation (int):
         alias (str):
     """
 
+    translation: int
     alias: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        translation = self.translation
+
         alias = self.alias
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
+                "translation": translation,
                 "alias": alias,
             }
         )
@@ -36,9 +41,12 @@ class ExerciseAliasRequest:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
+        translation = d.pop("translation")
+
         alias = d.pop("alias")
 
         exercise_alias_request = cls(
+            translation=translation,
             alias=alias,
         )
 

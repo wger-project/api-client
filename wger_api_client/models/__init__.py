@@ -22,6 +22,10 @@ from .exercise_info import ExerciseInfo
 from .exercise_info_alias import ExerciseInfoAlias
 from .exercise_request import ExerciseRequest
 from .exercise_submission import ExerciseSubmission
+from .exercise_submission_alias import ExerciseSubmissionAlias
+from .exercise_submission_alias_request import ExerciseSubmissionAliasRequest
+from .exercise_submission_comment import ExerciseSubmissionComment
+from .exercise_submission_comment_request import ExerciseSubmissionCommentRequest
 from .exercise_submission_request import ExerciseSubmissionRequest
 from .exercise_translation import ExerciseTranslation
 from .exercise_translation_info import ExerciseTranslationInfo
@@ -277,6 +281,10 @@ __all__ = (
     "ExerciseInfoAlias",
     "ExerciseRequest",
     "ExerciseSubmission",
+    "ExerciseSubmissionAlias",
+    "ExerciseSubmissionAliasRequest",
+    "ExerciseSubmissionComment",
+    "ExerciseSubmissionCommentRequest",
     "ExerciseSubmissionRequest",
     "ExerciseTranslation",
     "ExerciseTranslationInfo",

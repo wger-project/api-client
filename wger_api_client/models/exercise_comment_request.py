@@ -14,19 +14,24 @@ class ExerciseCommentRequest:
     """ExerciseComment serializer
 
     Attributes:
+        translation (int):
         comment (str): A comment about how to correctly do this exercise.
     """
 
+    translation: int
     comment: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        translation = self.translation
+
         comment = self.comment
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
+                "translation": translation,
                 "comment": comment,
             }
         )
@@ -36,9 +41,12 @@ class ExerciseCommentRequest:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
+        translation = d.pop("translation")
+
         comment = d.pop("comment")
 
         exercise_comment_request = cls(
+            translation=translation,
             comment=comment,
         )
 

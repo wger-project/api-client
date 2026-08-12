@@ -10287,6 +10287,9 @@ components:
           type: string
           format: uuid
           readOnly: true
+        translation:
+          type: integer
+          title: Exercise
         alias:
           type: string
           title: Alias for an exercise
@@ -10294,11 +10297,15 @@ components:
       required:
       - alias
       - id
+      - translation
       - uuid
     ExerciseAliasRequest:
       type: object
       description: ExerciseAlias serializer
       properties:
+        translation:
+          type: integer
+          title: Exercise
         alias:
           type: string
           minLength: 1
@@ -10306,6 +10313,7 @@ components:
           maxLength: 200
       required:
       - alias
+      - translation
     ExerciseCategory:
       type: object
       description: ExerciseCategory serializer
@@ -10330,6 +10338,9 @@ components:
           type: string
           format: uuid
           readOnly: true
+        translation:
+          type: integer
+          title: Exercise
         comment:
           type: string
           description: A comment about how to correctly do this exercise.
@@ -10337,11 +10348,15 @@ components:
       required:
       - comment
       - id
+      - translation
       - uuid
     ExerciseCommentRequest:
       type: object
       description: ExerciseComment serializer
       properties:
+        translation:
+          type: integer
+          title: Exercise
         comment:
           type: string
           minLength: 1
@@ -10349,6 +10364,7 @@ components:
           maxLength: 200
       required:
       - comment
+      - translation
     ExerciseImage:
       type: object
       description: ExerciseImage serializer
@@ -10700,6 +10716,82 @@ components:
       - category
       - id
       - translations
+    ExerciseSubmissionAlias:
+      type: object
+      description: |-
+        Alias serializer without ``translation``, for use inside a submission.
+
+        A subclass rather than a modified instance of the parent: both would be named
+        ExerciseAlias in the schema, and the narrower one would win for the alias
+        endpoint too.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        alias:
+          type: string
+          title: Alias for an exercise
+          maxLength: 200
+      required:
+      - alias
+      - id
+      - uuid
+    ExerciseSubmissionAliasRequest:
+      type: object
+      description: |-
+        Alias serializer without ``translation``, for use inside a submission.
+
+        A subclass rather than a modified instance of the parent: both would be named
+        ExerciseAlias in the schema, and the narrower one would win for the alias
+        endpoint too.
+      properties:
+        alias:
+          type: string
+          minLength: 1
+          title: Alias for an exercise
+          maxLength: 200
+      required:
+      - alias
+    ExerciseSubmissionComment:
+      type: object
+      description: |-
+        Comment serializer without ``translation``, for use inside a submission.
+
+        See ExerciseSubmissionAliasSerializer for why this is a subclass.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        comment:
+          type: string
+          description: A comment about how to correctly do this exercise.
+          maxLength: 200
+      required:
+      - comment
+      - id
+      - uuid
+    ExerciseSubmissionCommentRequest:
+      type: object
+      description: |-
+        Comment serializer without ``translation``, for use inside a submission.
+
+        See ExerciseSubmissionAliasSerializer for why this is a subclass.
+      properties:
+        comment:
+          type: string
+          minLength: 1
+          description: A comment about how to correctly do this exercise.
+          maxLength: 200
+      required:
+      - comment
     ExerciseSubmissionRequest:
       type: object
       description: Exercise submission serializer
@@ -10913,7 +11005,8 @@ components:
         Differs from the regular serializer only because:
         - the ``exercise`` FK isn't known until the parent creates it (passed via ``create()`` kwargs);
         - the payload also accepts nested ``aliases`` and ``comments`` lists,
-          which the regular CRUD endpoint doesn't.
+          which the regular CRUD endpoint doesn't;
+        - those take their ``translation`` from the parent, so they don't accept one.
       properties:
         name:
           type: string
@@ -10927,11 +11020,11 @@ components:
         aliases:
           type: array
           items:
-            $ref: '#/components/schemas/ExerciseAlias'
+            $ref: '#/components/schemas/ExerciseSubmissionAlias'
         comments:
           type: array
           items:
-            $ref: '#/components/schemas/ExerciseComment'
+            $ref: '#/components/schemas/ExerciseSubmissionComment'
         license_author:
           type: string
           title: Author(s)
@@ -10949,7 +11042,8 @@ components:
         Differs from the regular serializer only because:
         - the ``exercise`` FK isn't known until the parent creates it (passed via ``create()`` kwargs);
         - the payload also accepts nested ``aliases`` and ``comments`` lists,
-          which the regular CRUD endpoint doesn't.
+          which the regular CRUD endpoint doesn't;
+        - those take their ``translation`` from the parent, so they don't accept one.
       properties:
         name:
           type: string
@@ -10964,11 +11058,11 @@ components:
         aliases:
           type: array
           items:
-            $ref: '#/components/schemas/ExerciseAliasRequest'
+            $ref: '#/components/schemas/ExerciseSubmissionAliasRequest'
         comments:
           type: array
           items:
-            $ref: '#/components/schemas/ExerciseCommentRequest'
+            $ref: '#/components/schemas/ExerciseSubmissionCommentRequest'
         license_author:
           type: string
           title: Author(s)

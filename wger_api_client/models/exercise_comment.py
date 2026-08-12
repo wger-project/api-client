@@ -17,11 +17,13 @@ class ExerciseComment:
     Attributes:
         id (int):
         uuid (UUID):
+        translation (int):
         comment (str): A comment about how to correctly do this exercise.
     """
 
     id: int
     uuid: UUID
+    translation: int
     comment: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -29,6 +31,8 @@ class ExerciseComment:
         id = self.id
 
         uuid = str(self.uuid)
+
+        translation = self.translation
 
         comment = self.comment
 
@@ -38,6 +42,7 @@ class ExerciseComment:
             {
                 "id": id,
                 "uuid": uuid,
+                "translation": translation,
                 "comment": comment,
             }
         )
@@ -51,11 +56,14 @@ class ExerciseComment:
 
         uuid = UUID(d.pop("uuid"))
 
+        translation = d.pop("translation")
+
         comment = d.pop("comment")
 
         exercise_comment = cls(
             id=id,
             uuid=uuid,
+            translation=translation,
             comment=comment,
         )
 

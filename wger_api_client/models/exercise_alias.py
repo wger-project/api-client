@@ -17,11 +17,13 @@ class ExerciseAlias:
     Attributes:
         id (int):
         uuid (UUID):
+        translation (int):
         alias (str):
     """
 
     id: int
     uuid: UUID
+    translation: int
     alias: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -29,6 +31,8 @@ class ExerciseAlias:
         id = self.id
 
         uuid = str(self.uuid)
+
+        translation = self.translation
 
         alias = self.alias
 
@@ -38,6 +42,7 @@ class ExerciseAlias:
             {
                 "id": id,
                 "uuid": uuid,
+                "translation": translation,
                 "alias": alias,
             }
         )
@@ -51,11 +56,14 @@ class ExerciseAlias:
 
         uuid = UUID(d.pop("uuid"))
 
+        translation = d.pop("translation")
+
         alias = d.pop("alias")
 
         exercise_alias = cls(
             id=id,
             uuid=uuid,
+            translation=translation,
             alias=alias,
         )
 

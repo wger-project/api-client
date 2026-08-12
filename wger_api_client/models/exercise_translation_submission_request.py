@@ -9,8 +9,12 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.exercise_alias_request import ExerciseAliasRequest
-    from ..models.exercise_comment_request import ExerciseCommentRequest
+    from ..models.exercise_submission_alias_request import (
+        ExerciseSubmissionAliasRequest,
+    )
+    from ..models.exercise_submission_comment_request import (
+        ExerciseSubmissionCommentRequest,
+    )
 
 
 T = TypeVar("T", bound="ExerciseTranslationSubmissionRequest")
@@ -23,22 +27,23 @@ class ExerciseTranslationSubmissionRequest:
     Differs from the regular serializer only because:
     - the ``exercise`` FK isn't known until the parent creates it (passed via ``create()`` kwargs);
     - the payload also accepts nested ``aliases`` and ``comments`` lists,
-      which the regular CRUD endpoint doesn't.
+      which the regular CRUD endpoint doesn't;
+    - those take their ``translation`` from the parent, so they don't accept one.
 
         Attributes:
             name (str):
             description_source (str):
             language (int):
-            aliases (list[ExerciseAliasRequest] | Unset):
-            comments (list[ExerciseCommentRequest] | Unset):
+            aliases (list[ExerciseSubmissionAliasRequest] | Unset):
+            comments (list[ExerciseSubmissionCommentRequest] | Unset):
             license_author (str | Unset): If you are not the author, enter the name or source here.
     """
 
     name: str
     description_source: str
     language: int
-    aliases: list[ExerciseAliasRequest] | Unset = UNSET
-    comments: list[ExerciseCommentRequest] | Unset = UNSET
+    aliases: list[ExerciseSubmissionAliasRequest] | Unset = UNSET
+    comments: list[ExerciseSubmissionCommentRequest] | Unset = UNSET
     license_author: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -85,8 +90,12 @@ class ExerciseTranslationSubmissionRequest:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.exercise_alias_request import ExerciseAliasRequest
-        from ..models.exercise_comment_request import ExerciseCommentRequest
+        from ..models.exercise_submission_alias_request import (
+            ExerciseSubmissionAliasRequest,
+        )
+        from ..models.exercise_submission_comment_request import (
+            ExerciseSubmissionCommentRequest,
+        )
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -96,20 +105,24 @@ class ExerciseTranslationSubmissionRequest:
         language = d.pop("language")
 
         _aliases = d.pop("aliases", UNSET)
-        aliases: list[ExerciseAliasRequest] | Unset = UNSET
+        aliases: list[ExerciseSubmissionAliasRequest] | Unset = UNSET
         if _aliases is not UNSET:
             aliases = []
             for aliases_item_data in _aliases:
-                aliases_item = ExerciseAliasRequest.from_dict(aliases_item_data)
+                aliases_item = ExerciseSubmissionAliasRequest.from_dict(
+                    aliases_item_data
+                )
 
                 aliases.append(aliases_item)
 
         _comments = d.pop("comments", UNSET)
-        comments: list[ExerciseCommentRequest] | Unset = UNSET
+        comments: list[ExerciseSubmissionCommentRequest] | Unset = UNSET
         if _comments is not UNSET:
             comments = []
             for comments_item_data in _comments:
-                comments_item = ExerciseCommentRequest.from_dict(comments_item_data)
+                comments_item = ExerciseSubmissionCommentRequest.from_dict(
+                    comments_item_data
+                )
 
                 comments.append(comments_item)
 

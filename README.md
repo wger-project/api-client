@@ -1,7 +1,7 @@
 # wger-api-client
 
-Typed Python client for the [wger](https://github.com/wger-project/wger) workout
-manager REST API, generated from the server's OpenAPI schema with
+Typed Python client for the [wger](https://github.com/wger-project/wger) REST API,
+generated from the server's OpenAPI schema with
 [openapi-python-client](https://github.com/openapi-generators/openapi-python-client).
 Built on `httpx`, with a sync and an async call for every endpoint.
 
@@ -16,12 +16,13 @@ pip install wger-api-client
 ### Versioning
 
 The major and minor version indicate which wger release this client targets, so
-`2.6.x` is meant for a 2.6 server.
+`2.6.x` is meant for a 2.6 server. The patch version will probably be used to
+indicate changes in this package itself, but that is not decided yet.
 
 Since we try to keep the API as compatible as possible, an older client generally
-keeps working against a newer server, specially for endpoints such as the exercises.
-However, it is recommended that you use the version that exactly matches the server
-you want to connect to.
+keeps working against a newer server, specially for stable endpoints such as the
+exercises. However, breaking changes are unavoidable, and it is recommended that
+you use the version that exactly matches the server you want to connect to.
 
 ## Usage
 
@@ -35,7 +36,7 @@ those exposes four functions:
 | `asyncio` | as `sync`, awaitable |
 | `asyncio_detailed` | as `sync_detailed`, awaitable |
 
-With an API key from `/en/user/api-key`:
+With an API key from `/user/api-key`:
 
 ```python
 from wger_api_client import AuthenticatedClient
@@ -57,15 +58,18 @@ client = AuthenticatedClient(
 )
 ```
 
-Unauthenticated endpoints, such as the exercise database, work with the plain
-`Client`:
+Unauthenticated endpoints, such as the exercises, work with the plain `Client`:
 
 ```python
 from wger_api_client import Client
-from wger_api_client.api.exercise import exercise_list
+from wger_api_client.api.exerciseinfo import exerciseinfo_list
 
 with Client(base_url="https://wger.de") as client:
-    page = exercise_list.sync(client=client)
+    page = exerciseinfo_list.sync(client=client)
+
+# without context manager
+client = Client(base_url="https://wger.de", raise_on_unexpected_status=True)
+page = exerciseinfo_list.sync(client=client)
 ```
 
 By default a non-2xx response returns `None` from `sync`. Pass
@@ -79,7 +83,7 @@ change shows up as a reviewable diff. Do not edit it by hand.
 
 Updating the client after the server's API changed is two steps, refresh the
 schema and regenerate from it. The schema is read from a running wger instance,
-by default the upstream one at https://wger.de:
+by default the upstream one at <https://wger.de>:
 
 ```bash
 # 1. refresh schema/wger-openapi.yaml
@@ -128,8 +132,16 @@ uv run scripts/sync_schema.py --check
 wrong when the calls are written by hand: which endpoints are read-only, which
 methods each URL allows, the valid enum values and the writable field sets.
 
-`tests/test_smoke_live.py` runs against a real instance and is skipped unless
-`WGER_SMOKE_URL` and `WGER_SMOKE_TOKEN` are set.
+## Contact
+
+Feel free to contact us if you found this useful or if there was something that
+didn't behave as you expected. We can't fix what we don't know about, so please
+report liberally. If you're not sure if something is a bug or not, feel free to
+file a bug anyway.
+
+* **Discord:** <https://discord.gg/rPWFv6W>
+* **Mastodon:** <https://fosstodon.org/@wger>
+* **Issue tracker:** <https://github.com/wger-project/api-client/issues>
 
 ## License
 

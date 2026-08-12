@@ -32,7 +32,7 @@ def test_every_module_imports():
     """
     Importing part of the package is not enough to catch a missing import in an
     annotation: Python 3.14 evaluates annotations lazily, so a broken module only
-    fails on 3.10 to 3.13, and only once it is actually imported.
+    fails on 3.11 to 3.13, and only once it is actually imported.
     """
     import wger_api_client
 

@@ -41,8 +41,6 @@ generate() {
     touch "$target/py.typed"
     # the generator formats with ruff and leaves its cache behind
     rm -rf "$target/.ruff_cache"
-    # workaround for a generator bug, see script for details
-    uv run --quiet python scripts/patch_generated.py "$target"
 }
 
 if [[ ${1:-} == --check ]]; then

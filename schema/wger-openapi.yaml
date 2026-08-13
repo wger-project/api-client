@@ -1581,6 +1581,8 @@ paths:
         name: language__code
         schema:
           type: string
+        description: Filter by language code. Multiple values may be separated by
+          commas. Unknown codes fall back to English.
       - name: limit
         required: false
         in: query
@@ -1983,6 +1985,8 @@ paths:
         name: language__code
         schema:
           type: string
+        description: Filter by language code. Multiple values may be separated by
+          commas. Unknown codes are ignored.
       - in: query
         name: language__in
         schema:
@@ -2320,6 +2324,8 @@ paths:
         name: language__code
         schema:
           type: string
+        description: Filter by language code. Multiple values may be separated by
+          commas. Unknown codes are ignored.
       - in: query
         name: language__in
         schema:
@@ -2667,6 +2673,8 @@ paths:
         name: language__code
         schema:
           type: string
+        description: Filter by language code. Multiple values may be separated by
+          commas. Unknown codes are ignored.
       - in: query
         name: language__in
         schema:

@@ -1,6 +1,5 @@
 from http import HTTPStatus
 from typing import Any
-from urllib.parse import quote
 
 import httpx
 
@@ -12,7 +11,6 @@ from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
-    id: int,
     *,
     body: UserprofileRequest | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -20,9 +18,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": "/api/v2/userprofile/{id}/".format(
-            id=quote(str(id), safe=""),
-        ),
+        "url": "/api/v2/userprofile/",
     }
 
     if not isinstance(body, Unset):
@@ -60,19 +56,17 @@ def _build_response(
 
 
 def sync_detailed(
-    id: int,
     *,
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Response[Userprofile]:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Args:
-        id (int):
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
@@ -84,7 +78,6 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
         body=body,
     )
 
@@ -96,19 +89,17 @@ def sync_detailed(
 
 
 def sync(
-    id: int,
     *,
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Userprofile | None:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Args:
-        id (int):
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
@@ -120,26 +111,23 @@ def sync(
     """
 
     return sync_detailed(
-        id=id,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: int,
     *,
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Response[Userprofile]:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Args:
-        id (int):
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
@@ -151,7 +139,6 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
         body=body,
     )
 
@@ -161,19 +148,17 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: int,
     *,
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Userprofile | None:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Args:
-        id (int):
         body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
@@ -186,7 +171,6 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            id=id,
             client=client,
             body=body,
         )

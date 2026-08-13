@@ -33,10 +33,10 @@ def _get_kwargs(
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Userprofile | None:
-    if response.status_code == 201:
-        response_201 = Userprofile.from_dict(response.json())
+    if response.status_code == 200:
+        response_200 = Userprofile.from_dict(response.json())
 
-        return response_201
+        return response_200
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -60,11 +60,12 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Response[Userprofile]:
-    """API endpoint for the user profile
+    """Update the profile of servers up to wger 2.6
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+     Updates the profile of the logged-in user, exactly like PATCH does.
+
+    Use this if your client needs to work with wger 2.6 or older, which accept only POST on this
+    endpoint. Servers from 2.7 on accept both, so prefer PATCH in this case.
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer
@@ -93,11 +94,12 @@ def sync(
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Userprofile | None:
-    """API endpoint for the user profile
+    """Update the profile of servers up to wger 2.6
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+     Updates the profile of the logged-in user, exactly like PATCH does.
+
+    Use this if your client needs to work with wger 2.6 or older, which accept only POST on this
+    endpoint. Servers from 2.7 on accept both, so prefer PATCH in this case.
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer
@@ -121,11 +123,12 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Response[Userprofile]:
-    """API endpoint for the user profile
+    """Update the profile of servers up to wger 2.6
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+     Updates the profile of the logged-in user, exactly like PATCH does.
+
+    Use this if your client needs to work with wger 2.6 or older, which accept only POST on this
+    endpoint. Servers from 2.7 on accept both, so prefer PATCH in this case.
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer
@@ -152,11 +155,12 @@ async def asyncio(
     client: AuthenticatedClient,
     body: UserprofileRequest | Unset = UNSET,
 ) -> Userprofile | None:
-    """API endpoint for the user profile
+    """Update the profile of servers up to wger 2.6
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
+     Updates the profile of the logged-in user, exactly like PATCH does.
+
+    Use this if your client needs to work with wger 2.6 or older, which accept only POST on this
+    endpoint. Servers from 2.7 on accept both, so prefer PATCH in this case.
 
     Args:
         body (UserprofileRequest | Unset): Workout session serializer

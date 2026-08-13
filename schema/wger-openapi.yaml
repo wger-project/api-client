@@ -8571,8 +8571,13 @@ paths:
           description: ''
   /api/v2/userprofile/:
     get:
-      operationId: userprofile_list
-      description: Customized list view, that returns only the current user's data
+      operationId: userprofile_retrieve
+      description: |-
+        API endpoint for the user profile
+
+        Every user has exactly one profile, so this endpoint has no list and no
+        detail route: it always reads and writes the profile of the logged-in user.
+        Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
       tags:
       - userprofile
       security:
@@ -8589,13 +8594,12 @@ paths:
                 $ref: '#/components/schemas/Userprofile'
           description: ''
     post:
-      operationId: userprofile_create
+      operationId: userprofile_update_legacy
       description: |-
-        API endpoint for the user profile
+        Updates the profile of the logged-in user, exactly like PATCH does.
 
-        This endpoint works somewhat differently than the others since it always
-        returns the data for the currently logged-in user's profile. To update
-        the profile, use a POST request with the new data, not a PATCH.
+        Use this if your client needs to work with wger 2.6 or older, which accept only POST on this endpoint. Servers from 2.7 on accept both, so prefer PATCH in this case.
+      summary: Update the profile of servers up to wger 2.6
       tags:
       - userprofile
       requestBody:
@@ -8609,37 +8613,7 @@ paths:
       - headlessJwtAuth: []
       - oidcAuth: []
       - jwtAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Userprofile'
-          description: ''
-  /api/v2/userprofile/{id}/:
-    get:
-      operationId: userprofile_retrieve
-      description: |-
-        API endpoint for the user profile
-
-        This endpoint works somewhat differently than the others since it always
-        returns the data for the currently logged-in user's profile. To update
-        the profile, use a POST request with the new data, not a PATCH.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user profile.
-        required: true
-      tags:
-      - userprofile
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - headlessJwtAuth: []
-      - oidcAuth: []
-      - jwtAuth: []
+      deprecated: true
       responses:
         '200':
           content:
@@ -8652,16 +8626,9 @@ paths:
       description: |-
         API endpoint for the user profile
 
-        This endpoint works somewhat differently than the others since it always
-        returns the data for the currently logged-in user's profile. To update
-        the profile, use a POST request with the new data, not a PATCH.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user profile.
-        required: true
+        Every user has exactly one profile, so this endpoint has no list and no
+        detail route: it always reads and writes the profile of the logged-in user.
+        Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
       tags:
       - userprofile
       requestBody:
@@ -8687,16 +8654,9 @@ paths:
       description: |-
         API endpoint for the user profile
 
-        This endpoint works somewhat differently than the others since it always
-        returns the data for the currently logged-in user's profile. To update
-        the profile, use a POST request with the new data, not a PATCH.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user profile.
-        required: true
+        Every user has exactly one profile, so this endpoint has no list and no
+        detail route: it always reads and writes the profile of the logged-in user.
+        Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
       tags:
       - userprofile
       requestBody:
@@ -8717,32 +8677,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Userprofile'
           description: ''
-    delete:
-      operationId: userprofile_destroy
-      description: |-
-        API endpoint for the user profile
-
-        This endpoint works somewhat differently than the others since it always
-        returns the data for the currently logged-in user's profile. To update
-        the profile, use a POST request with the new data, not a PATCH.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user profile.
-        required: true
-      tags:
-      - userprofile
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - headlessJwtAuth: []
-      - oidcAuth: []
-      - jwtAuth: []
-      responses:
-        '405':
-          description: Profiles cannot be deleted
   /api/v2/userprofile/verify-email/:
     post:
       operationId: userprofile_verify_email_create
@@ -8752,11 +8686,6 @@ paths:
         POST only, a GET must not send out emails as a side effect
       tags:
       - userprofile
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserprofileRequest'
       security:
       - cookieAuth: []
       - tokenAuth: []

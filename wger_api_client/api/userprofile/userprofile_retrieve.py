@@ -1,6 +1,5 @@
 from http import HTTPStatus
 from typing import Any
-from urllib.parse import quote
 
 import httpx
 
@@ -10,15 +9,11 @@ from ...models.userprofile import Userprofile
 from ...types import Response
 
 
-def _get_kwargs(
-    id: int,
-) -> dict[str, Any]:
+def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/api/v2/userprofile/{id}/".format(
-            id=quote(str(id), safe=""),
-        ),
+        "url": "/api/v2/userprofile/",
     }
 
     return _kwargs
@@ -50,18 +45,14 @@ def _build_response(
 
 
 def sync_detailed(
-    id: int,
     *,
     client: AuthenticatedClient,
 ) -> Response[Userprofile]:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
-
-    Args:
-        id (int):
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -71,9 +62,7 @@ def sync_detailed(
         Response[Userprofile]
     """
 
-    kwargs = _get_kwargs(
-        id=id,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -83,18 +72,14 @@ def sync_detailed(
 
 
 def sync(
-    id: int,
     *,
     client: AuthenticatedClient,
 ) -> Userprofile | None:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
-
-    Args:
-        id (int):
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -105,24 +90,19 @@ def sync(
     """
 
     return sync_detailed(
-        id=id,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: int,
     *,
     client: AuthenticatedClient,
 ) -> Response[Userprofile]:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
-
-    Args:
-        id (int):
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -132,9 +112,7 @@ async def asyncio_detailed(
         Response[Userprofile]
     """
 
-    kwargs = _get_kwargs(
-        id=id,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -142,18 +120,14 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: int,
     *,
     client: AuthenticatedClient,
 ) -> Userprofile | None:
     """API endpoint for the user profile
 
-    This endpoint works somewhat differently than the others since it always
-    returns the data for the currently logged-in user's profile. To update
-    the profile, use a POST request with the new data, not a PATCH.
-
-    Args:
-        id (int):
+    Every user has exactly one profile, so this endpoint has no list and no
+    detail route: it always reads and writes the profile of the logged-in user.
+    Updating it takes a PATCH since wger 2.7; up to 2.6 it took a POST.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -165,7 +139,6 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            id=id,
             client=client,
         )
     ).parsed

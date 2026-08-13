@@ -5,28 +5,17 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.userprofile_request import UserprofileRequest
 from ...models.verify_email_response import VerifyEmailResponse
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
-def _get_kwargs(
-    *,
-    body: UserprofileRequest | Unset = UNSET,
-) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
+def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/api/v2/userprofile/verify-email/",
     }
 
-    if not isinstance(body, Unset):
-        _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -58,14 +47,10 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: UserprofileRequest | Unset = UNSET,
 ) -> Response[VerifyEmailResponse]:
     """Verify the user's email address
 
     POST only, a GET must not send out emails as a side effect
-
-    Args:
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -75,9 +60,7 @@ def sync_detailed(
         Response[VerifyEmailResponse]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -89,14 +72,10 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: UserprofileRequest | Unset = UNSET,
 ) -> VerifyEmailResponse | None:
     """Verify the user's email address
 
     POST only, a GET must not send out emails as a side effect
-
-    Args:
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -108,21 +87,16 @@ def sync(
 
     return sync_detailed(
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: UserprofileRequest | Unset = UNSET,
 ) -> Response[VerifyEmailResponse]:
     """Verify the user's email address
 
     POST only, a GET must not send out emails as a side effect
-
-    Args:
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -132,9 +106,7 @@ async def asyncio_detailed(
         Response[VerifyEmailResponse]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -144,14 +116,10 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: UserprofileRequest | Unset = UNSET,
 ) -> VerifyEmailResponse | None:
     """Verify the user's email address
 
     POST only, a GET must not send out emails as a side effect
-
-    Args:
-        body (UserprofileRequest | Unset): Workout session serializer
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -164,6 +132,5 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            body=body,
         )
     ).parsed

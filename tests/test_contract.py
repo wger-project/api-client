@@ -1,7 +1,8 @@
 """
 Checks that the generated client encodes the parts of the API contract that are
 easy to get wrong when the REST calls are hand-written: read-only endpoints,
-allowed methods per URL, valid enum values and the set of writable fields.
+allowed methods per URL, valid enum values, the set of writable fields and how
+list filters end up in the query string.
 """
 
 import dataclasses
@@ -10,9 +11,12 @@ import inspect
 import pkgutil
 from pathlib import Path
 
+import httpx
 import pytest
+from ruamel.yaml import YAML
 
 PACKAGE = Path(__file__).parent.parent / "wger_api_client"
+SCHEMA = Path(__file__).parent.parent / "schema" / "wger-openapi.yaml"
 
 
 def operations(tag: str) -> set[str]:
@@ -121,3 +125,58 @@ def test_routine_actions_have_their_own_response_types():
     for module, model in expected.items():
         annotation = str(inspect.signature(module.sync).return_annotation)
         assert model in annotation, f"{module.__name__} returns {annotation}"
+
+
+def query(operation: str, **kwargs) -> httpx.QueryParams:
+    """The query string one operation builds, decoded"""
+    module = importlib.import_module(f"wger_api_client.api.{operation}")
+    request = module._get_kwargs(**kwargs)
+    return httpx.Request(
+        request["method"],
+        "http://wger.local" + request["url"],
+        params=request["params"],
+    ).url.params
+
+
+def array_parameters() -> list[tuple[str, str, bool]]:
+    """(operation id, parameter name, joined) for every array query parameter"""
+    doc = YAML(typ="safe").load(SCHEMA)
+    return [
+        (operation["operationId"], param["name"], param.get("explode") is False)
+        for operations in doc["paths"].values()
+        for operation in operations.values()
+        if isinstance(operation, dict)
+        for param in operation.get("parameters", [])
+        if param.get("in") == "query" and param.get("schema", {}).get("type") == "array"
+    ]
+
+
+ARRAY_PARAMETERS = array_parameters()
+
+
+def test_in_filter_is_sent_as_one_comma_separated_value():
+    assert query("ingredient.ingredient_list", id_in=[9, 12, 13]).get_list(
+        "id__in"
+    ) == ["9,12,13"]
+
+
+def test_multiple_choice_filter_is_sent_repeated():
+    assert query("exercise.exercise_list", equipment=[1, 3]).get_list("equipment") == [
+        "1",
+        "3",
+    ]
+
+
+@pytest.mark.parametrize(
+    "operation,name,joined",
+    ARRAY_PARAMETERS,
+    ids=[f"{o}-{n}" for o, n, _ in ARRAY_PARAMETERS],
+)
+def test_array_parameter_matches_the_serialization_in_the_schema(
+    operation, name, joined
+):
+    tag = next(p.parent.name for p in PACKAGE.rglob(f"{operation}.py"))
+    values = query(f"{tag}.{operation}", **{name.replace("__", "_"): [1, 2]}).get_list(
+        name
+    )
+    assert values == (["1,2"] if joined else ["1", "2"])

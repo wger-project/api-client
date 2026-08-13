@@ -29,9 +29,9 @@ def _get_kwargs(
 
     params["id"] = id
 
-    json_id_in: list[int] | Unset = UNSET
+    json_id_in: str | Unset = UNSET
     if not isinstance(id_in, Unset):
-        json_id_in = id_in
+        json_id_in = ",".join(str(v) for v in id_in)
 
     params["id__in"] = json_id_in
 
@@ -51,9 +51,9 @@ def _get_kwargs(
 
     params["trophy_type"] = json_trophy_type
 
-    json_trophy_type_in: list[str] | Unset = UNSET
+    json_trophy_type_in: str | Unset = UNSET
     if not isinstance(trophy_type_in, Unset):
-        json_trophy_type_in = trophy_type_in
+        json_trophy_type_in = ",".join(str(v) for v in trophy_type_in)
 
     params["trophy_type__in"] = json_trophy_type_in
 

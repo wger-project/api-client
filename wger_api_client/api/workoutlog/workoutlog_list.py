@@ -100,17 +100,17 @@ def _get_kwargs(
 
     params["exercise"] = exercise
 
-    json_exercise_in: list[int] | Unset = UNSET
+    json_exercise_in: str | Unset = UNSET
     if not isinstance(exercise_in, Unset):
-        json_exercise_in = exercise_in
+        json_exercise_in = ",".join(str(v) for v in exercise_in)
 
     params["exercise__in"] = json_exercise_in
 
     params["iteration"] = iteration
 
-    json_iteration_in: list[int] | Unset = UNSET
+    json_iteration_in: str | Unset = UNSET
     if not isinstance(iteration_in, Unset):
-        json_iteration_in = iteration_in
+        json_iteration_in = ",".join(str(v) for v in iteration_in)
 
     params["iteration__in"] = json_iteration_in
 
@@ -142,9 +142,9 @@ def _get_kwargs(
 
     params["repetitions_unit"] = repetitions_unit
 
-    json_repetitions_unit_in: list[int] | Unset = UNSET
+    json_repetitions_unit_in: str | Unset = UNSET
     if not isinstance(repetitions_unit_in, Unset):
-        json_repetitions_unit_in = repetitions_unit_in
+        json_repetitions_unit_in = ",".join(str(v) for v in repetitions_unit_in)
 
     params["repetitions_unit__in"] = json_repetitions_unit_in
 
@@ -154,9 +154,9 @@ def _get_kwargs(
 
     params["rir__gte"] = rir_gte
 
-    json_rir_in: list[float] | Unset = UNSET
+    json_rir_in: str | Unset = UNSET
     if not isinstance(rir_in, Unset):
-        json_rir_in = rir_in
+        json_rir_in = ",".join(str(v) for v in rir_in)
 
     params["rir__in"] = json_rir_in
 
@@ -170,9 +170,9 @@ def _get_kwargs(
 
     params["rir_target__gte"] = rir_target_gte
 
-    json_rir_target_in: list[float] | Unset = UNSET
+    json_rir_target_in: str | Unset = UNSET
     if not isinstance(rir_target_in, Unset):
-        json_rir_target_in = rir_target_in
+        json_rir_target_in = ",".join(str(v) for v in rir_target_in)
 
     params["rir_target__in"] = json_rir_target_in
 
@@ -209,9 +209,9 @@ def _get_kwargs(
 
     params["weight_unit"] = weight_unit
 
-    json_weight_unit_in: list[int] | Unset = UNSET
+    json_weight_unit_in: str | Unset = UNSET
     if not isinstance(weight_unit_in, Unset):
-        json_weight_unit_in = weight_unit_in
+        json_weight_unit_in = ",".join(str(v) for v in weight_unit_in)
 
     params["weight_unit__in"] = json_weight_unit_in
 

@@ -103,9 +103,9 @@ def _get_kwargs(
 
     params["id__gte"] = id_gte
 
-    json_id_in: list[int] | Unset = UNSET
+    json_id_in: str | Unset = UNSET
     if not isinstance(id_in, Unset):
-        json_id_in = id_in
+        json_id_in = ",".join(str(v) for v in id_in)
 
     params["id__in"] = json_id_in
 
@@ -121,9 +121,9 @@ def _get_kwargs(
 
     params["language__code"] = language_code
 
-    json_language_in: list[int] | Unset = UNSET
+    json_language_in: str | Unset = UNSET
     if not isinstance(language_in, Unset):
-        json_language_in = language_in
+        json_language_in = ",".join(str(v) for v in language_in)
 
     params["language__in"] = json_language_in
 
@@ -175,9 +175,9 @@ def _get_kwargs(
 
     params["nutriscore__gte"] = nutriscore_gte
 
-    json_nutriscore_in: list[str] | Unset = UNSET
+    json_nutriscore_in: str | Unset = UNSET
     if not isinstance(nutriscore_in, Unset):
-        json_nutriscore_in = nutriscore_in
+        json_nutriscore_in = ",".join(str(v) for v in nutriscore_in)
 
     params["nutriscore__in"] = json_nutriscore_in
 

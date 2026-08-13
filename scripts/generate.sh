@@ -41,6 +41,9 @@ generate() {
     touch "$target/py.typed"
     # the generator formats with ruff and leaves its cache behind
     rm -rf "$target/.ruff_cache"
+    # works around an upstream bug, see the script's docstring
+    # See https://github.com/openapi-generators/openapi-python-client/pull/1296
+    uv run --quiet python scripts/patch_generated.py "$SCHEMA" "$target"
 }
 
 if [[ ${1:-} == --check ]]; then

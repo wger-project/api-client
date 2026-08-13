@@ -9,6 +9,11 @@ First version of the package. See [backend release notes]( https://github.com/wg
 
 ## Unreleased
 
+* The `*__in` filters (`id__in`, `category__in`, `muscles__in`, and so on) now
+  send their values as one comma-separated parameter, as the API expects. They
+  were sent as repeated parameters before, and the server applied only the last
+  value of each.
+
 ## 2.7.0
 
 ...

@@ -58,9 +58,9 @@ def _get_kwargs(
 
     params["id"] = id
 
-    json_id_in: list[int] | Unset = UNSET
+    json_id_in: str | Unset = UNSET
     if not isinstance(id_in, Unset):
-        json_id_in = id_in
+        json_id_in = ",".join(str(v) for v in id_in)
 
     params["id__in"] = json_id_in
 

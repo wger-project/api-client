@@ -34,12 +34,9 @@ def _get_kwargs(
         json_category = str(category)
     params["category"] = json_category
 
-    json_category_in: list[str] | Unset = UNSET
+    json_category_in: str | Unset = UNSET
     if not isinstance(category_in, Unset):
-        json_category_in = []
-        for category_in_item_data in category_in:
-            category_in_item = str(category_in_item_data)
-            json_category_in.append(category_in_item)
+        json_category_in = ",".join(str(v) for v in category_in)
 
     params["category__in"] = json_category_in
 
@@ -73,12 +70,9 @@ def _get_kwargs(
         json_id = str(id)
     params["id"] = json_id
 
-    json_id_in: list[str] | Unset = UNSET
+    json_id_in: str | Unset = UNSET
     if not isinstance(id_in, Unset):
-        json_id_in = []
-        for id_in_item_data in id_in:
-            id_in_item = str(id_in_item_data)
-            json_id_in.append(id_in_item)
+        json_id_in = ",".join(str(v) for v in id_in)
 
     params["id__in"] = json_id_in
 

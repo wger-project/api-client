@@ -37,9 +37,9 @@ def _get_kwargs(
 
     params["category"] = category
 
-    json_category_in: list[int] | Unset = UNSET
+    json_category_in: str | Unset = UNSET
     if not isinstance(category_in, Unset):
-        json_category_in = category_in
+        json_category_in = ",".join(str(v) for v in category_in)
 
     params["category__in"] = json_category_in
 
@@ -49,17 +49,17 @@ def _get_kwargs(
 
     params["equipment"] = json_equipment
 
-    json_equipment_in: list[int] | Unset = UNSET
+    json_equipment_in: str | Unset = UNSET
     if not isinstance(equipment_in, Unset):
-        json_equipment_in = equipment_in
+        json_equipment_in = ",".join(str(v) for v in equipment_in)
 
     params["equipment__in"] = json_equipment_in
 
     params["id"] = id
 
-    json_id_in: list[int] | Unset = UNSET
+    json_id_in: str | Unset = UNSET
     if not isinstance(id_in, Unset):
-        json_id_in = id_in
+        json_id_in = ",".join(str(v) for v in id_in)
 
     params["id__in"] = json_id_in
 
@@ -73,9 +73,9 @@ def _get_kwargs(
 
     params["muscles"] = json_muscles
 
-    json_muscles_in: list[int] | Unset = UNSET
+    json_muscles_in: str | Unset = UNSET
     if not isinstance(muscles_in, Unset):
-        json_muscles_in = muscles_in
+        json_muscles_in = ",".join(str(v) for v in muscles_in)
 
     params["muscles__in"] = json_muscles_in
 
@@ -85,9 +85,9 @@ def _get_kwargs(
 
     params["muscles_secondary"] = json_muscles_secondary
 
-    json_muscles_secondary_in: list[int] | Unset = UNSET
+    json_muscles_secondary_in: str | Unset = UNSET
     if not isinstance(muscles_secondary_in, Unset):
-        json_muscles_secondary_in = muscles_secondary_in
+        json_muscles_secondary_in = ",".join(str(v) for v in muscles_secondary_in)
 
     params["muscles_secondary__in"] = json_muscles_secondary_in
 
@@ -109,12 +109,9 @@ def _get_kwargs(
         json_variation_group = str(variation_group)
     params["variation_group"] = json_variation_group
 
-    json_variation_group_in: list[str] | Unset = UNSET
+    json_variation_group_in: str | Unset = UNSET
     if not isinstance(variation_group_in, Unset):
-        json_variation_group_in = []
-        for variation_group_in_item_data in variation_group_in:
-            variation_group_in_item = str(variation_group_in_item_data)
-            json_variation_group_in.append(variation_group_in_item)
+        json_variation_group_in = ",".join(str(v) for v in variation_group_in)
 
     params["variation_group__in"] = json_variation_group_in
 

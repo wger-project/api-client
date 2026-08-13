@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wger-api-client"
-version = "2.6.0"
+version = "2.6.1"
 description = "Typed Python client for the wger workout manager REST API"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -40,6 +40,9 @@ dev = [
     "pytest>=8",
     "openapi-python-client>=0.29",
     "ruff>=0.9",
+    # scripts/patch_generated.py reads the schema. Declared rather than relied on
+    # through the generator, which happens to pull the same parser in.
+    "ruamel.yaml>=0.18",
 ]
 
 [tool.hatch.build.targets.wheel]

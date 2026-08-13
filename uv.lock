@@ -496,7 +496,7 @@ wheels = [
 
 [[package]]
 name = "wger-api-client"
-version = "2.6.0"
+version = "2.6.1"
 source = { editable = "." }
 dependencies = [
     { name = "attrs" },
@@ -507,6 +507,7 @@ dependencies = [
 dev = [
     { name = "openapi-python-client" },
     { name = "pytest" },
+    { name = "ruamel-yaml" },
     { name = "ruff" },
 ]
 
@@ -520,5 +521,6 @@ requires-dist = [
 dev = [
     { name = "openapi-python-client", specifier = ">=0.29" },
     { name = "pytest", specifier = ">=8" },
+    { name = "ruamel-yaml", specifier = ">=0.18" },
     { name = "ruff", specifier = ">=0.9" },
 ]

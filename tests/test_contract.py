@@ -61,20 +61,28 @@ def test_workout_endpoint_does_not_exist():
         importlib.import_module("wger_api_client.api.workout")
 
 
-def test_userprofile_list_url_has_no_patch():
-    """Profile updates go through POST on the list URL, not PATCH"""
+def test_userprofile_is_updated_with_patch():
     ops = operations("userprofile")
-    assert "userprofile_create" in ops
-    assert "userprofile_patch" not in ops
+    assert "userprofile_partial_update" in ops
+    assert "userprofile_update_legacy" in ops
+    assert not {"userprofile_create", "userprofile_destroy"} & ops
 
 
-def test_userprofile_list_returns_a_single_object():
-    from wger_api_client.api.userprofile import userprofile_list
+def test_userprofile_returns_a_single_object():
+    """
+    Every user has exactly one profile, so the endpoint has neither a list nor a
+    detail route: it reads the profile of the logged-in user, without an id.
+    """
+    from wger_api_client.api.userprofile import userprofile_retrieve
     from wger_api_client.models import Userprofile
 
-    annotation = inspect.signature(userprofile_list.sync).return_annotation
-    assert Userprofile.__name__ in str(annotation)
-    assert "Paginated" not in str(annotation)
+    assert "userprofile_list" not in operations("userprofile")
+
+    signature = inspect.signature(userprofile_retrieve.sync)
+    assert "id" not in signature.parameters
+    annotation = str(signature.return_annotation)
+    assert Userprofile.__name__ in annotation
+    assert "Paginated" not in annotation
 
 
 def test_day_type_rejects_invalid_choices():

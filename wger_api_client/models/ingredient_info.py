@@ -319,7 +319,9 @@ class IngredientInfo:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         from ..models.ingredient_image import IngredientImage
-        from ..models.ingredient_weight_unit import IngredientWeightUnit
+        from ..models.ingredient_weight_unit import (
+            IngredientWeightUnit,
+        )
         from ..models.language import Language
         from ..models.license_ import License
         from ..models.thumbnails import Thumbnails

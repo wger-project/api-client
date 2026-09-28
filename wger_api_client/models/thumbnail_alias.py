@@ -44,7 +44,9 @@ class ThumbnailAlias:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.thumbnail_alias_settings import ThumbnailAliasSettings
+        from ..models.thumbnail_alias_settings import (
+            ThumbnailAliasSettings,
+        )
 
         d = dict(src_dict)
         url = d.pop("url")

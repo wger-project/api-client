@@ -158,7 +158,9 @@ class ExerciseInfo:
         from ..models.equipment import Equipment
         from ..models.exercise_category import ExerciseCategory
         from ..models.exercise_image import ExerciseImage
-        from ..models.exercise_translation_info import ExerciseTranslationInfo
+        from ..models.exercise_translation_info import (
+            ExerciseTranslationInfo,
+        )
         from ..models.exercise_video_info import ExerciseVideoInfo
         from ..models.license_ import License
         from ..models.muscle import Muscle

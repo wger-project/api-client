@@ -294,7 +294,9 @@ class Ingredient:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.ingredient_weight_unit import IngredientWeightUnit
+        from ..models.ingredient_weight_unit import (
+            IngredientWeightUnit,
+        )
 
         d = dict(src_dict)
         id = d.pop("id")

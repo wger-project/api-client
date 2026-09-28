@@ -47,7 +47,9 @@ class MealItemInfo:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.ingredient_image import IngredientImage
-        from ..models.ingredient_weight_unit import IngredientWeightUnit
+        from ..models.ingredient_weight_unit import (
+            IngredientWeightUnit,
+        )
 
         meal = str(self.meal)
 
@@ -100,7 +102,9 @@ class MealItemInfo:
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         from ..models.ingredient_image import IngredientImage
         from ..models.ingredient_info import IngredientInfo
-        from ..models.ingredient_weight_unit import IngredientWeightUnit
+        from ..models.ingredient_weight_unit import (
+            IngredientWeightUnit,
+        )
 
         d = dict(src_dict)
         meal = UUID(d.pop("meal"))

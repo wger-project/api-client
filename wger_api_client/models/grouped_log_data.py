@@ -58,8 +58,12 @@ class GroupedLogData:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         from ..models.grouped_log_data_daily import GroupedLogDataDaily
-        from ..models.grouped_log_data_iteration import GroupedLogDataIteration
-        from ..models.grouped_log_data_weekly import GroupedLogDataWeekly
+        from ..models.grouped_log_data_iteration import (
+            GroupedLogDataIteration,
+        )
+        from ..models.grouped_log_data_weekly import (
+            GroupedLogDataWeekly,
+        )
         from ..models.log_data import LogData
 
         d = dict(src_dict)

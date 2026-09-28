@@ -86,8 +86,12 @@ class ExerciseTranslationSubmission:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.exercise_submission_alias import ExerciseSubmissionAlias
-        from ..models.exercise_submission_comment import ExerciseSubmissionComment
+        from ..models.exercise_submission_alias import (
+            ExerciseSubmissionAlias,
+        )
+        from ..models.exercise_submission_comment import (
+            ExerciseSubmissionComment,
+        )
 
         d = dict(src_dict)
         name = d.pop("name")

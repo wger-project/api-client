@@ -68,7 +68,9 @@ class PaginatedMaxRepetitionsConfigList:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.max_repetitions_config import MaxRepetitionsConfig
+        from ..models.max_repetitions_config import (
+            MaxRepetitionsConfig,
+        )
 
         d = dict(src_dict)
         count = d.pop("count")

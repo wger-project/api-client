@@ -15,8 +15,6 @@ T = TypeVar("T", bound="GroupedLogDataDaily")
 
 @_attrs_define
 class GroupedLogDataDaily:
-    """ """
-
     additional_properties: dict[str, LogData] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

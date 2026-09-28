@@ -91,7 +91,9 @@ class IngredientValues:
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
-        from ..models.ingredient_values_errors import IngredientValuesErrors
+        from ..models.ingredient_values_errors import (
+            IngredientValuesErrors,
+        )
 
         d = dict(src_dict)
         energy = d.pop("energy")

@@ -7,12 +7,17 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.paginated_weight_entry_list import PaginatedWeightEntryList
+from ...models.measurement_value_counts_list_source import (
+    MeasurementValueCountsListSource,
+)
+from ...models.value_count import ValueCount
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -20,17 +25,24 @@ def _get_kwargs(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
+    source: MeasurementValueCountsListSource | Unset = UNSET,
+    summed_per_day: bool | Unset = UNSET,
+    tz: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
+
+    json_category: str | Unset = UNSET
+    if not isinstance(category, Unset):
+        json_category = str(category)
+    params["category"] = json_category
+
+    json_category_in: str | Unset = UNSET
+    if not isinstance(category_in, Unset):
+        json_category_in = ",".join(str(v) for v in category_in)
+
+    params["category__in"] = json_category_in
 
     json_date: str | Unset = UNSET
     if not isinstance(date, Unset):
@@ -68,27 +80,23 @@ def _get_kwargs(
 
     params["id__in"] = json_id_in
 
-    params["limit"] = limit
-
-    params["offset"] = offset
-
     params["ordering"] = ordering
 
-    params["weight"] = weight
+    json_source: str | Unset = UNSET
+    if not isinstance(source, Unset):
+        json_source = source
 
-    params["weight__gt"] = weight_gt
+    params["source"] = json_source
 
-    params["weight__gte"] = weight_gte
+    params["summed_per_day"] = summed_per_day
 
-    params["weight__lt"] = weight_lt
-
-    params["weight__lte"] = weight_lte
+    params["tz"] = tz
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/api/v2/weightentry/",
+        "url": "/api/v2/measurement/value-counts/",
         "params": params,
     }
 
@@ -97,9 +105,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> PaginatedWeightEntryList | None:
+) -> list[ValueCount] | None:
     if response.status_code == 200:
-        response_200 = PaginatedWeightEntryList.from_dict(response.json())
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = ValueCount.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
 
         return response_200
 
@@ -111,7 +124,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[PaginatedWeightEntryList]:
+) -> Response[list[ValueCount]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -123,6 +136,8 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -130,18 +145,22 @@ def sync_detailed(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> Response[PaginatedWeightEntryList]:
-    """API endpoint for weight entry objects
+    source: MeasurementValueCountsListSource | Unset = UNSET,
+    summed_per_day: bool | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> Response[list[ValueCount]]:
+    """Read how often each value occurred
+
+     How often each value occurred, which is what a histogram bins.
+
+    Takes the same filters, plus `tz` and `summed_per_day` for the metrics
+    whose samples mean nothing on their own (steps, sleep), which are
+    counted as daily totals instead.
 
     Args:
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -149,24 +168,22 @@ def sync_detailed(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementValueCountsListSource | Unset):
+        summed_per_day (bool | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedWeightEntryList]
+        Response[list[ValueCount]]
     """
 
     kwargs = _get_kwargs(
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -174,14 +191,10 @@ def sync_detailed(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        summed_per_day=summed_per_day,
+        tz=tz,
     )
 
     response = client.get_httpx_client().request(
@@ -194,6 +207,8 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -201,18 +216,22 @@ def sync(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> PaginatedWeightEntryList | None:
-    """API endpoint for weight entry objects
+    source: MeasurementValueCountsListSource | Unset = UNSET,
+    summed_per_day: bool | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> list[ValueCount] | None:
+    """Read how often each value occurred
+
+     How often each value occurred, which is what a histogram bins.
+
+    Takes the same filters, plus `tz` and `summed_per_day` for the metrics
+    whose samples mean nothing on their own (steps, sleep), which are
+    counted as daily totals instead.
 
     Args:
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -220,25 +239,23 @@ def sync(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementValueCountsListSource | Unset):
+        summed_per_day (bool | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedWeightEntryList
+        list[ValueCount]
     """
 
     return sync_detailed(
         client=client,
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -246,20 +263,18 @@ def sync(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        summed_per_day=summed_per_day,
+        tz=tz,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -267,18 +282,22 @@ async def asyncio_detailed(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> Response[PaginatedWeightEntryList]:
-    """API endpoint for weight entry objects
+    source: MeasurementValueCountsListSource | Unset = UNSET,
+    summed_per_day: bool | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> Response[list[ValueCount]]:
+    """Read how often each value occurred
+
+     How often each value occurred, which is what a histogram bins.
+
+    Takes the same filters, plus `tz` and `summed_per_day` for the metrics
+    whose samples mean nothing on their own (steps, sleep), which are
+    counted as daily totals instead.
 
     Args:
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -286,24 +305,22 @@ async def asyncio_detailed(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementValueCountsListSource | Unset):
+        summed_per_day (bool | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedWeightEntryList]
+        Response[list[ValueCount]]
     """
 
     kwargs = _get_kwargs(
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -311,14 +328,10 @@ async def asyncio_detailed(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        summed_per_day=summed_per_day,
+        tz=tz,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -329,6 +342,8 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -336,18 +351,22 @@ async def asyncio(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> PaginatedWeightEntryList | None:
-    """API endpoint for weight entry objects
+    source: MeasurementValueCountsListSource | Unset = UNSET,
+    summed_per_day: bool | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> list[ValueCount] | None:
+    """Read how often each value occurred
+
+     How often each value occurred, which is what a histogram bins.
+
+    Takes the same filters, plus `tz` and `summed_per_day` for the metrics
+    whose samples mean nothing on their own (steps, sleep), which are
+    counted as daily totals instead.
 
     Args:
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -355,26 +374,24 @@ async def asyncio(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementValueCountsListSource | Unset):
+        summed_per_day (bool | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedWeightEntryList
+        list[ValueCount]
     """
 
     return (
         await asyncio_detailed(
             client=client,
+            category=category,
+            category_in=category_in,
             date=date,
             date_gt=date_gt,
             date_gte=date_gte,
@@ -382,13 +399,9 @@ async def asyncio(
             date_lte=date_lte,
             id=id,
             id_in=id_in,
-            limit=limit,
-            offset=offset,
             ordering=ordering,
-            weight=weight,
-            weight_gt=weight_gt,
-            weight_gte=weight_gte,
-            weight_lt=weight_lt,
-            weight_lte=weight_lte,
+            source=source,
+            summed_per_day=summed_per_day,
+            tz=tz,
         )
     ).parsed

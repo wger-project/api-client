@@ -7,12 +7,21 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.paginated_weight_entry_list import PaginatedWeightEntryList
+from ...models.bucket import Bucket
+from ...models.measurement_aggregate_list_bucket import (
+    MeasurementAggregateListBucket,
+)
+from ...models.measurement_aggregate_list_source import (
+    MeasurementAggregateListSource,
+)
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
+    bucket: MeasurementAggregateListBucket | Unset = UNSET,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -20,17 +29,30 @@ def _get_kwargs(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
+    max_points: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
+    source: MeasurementAggregateListSource | Unset = UNSET,
+    tz: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
+
+    json_bucket: str | Unset = UNSET
+    if not isinstance(bucket, Unset):
+        json_bucket = bucket
+
+    params["bucket"] = json_bucket
+
+    json_category: str | Unset = UNSET
+    if not isinstance(category, Unset):
+        json_category = str(category)
+    params["category"] = json_category
+
+    json_category_in: str | Unset = UNSET
+    if not isinstance(category_in, Unset):
+        json_category_in = ",".join(str(v) for v in category_in)
+
+    params["category__in"] = json_category_in
 
     json_date: str | Unset = UNSET
     if not isinstance(date, Unset):
@@ -68,27 +90,23 @@ def _get_kwargs(
 
     params["id__in"] = json_id_in
 
-    params["limit"] = limit
-
-    params["offset"] = offset
+    params["max_points"] = max_points
 
     params["ordering"] = ordering
 
-    params["weight"] = weight
+    json_source: str | Unset = UNSET
+    if not isinstance(source, Unset):
+        json_source = source
 
-    params["weight__gt"] = weight_gt
+    params["source"] = json_source
 
-    params["weight__gte"] = weight_gte
-
-    params["weight__lt"] = weight_lt
-
-    params["weight__lte"] = weight_lte
+    params["tz"] = tz
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/api/v2/weightentry/",
+        "url": "/api/v2/measurement/aggregate/",
         "params": params,
     }
 
@@ -97,9 +115,14 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> PaginatedWeightEntryList | None:
+) -> list[Bucket] | None:
     if response.status_code == 200:
-        response_200 = PaginatedWeightEntryList.from_dict(response.json())
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = Bucket.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
 
         return response_200
 
@@ -111,7 +134,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[PaginatedWeightEntryList]:
+) -> Response[list[Bucket]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -123,6 +146,9 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    bucket: MeasurementAggregateListBucket | Unset = UNSET,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -130,18 +156,26 @@ def sync_detailed(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
+    max_points: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> Response[PaginatedWeightEntryList]:
-    """API endpoint for weight entry objects
+    source: MeasurementAggregateListSource | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> Response[list[Bucket]]:
+    """Read the entries condensed into chart points
+
+     The entries condensed into what a chart draws: one row per category,
+    calendar bucket and stored unit.
+
+    Takes the filters of the list endpoint (`category`, `category__in`,
+    `date__gte`, ...) plus `bucket` (`auto`, the default, or one of hour,
+    day, week, month), `tz` and `max_points`. A separate route rather than
+    a mode of the list, because a bucket is not a measurement: it has no
+    id, and nothing that reads measurements should have to tell them apart.
 
     Args:
+        bucket (MeasurementAggregateListBucket | Unset):
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -149,24 +183,23 @@ def sync_detailed(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
+        max_points (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementAggregateListSource | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedWeightEntryList]
+        Response[list[Bucket]]
     """
 
     kwargs = _get_kwargs(
+        bucket=bucket,
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -174,14 +207,10 @@ def sync_detailed(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
+        max_points=max_points,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        tz=tz,
     )
 
     response = client.get_httpx_client().request(
@@ -194,6 +223,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    bucket: MeasurementAggregateListBucket | Unset = UNSET,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -201,18 +233,26 @@ def sync(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
+    max_points: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> PaginatedWeightEntryList | None:
-    """API endpoint for weight entry objects
+    source: MeasurementAggregateListSource | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> list[Bucket] | None:
+    """Read the entries condensed into chart points
+
+     The entries condensed into what a chart draws: one row per category,
+    calendar bucket and stored unit.
+
+    Takes the filters of the list endpoint (`category`, `category__in`,
+    `date__gte`, ...) plus `bucket` (`auto`, the default, or one of hour,
+    day, week, month), `tz` and `max_points`. A separate route rather than
+    a mode of the list, because a bucket is not a measurement: it has no
+    id, and nothing that reads measurements should have to tell them apart.
 
     Args:
+        bucket (MeasurementAggregateListBucket | Unset):
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -220,25 +260,24 @@ def sync(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
+        max_points (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementAggregateListSource | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedWeightEntryList
+        list[Bucket]
     """
 
     return sync_detailed(
         client=client,
+        bucket=bucket,
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -246,20 +285,19 @@ def sync(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
+        max_points=max_points,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        tz=tz,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    bucket: MeasurementAggregateListBucket | Unset = UNSET,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -267,18 +305,26 @@ async def asyncio_detailed(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
+    max_points: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> Response[PaginatedWeightEntryList]:
-    """API endpoint for weight entry objects
+    source: MeasurementAggregateListSource | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> Response[list[Bucket]]:
+    """Read the entries condensed into chart points
+
+     The entries condensed into what a chart draws: one row per category,
+    calendar bucket and stored unit.
+
+    Takes the filters of the list endpoint (`category`, `category__in`,
+    `date__gte`, ...) plus `bucket` (`auto`, the default, or one of hour,
+    day, week, month), `tz` and `max_points`. A separate route rather than
+    a mode of the list, because a bucket is not a measurement: it has no
+    id, and nothing that reads measurements should have to tell them apart.
 
     Args:
+        bucket (MeasurementAggregateListBucket | Unset):
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -286,24 +332,23 @@ async def asyncio_detailed(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
+        max_points (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementAggregateListSource | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedWeightEntryList]
+        Response[list[Bucket]]
     """
 
     kwargs = _get_kwargs(
+        bucket=bucket,
+        category=category,
+        category_in=category_in,
         date=date,
         date_gt=date_gt,
         date_gte=date_gte,
@@ -311,14 +356,10 @@ async def asyncio_detailed(
         date_lte=date_lte,
         id=id,
         id_in=id_in,
-        limit=limit,
-        offset=offset,
+        max_points=max_points,
         ordering=ordering,
-        weight=weight,
-        weight_gt=weight_gt,
-        weight_gte=weight_gte,
-        weight_lt=weight_lt,
-        weight_lte=weight_lte,
+        source=source,
+        tz=tz,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -329,6 +370,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    bucket: MeasurementAggregateListBucket | Unset = UNSET,
+    category: UUID | Unset = UNSET,
+    category_in: list[UUID] | Unset = UNSET,
     date: datetime.datetime | Unset = UNSET,
     date_gt: datetime.datetime | Unset = UNSET,
     date_gte: datetime.datetime | Unset = UNSET,
@@ -336,18 +380,26 @@ async def asyncio(
     date_lte: datetime.datetime | Unset = UNSET,
     id: UUID | Unset = UNSET,
     id_in: list[UUID] | Unset = UNSET,
-    limit: int | Unset = UNSET,
-    offset: int | Unset = UNSET,
+    max_points: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
-    weight: float | Unset = UNSET,
-    weight_gt: float | Unset = UNSET,
-    weight_gte: float | Unset = UNSET,
-    weight_lt: float | Unset = UNSET,
-    weight_lte: float | Unset = UNSET,
-) -> PaginatedWeightEntryList | None:
-    """API endpoint for weight entry objects
+    source: MeasurementAggregateListSource | Unset = UNSET,
+    tz: str | Unset = UNSET,
+) -> list[Bucket] | None:
+    """Read the entries condensed into chart points
+
+     The entries condensed into what a chart draws: one row per category,
+    calendar bucket and stored unit.
+
+    Takes the filters of the list endpoint (`category`, `category__in`,
+    `date__gte`, ...) plus `bucket` (`auto`, the default, or one of hour,
+    day, week, month), `tz` and `max_points`. A separate route rather than
+    a mode of the list, because a bucket is not a measurement: it has no
+    id, and nothing that reads measurements should have to tell them apart.
 
     Args:
+        bucket (MeasurementAggregateListBucket | Unset):
+        category (UUID | Unset):
+        category_in (list[UUID] | Unset):
         date (datetime.datetime | Unset):
         date_gt (datetime.datetime | Unset):
         date_gte (datetime.datetime | Unset):
@@ -355,26 +407,25 @@ async def asyncio(
         date_lte (datetime.datetime | Unset):
         id (UUID | Unset):
         id_in (list[UUID] | Unset):
-        limit (int | Unset):
-        offset (int | Unset):
+        max_points (int | Unset):
         ordering (str | Unset):
-        weight (float | Unset):
-        weight_gt (float | Unset):
-        weight_gte (float | Unset):
-        weight_lt (float | Unset):
-        weight_lte (float | Unset):
+        source (MeasurementAggregateListSource | Unset):
+        tz (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedWeightEntryList
+        list[Bucket]
     """
 
     return (
         await asyncio_detailed(
             client=client,
+            bucket=bucket,
+            category=category,
+            category_in=category_in,
             date=date,
             date_gt=date_gt,
             date_gte=date_gte,
@@ -382,13 +433,9 @@ async def asyncio(
             date_lte=date_lte,
             id=id,
             id_in=id_in,
-            limit=limit,
-            offset=offset,
+            max_points=max_points,
             ordering=ordering,
-            weight=weight,
-            weight_gt=weight_gt,
-            weight_gte=weight_gte,
-            weight_lt=weight_lt,
-            weight_lte=weight_lte,
+            source=source,
+            tz=tz,
         )
     ).parsed

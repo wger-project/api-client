@@ -6,6 +6,9 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.measurement_category_list_metric_type import (
+    MeasurementCategoryListMetricType,
+)
 from ...models.paginated_category_list import PaginatedCategoryList
 from ...types import UNSET, Response, Unset
 
@@ -13,10 +16,13 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     id: UUID | Unset = UNSET,
+    is_official: bool | Unset = UNSET,
     limit: int | Unset = UNSET,
+    metric_type: MeasurementCategoryListMetricType | Unset = UNSET,
     name: str | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    parent: UUID | Unset = UNSET,
     unit: str | Unset = UNSET,
 ) -> dict[str, Any]:
 
@@ -27,13 +33,26 @@ def _get_kwargs(
         json_id = str(id)
     params["id"] = json_id
 
+    params["is_official"] = is_official
+
     params["limit"] = limit
+
+    json_metric_type: str | Unset = UNSET
+    if not isinstance(metric_type, Unset):
+        json_metric_type = metric_type
+
+    params["metric_type"] = json_metric_type
 
     params["name"] = name
 
     params["offset"] = offset
 
     params["ordering"] = ordering
+
+    json_parent: str | Unset = UNSET
+    if not isinstance(parent, Unset):
+        json_parent = str(parent)
+    params["parent"] = json_parent
 
     params["unit"] = unit
 
@@ -77,20 +96,26 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     id: UUID | Unset = UNSET,
+    is_official: bool | Unset = UNSET,
     limit: int | Unset = UNSET,
+    metric_type: MeasurementCategoryListMetricType | Unset = UNSET,
     name: str | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    parent: UUID | Unset = UNSET,
     unit: str | Unset = UNSET,
 ) -> Response[PaginatedCategoryList]:
     """API endpoint for measurement units
 
     Args:
         id (UUID | Unset):
+        is_official (bool | Unset):
         limit (int | Unset):
+        metric_type (MeasurementCategoryListMetricType | Unset):
         name (str | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        parent (UUID | Unset):
         unit (str | Unset):
 
     Raises:
@@ -103,10 +128,13 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         id=id,
+        is_official=is_official,
         limit=limit,
+        metric_type=metric_type,
         name=name,
         offset=offset,
         ordering=ordering,
+        parent=parent,
         unit=unit,
     )
 
@@ -121,20 +149,26 @@ def sync(
     *,
     client: AuthenticatedClient,
     id: UUID | Unset = UNSET,
+    is_official: bool | Unset = UNSET,
     limit: int | Unset = UNSET,
+    metric_type: MeasurementCategoryListMetricType | Unset = UNSET,
     name: str | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    parent: UUID | Unset = UNSET,
     unit: str | Unset = UNSET,
 ) -> PaginatedCategoryList | None:
     """API endpoint for measurement units
 
     Args:
         id (UUID | Unset):
+        is_official (bool | Unset):
         limit (int | Unset):
+        metric_type (MeasurementCategoryListMetricType | Unset):
         name (str | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        parent (UUID | Unset):
         unit (str | Unset):
 
     Raises:
@@ -148,10 +182,13 @@ def sync(
     return sync_detailed(
         client=client,
         id=id,
+        is_official=is_official,
         limit=limit,
+        metric_type=metric_type,
         name=name,
         offset=offset,
         ordering=ordering,
+        parent=parent,
         unit=unit,
     ).parsed
 
@@ -160,20 +197,26 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     id: UUID | Unset = UNSET,
+    is_official: bool | Unset = UNSET,
     limit: int | Unset = UNSET,
+    metric_type: MeasurementCategoryListMetricType | Unset = UNSET,
     name: str | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    parent: UUID | Unset = UNSET,
     unit: str | Unset = UNSET,
 ) -> Response[PaginatedCategoryList]:
     """API endpoint for measurement units
 
     Args:
         id (UUID | Unset):
+        is_official (bool | Unset):
         limit (int | Unset):
+        metric_type (MeasurementCategoryListMetricType | Unset):
         name (str | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        parent (UUID | Unset):
         unit (str | Unset):
 
     Raises:
@@ -186,10 +229,13 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         id=id,
+        is_official=is_official,
         limit=limit,
+        metric_type=metric_type,
         name=name,
         offset=offset,
         ordering=ordering,
+        parent=parent,
         unit=unit,
     )
 
@@ -202,20 +248,26 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     id: UUID | Unset = UNSET,
+    is_official: bool | Unset = UNSET,
     limit: int | Unset = UNSET,
+    metric_type: MeasurementCategoryListMetricType | Unset = UNSET,
     name: str | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    parent: UUID | Unset = UNSET,
     unit: str | Unset = UNSET,
 ) -> PaginatedCategoryList | None:
     """API endpoint for measurement units
 
     Args:
         id (UUID | Unset):
+        is_official (bool | Unset):
         limit (int | Unset):
+        metric_type (MeasurementCategoryListMetricType | Unset):
         name (str | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        parent (UUID | Unset):
         unit (str | Unset):
 
     Raises:
@@ -230,10 +282,13 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             id=id,
+            is_official=is_official,
             limit=limit,
+            metric_type=metric_type,
             name=name,
             offset=offset,
             ordering=ordering,
+            parent=parent,
             unit=unit,
         )
     ).parsed

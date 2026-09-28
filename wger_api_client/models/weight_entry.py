@@ -3,9 +3,12 @@ from __future__ import annotations
 import datetime
 from collections.abc import Mapping
 from typing import Any, Self, TypeVar
+from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WeightEntry")
 
@@ -15,56 +18,72 @@ class WeightEntry:
     """Weight serializer
 
     Attributes:
-        id (int):
-        date (datetime.datetime):
         weight (str):
         user (int):
+        id (UUID | Unset):
+        date (datetime.datetime | Unset):
     """
 
-    id: int
-    date: datetime.datetime
     weight: str
     user: int
+    id: UUID | Unset = UNSET
+    date: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        id = self.id
-
-        date = self.date.isoformat()
-
         weight = self.weight
 
         user = self.user
+
+        id: str | Unset = UNSET
+        if not isinstance(self.id, Unset):
+            id = str(self.id)
+
+        date: str | Unset = UNSET
+        if not isinstance(self.date, Unset):
+            date = self.date.isoformat()
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "id": id,
-                "date": date,
                 "weight": weight,
                 "user": user,
             }
         )
+        if id is not UNSET:
+            field_dict["id"] = id
+        if date is not UNSET:
+            field_dict["date"] = date
 
         return field_dict
 
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
-        id = d.pop("id")
-
-        date = datetime.datetime.fromisoformat(d.pop("date"))
-
         weight = d.pop("weight")
 
         user = d.pop("user")
 
+        _id = d.pop("id", UNSET)
+        id: UUID | Unset
+        if isinstance(_id, Unset):
+            id = UNSET
+        else:
+            id = UUID(_id)
+
+        _date = d.pop("date", UNSET)
+        date: datetime.datetime | Unset
+        if isinstance(_date, Unset):
+            date = UNSET
+        else:
+            date = datetime.datetime.fromisoformat(_date)
+
         weight_entry = cls(
-            id=id,
-            date=date,
             weight=weight,
             user=user,
+            id=id,
+            date=date,
         )
 
         weight_entry.additional_properties = d

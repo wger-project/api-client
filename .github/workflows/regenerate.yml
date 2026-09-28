@@ -37,6 +37,11 @@ jobs:
           WGER_BASE_URL: ${{ inputs.base-url }}
         run: uv run python scripts/sync_schema.py
 
+      # yq is preinstalled on the GitHub runners
+      - name: Read the server version
+        id: version
+        run: echo "version=$(yq '.info.version' schema/wger-openapi.yaml)" >> "$GITHUB_OUTPUT"
+
       - name: Regenerate the client
         run: scripts/generate.sh
 
@@ -68,11 +73,12 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         env:
           BASE_URL: ${{ inputs.base-url }}
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -c "$BRANCH"
-          git commit -m 'Refresh the schema and regenerate' \
+          git commit -m "Refresh the schema and regenerate (wger ${VERSION})" \
                      -m "Generated from ${BASE_URL} by the regenerate workflow."
           git push --force origin "$BRANCH"
 
@@ -83,29 +89,31 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: ${{ inputs.base-url }}
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           cat > /tmp/pr-body.md <<EOF
-          Generated from \`${BASE_URL}\`.
+          Generated from \`${BASE_URL}\`, server version \`${VERSION}\`.
 
           Review the diff of \`schema/wger-openapi.yaml\` for removed endpoints, changed
           response types, new required parameters and renamed \`operationId\` values.
-          A rename will also change the s name in the generated client, which breaks its
+          A rename will also change the function name in the generated client, which breaks its
           consumers even when the API itself did not change.
 
           After merging:
-          * bump the version \`uv version x.y.z\`
+          * bump the version \`uv version ${VERSION}\`
           * update the changelog
-          * tag the version \`git tag x.y.z && git push origin x.y.z\` 
-          * make a release \`gh release create x.y.z --generate-notes\`
+          * tag the version \`git tag ${VERSION} && git push origin ${VERSION}\` 
+          * make a release \`gh release create ${VERSION} --generate-notes\`
           EOF
 
           if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --title "Regenerate the client for wger ${VERSION}"
             gh pr comment "$BRANCH" --body-file /tmp/pr-body.md
             echo 'Updated the existing pull request.'
           else
             gh pr create \
               --base master \
               --head "$BRANCH" \
-              --title 'Refresh the schema and regenerate the client' \
+              --title "Regenerate the client for wger ${VERSION}" \
               --body-file /tmp/pr-body.md
           fi

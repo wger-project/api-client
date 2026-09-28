@@ -3,6 +3,7 @@ from __future__ import annotations
 import datetime
 from collections.abc import Mapping
 from typing import Any, Self, TypeVar
+from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,15 +18,21 @@ class PatchedWeightEntryRequest:
     """Weight serializer
 
     Attributes:
+        id (UUID | Unset):
         date (datetime.datetime | Unset):
         weight (str | Unset):
     """
 
+    id: UUID | Unset = UNSET
     date: datetime.datetime | Unset = UNSET
     weight: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        id: str | Unset = UNSET
+        if not isinstance(self.id, Unset):
+            id = str(self.id)
+
         date: str | Unset = UNSET
         if not isinstance(self.date, Unset):
             date = self.date.isoformat()
@@ -35,6 +42,8 @@ class PatchedWeightEntryRequest:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if id is not UNSET:
+            field_dict["id"] = id
         if date is not UNSET:
             field_dict["date"] = date
         if weight is not UNSET:
@@ -45,6 +54,13 @@ class PatchedWeightEntryRequest:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
+        _id = d.pop("id", UNSET)
+        id: UUID | Unset
+        if isinstance(_id, Unset):
+            id = UNSET
+        else:
+            id = UUID(_id)
+
         _date = d.pop("date", UNSET)
         date: datetime.datetime | Unset
         if isinstance(_date, Unset):
@@ -55,6 +71,7 @@ class PatchedWeightEntryRequest:
         weight = d.pop("weight", UNSET)
 
         patched_weight_entry_request = cls(
+            id=id,
             date=date,
             weight=weight,
         )

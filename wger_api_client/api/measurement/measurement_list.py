@@ -7,6 +7,9 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.measurement_list_source import (
+    MeasurementListSource,
+)
 from ...models.paginated_measurement_list import PaginatedMeasurementList
 from ...types import UNSET, Response, Unset
 
@@ -25,6 +28,7 @@ def _get_kwargs(
     limit: int | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    source: MeasurementListSource | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -82,6 +86,12 @@ def _get_kwargs(
 
     params["ordering"] = ordering
 
+    json_source: str | Unset = UNSET
+    if not isinstance(source, Unset):
+        json_source = source
+
+    params["source"] = json_source
+
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
@@ -133,6 +143,7 @@ def sync_detailed(
     limit: int | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    source: MeasurementListSource | Unset = UNSET,
 ) -> Response[PaginatedMeasurementList]:
     """API endpoint for measurements
 
@@ -149,6 +160,7 @@ def sync_detailed(
         limit (int | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        source (MeasurementListSource | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -171,6 +183,7 @@ def sync_detailed(
         limit=limit,
         offset=offset,
         ordering=ordering,
+        source=source,
     )
 
     response = client.get_httpx_client().request(
@@ -195,6 +208,7 @@ def sync(
     limit: int | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    source: MeasurementListSource | Unset = UNSET,
 ) -> PaginatedMeasurementList | None:
     """API endpoint for measurements
 
@@ -211,6 +225,7 @@ def sync(
         limit (int | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        source (MeasurementListSource | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -234,6 +249,7 @@ def sync(
         limit=limit,
         offset=offset,
         ordering=ordering,
+        source=source,
     ).parsed
 
 
@@ -252,6 +268,7 @@ async def asyncio_detailed(
     limit: int | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    source: MeasurementListSource | Unset = UNSET,
 ) -> Response[PaginatedMeasurementList]:
     """API endpoint for measurements
 
@@ -268,6 +285,7 @@ async def asyncio_detailed(
         limit (int | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        source (MeasurementListSource | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -290,6 +308,7 @@ async def asyncio_detailed(
         limit=limit,
         offset=offset,
         ordering=ordering,
+        source=source,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -312,6 +331,7 @@ async def asyncio(
     limit: int | Unset = UNSET,
     offset: int | Unset = UNSET,
     ordering: str | Unset = UNSET,
+    source: MeasurementListSource | Unset = UNSET,
 ) -> PaginatedMeasurementList | None:
     """API endpoint for measurements
 
@@ -328,6 +348,7 @@ async def asyncio(
         limit (int | Unset):
         offset (int | Unset):
         ordering (str | Unset):
+        source (MeasurementListSource | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -352,5 +373,6 @@ async def asyncio(
             limit=limit,
             offset=offset,
             ordering=ordering,
+            source=source,
         )
     ).parsed

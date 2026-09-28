@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from typing import Any
 from urllib.parse import quote
+from uuid import UUID
 
 import httpx
 
@@ -12,7 +13,7 @@ from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
-    id: int,
+    id: UUID,
     *,
     body: PatchedWeightEntryRequest | Unset = UNSET,
 ) -> dict[str, Any]:
@@ -60,15 +61,15 @@ def _build_response(
 
 
 def sync_detailed(
-    id: int,
+    id: UUID,
     *,
     client: AuthenticatedClient,
     body: PatchedWeightEntryRequest | Unset = UNSET,
 ) -> Response[WeightEntry]:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
-        id (int):
+        id (UUID):
         body (PatchedWeightEntryRequest | Unset): Weight serializer
 
     Raises:
@@ -92,15 +93,15 @@ def sync_detailed(
 
 
 def sync(
-    id: int,
+    id: UUID,
     *,
     client: AuthenticatedClient,
     body: PatchedWeightEntryRequest | Unset = UNSET,
 ) -> WeightEntry | None:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
-        id (int):
+        id (UUID):
         body (PatchedWeightEntryRequest | Unset): Weight serializer
 
     Raises:
@@ -119,15 +120,15 @@ def sync(
 
 
 async def asyncio_detailed(
-    id: int,
+    id: UUID,
     *,
     client: AuthenticatedClient,
     body: PatchedWeightEntryRequest | Unset = UNSET,
 ) -> Response[WeightEntry]:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
-        id (int):
+        id (UUID):
         body (PatchedWeightEntryRequest | Unset): Weight serializer
 
     Raises:
@@ -149,15 +150,15 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: int,
+    id: UUID,
     *,
     client: AuthenticatedClient,
     body: PatchedWeightEntryRequest | Unset = UNSET,
 ) -> WeightEntry | None:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
-        id (int):
+        id (UUID):
         body (PatchedWeightEntryRequest | Unset): Weight serializer
 
     Raises:

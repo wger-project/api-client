@@ -59,7 +59,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: WeightEntryRequest,
 ) -> Response[WeightEntry]:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
         body (WeightEntryRequest): Weight serializer
@@ -88,7 +88,7 @@ def sync(
     client: AuthenticatedClient,
     body: WeightEntryRequest,
 ) -> WeightEntry | None:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
         body (WeightEntryRequest): Weight serializer
@@ -112,7 +112,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: WeightEntryRequest,
 ) -> Response[WeightEntry]:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
         body (WeightEntryRequest): Weight serializer
@@ -139,7 +139,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: WeightEntryRequest,
 ) -> WeightEntry | None:
-    """API endpoint for nutrition plan objects
+    """API endpoint for weight entry objects
 
     Args:
         body (WeightEntryRequest): Weight serializer

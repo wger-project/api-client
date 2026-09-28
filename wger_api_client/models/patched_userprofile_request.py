@@ -56,6 +56,8 @@ class PatchedUserprofileRequest:
         weight_unit (WeightUnitEnum | Unset): * `kg` - Metric (kilogram)
             * `lb` - Imperial (pound)
         num_days_weight_reminder (int | Unset): Number of days after the last weight entry (enter 0 to deactivate)
+        time_zone (str | Unset): IANA timezone name, e.g. "Europe/Berlin". Empty means no client has reported one and
+            the instance timezone is used.
     """
 
     weight_rounding: None | str | Unset = UNSET
@@ -78,6 +80,7 @@ class PatchedUserprofileRequest:
     calories: int | None | Unset = UNSET
     weight_unit: WeightUnitEnum | Unset = UNSET
     num_days_weight_reminder: int | Unset = UNSET
+    time_zone: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -189,6 +192,8 @@ class PatchedUserprofileRequest:
 
         num_days_weight_reminder = self.num_days_weight_reminder
 
+        time_zone = self.time_zone
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -232,6 +237,8 @@ class PatchedUserprofileRequest:
             field_dict["weight_unit"] = weight_unit
         if num_days_weight_reminder is not UNSET:
             field_dict["num_days_weight_reminder"] = num_days_weight_reminder
+        if time_zone is not UNSET:
+            field_dict["time_zone"] = time_zone
 
         return field_dict
 
@@ -426,6 +433,8 @@ class PatchedUserprofileRequest:
 
         num_days_weight_reminder = d.pop("num_days_weight_reminder", UNSET)
 
+        time_zone = d.pop("time_zone", UNSET)
+
         patched_userprofile_request = cls(
             weight_rounding=weight_rounding,
             repetitions_rounding=repetitions_rounding,
@@ -447,6 +456,7 @@ class PatchedUserprofileRequest:
             calories=calories,
             weight_unit=weight_unit,
             num_days_weight_reminder=num_days_weight_reminder,
+            time_zone=time_zone,
         )
 
         patched_userprofile_request.additional_properties = d

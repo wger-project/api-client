@@ -6,27 +6,39 @@ from typing import Any, Self, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="RefreshTokenResponse")
+T = TypeVar("T", bound="DynamicType")
 
 
 @_attrs_define
-class RefreshTokenResponse:
-    """
-    Attributes:
-        refresh_token (str):
+class DynamicType:
+    """One calculated category type of the registry. Read-only: the registry is
+    code, there is nothing to write back.
+
+        Attributes:
+            value (str):
+            label (str):
+            params_schema (Any):
     """
 
-    refresh_token: str
+    value: str
+    label: str
+    params_schema: Any
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        refresh_token = self.refresh_token
+        value = self.value
+
+        label = self.label
+
+        params_schema = self.params_schema
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "refresh_token": refresh_token,
+                "value": value,
+                "label": label,
+                "params_schema": params_schema,
             }
         )
 
@@ -35,14 +47,20 @@ class RefreshTokenResponse:
     @classmethod
     def from_dict(cls, src_dict: Mapping[str, Any]) -> Self:
         d = dict(src_dict)
-        refresh_token = d.pop("refresh_token")
+        value = d.pop("value")
 
-        refresh_token_response = cls(
-            refresh_token=refresh_token,
+        label = d.pop("label")
+
+        params_schema = d.pop("params_schema")
+
+        dynamic_type = cls(
+            value=value,
+            label=label,
+            params_schema=params_schema,
         )
 
-        refresh_token_response.additional_properties = d
-        return refresh_token_response
+        dynamic_type.additional_properties = d
+        return dynamic_type
 
     @property
     def additional_keys(self) -> list[str]:

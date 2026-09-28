@@ -5,15 +5,15 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.refresh_token_response import RefreshTokenResponse
+from ...models.dynamic_type import DynamicType
 from ...types import Response
 
 
 def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": "/api/v2/issue-refresh-token",
+        "method": "get",
+        "url": "/api/v2/measurement-category/dynamic-types/",
     }
 
     return _kwargs
@@ -21,9 +21,14 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> RefreshTokenResponse | None:
+) -> list[DynamicType] | None:
     if response.status_code == 200:
-        response_200 = RefreshTokenResponse.from_dict(response.json())
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = DynamicType.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
 
         return response_200
 
@@ -35,7 +40,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[RefreshTokenResponse]:
+) -> Response[list[DynamicType]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -47,20 +52,18 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-) -> Response[RefreshTokenResponse]:
-    """Temporary endpoint for issuing refresh tokens for authenticated users.
+) -> Response[list[DynamicType]]:
+    """Read the available calculated category types
 
-    This endpoint is used to allow users of the mobile app to seamlessly move from
-    permanent tokens to JWT ones.
-
-    TODO: remove one version after the iniial offline-mode release
+     The calculated types a category can be switched to, with the schema
+    their dynamic_params have to match
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[RefreshTokenResponse]
+        Response[list[DynamicType]]
     """
 
     kwargs = _get_kwargs()
@@ -75,20 +78,18 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-) -> RefreshTokenResponse | None:
-    """Temporary endpoint for issuing refresh tokens for authenticated users.
+) -> list[DynamicType] | None:
+    """Read the available calculated category types
 
-    This endpoint is used to allow users of the mobile app to seamlessly move from
-    permanent tokens to JWT ones.
-
-    TODO: remove one version after the iniial offline-mode release
+     The calculated types a category can be switched to, with the schema
+    their dynamic_params have to match
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        RefreshTokenResponse
+        list[DynamicType]
     """
 
     return sync_detailed(
@@ -99,20 +100,18 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-) -> Response[RefreshTokenResponse]:
-    """Temporary endpoint for issuing refresh tokens for authenticated users.
+) -> Response[list[DynamicType]]:
+    """Read the available calculated category types
 
-    This endpoint is used to allow users of the mobile app to seamlessly move from
-    permanent tokens to JWT ones.
-
-    TODO: remove one version after the iniial offline-mode release
+     The calculated types a category can be switched to, with the schema
+    their dynamic_params have to match
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[RefreshTokenResponse]
+        Response[list[DynamicType]]
     """
 
     kwargs = _get_kwargs()
@@ -125,20 +124,18 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-) -> RefreshTokenResponse | None:
-    """Temporary endpoint for issuing refresh tokens for authenticated users.
+) -> list[DynamicType] | None:
+    """Read the available calculated category types
 
-    This endpoint is used to allow users of the mobile app to seamlessly move from
-    permanent tokens to JWT ones.
-
-    TODO: remove one version after the iniial offline-mode release
+     The calculated types a category can be switched to, with the schema
+    their dynamic_params have to match
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        RefreshTokenResponse
+        list[DynamicType]
     """
 
     return (

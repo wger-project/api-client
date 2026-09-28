@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: wger
-  version: 2.7.0a2
+  version: 2.7.0
   description: |
     Self hosted FLOSS workout and fitness tracker.
 
@@ -2973,31 +2973,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/IngredientWeightUnit'
           description: ''
-  /api/v2/issue-refresh-token:
-    post:
-      operationId: issue_refresh_token_create
-      description: |-
-        Temporary endpoint for issuing refresh tokens for authenticated users.
-
-        This endpoint is used to allow users of the mobile app to seamlessly move from
-        permanent tokens to JWT ones.
-
-        TODO: remove one version after the iniial offline-mode release
-      tags:
-      - issue-refresh-token
-      security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - headlessJwtAuth: []
-      - oidcAuth: []
-      - jwtAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefreshTokenResponse'
-          description: ''
   /api/v2/language/:
     get:
       operationId: language_list
@@ -4731,6 +4706,20 @@ paths:
         description: Which field to use when ordering the results.
         schema:
           type: string
+      - in: query
+        name: source
+        schema:
+          type: string
+          enum:
+          - apple
+          - calculated
+          - google
+          - user
+        description: |-
+          * `user` - User
+          * `google` - Google
+          * `apple` - Apple
+          * `calculated` - Calculated
       tags:
       - measurement
       security:
@@ -4780,12 +4769,62 @@ paths:
         schema:
           type: string
           format: uuid
+      - in: query
+        name: is_official
+        schema:
+          type: boolean
       - name: limit
         required: false
         in: query
         description: Number of results to return per page.
         schema:
           type: integer
+      - in: query
+        name: metric_type
+        schema:
+          type: string
+          enum:
+          - blood_oxygen
+          - blood_pressure
+          - blood_pressure_diastolic
+          - blood_pressure_systolic
+          - body_fat
+          - body_weight
+          - custom
+          - distance
+          - energy
+          - heart_rate
+          - height
+          - lean_body_mass
+          - resting_heart_rate
+          - sleep
+          - sleep_awake
+          - sleep_deep
+          - sleep_light
+          - sleep_rem
+          - sleep_total
+          - steps
+        description: |-
+          * `custom` - Custom
+          * `body_weight` - Body Weight
+          * `body_fat` - Body Fat
+          * `lean_body_mass` - Lean Body Mass
+          * `height` - Height
+          * `blood_pressure` - Blood Pressure
+          * `blood_pressure_systolic` - Blood Pressure Systolic
+          * `blood_pressure_diastolic` - Blood Pressure Diastolic
+          * `heart_rate` - Heart Rate
+          * `resting_heart_rate` - Resting Heart Rate
+          * `blood_oxygen` - Blood Oxygen
+          * `steps` - Steps
+          * `distance` - Distance
+          * `energy` - Energy
+          * `sleep` - Sleep
+          * `sleep_total` - Total sleep
+          * `sleep_light` - Light sleep
+          * `sleep_deep` - Deep sleep
+          * `sleep_rem` - REM sleep
+          * `sleep_awake` - Awake
       - in: query
         name: name
         schema:
@@ -4802,6 +4841,11 @@ paths:
         description: Which field to use when ordering the results.
         schema:
           type: string
+      - in: query
+        name: parent
+        schema:
+          type: string
+          format: uuid
       - in: query
         name: unit
         schema:
@@ -4957,6 +5001,30 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/v2/measurement-category/dynamic-types/:
+    get:
+      operationId: measurement_category_dynamic_types_list
+      description: |-
+        The calculated types a category can be switched to, with the schema
+        their dynamic_params have to match
+      summary: Read the available calculated category types
+      tags:
+      - measurement-category
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - headlessJwtAuth: []
+      - oidcAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DynamicType'
+          description: ''
   /api/v2/measurement/{id}/:
     get:
       operationId: measurement_retrieve
@@ -5069,6 +5137,250 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/v2/measurement/aggregate/:
+    get:
+      operationId: measurement_aggregate_list
+      description: |-
+        The entries condensed into what a chart draws: one row per category,
+        calendar bucket and stored unit.
+
+        Takes the filters of the list endpoint (`category`, `category__in`,
+        `date__gte`, ...) plus `bucket` (`auto`, the default, or one of hour,
+        day, week, month), `tz` and `max_points`. A separate route rather than
+        a mode of the list, because a bucket is not a measurement: it has no
+        id, and nothing that reads measurements should have to tell them apart.
+      summary: Read the entries condensed into chart points
+      parameters:
+      - in: query
+        name: bucket
+        schema:
+          type: string
+          enum:
+          - auto
+          - day
+          - hour
+          - month
+          - week
+        description: Calendar unit to condense into. The default picks the finest
+          one that keeps the series under max_points.
+      - in: query
+        name: category
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: category__in
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+        description: Multiple values may be separated by commas.
+        explode: false
+        style: form
+      - in: query
+        name: date
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__gt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__gte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__lt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__lte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: id
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: id__in
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+        description: Multiple values may be separated by commas.
+        explode: false
+        style: form
+      - in: query
+        name: max_points
+        schema:
+          type: integer
+        description: Points the auto bucket aims for, 200 by default
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: source
+        schema:
+          type: string
+          enum:
+          - apple
+          - calculated
+          - google
+          - user
+        description: |-
+          * `user` - User
+          * `google` - Google
+          * `apple` - Apple
+          * `calculated` - Calculated
+      - in: query
+        name: tz
+        schema:
+          type: string
+        description: IANA name of the zone the buckets are cut in, the server zone
+          by default. The column is UTC, and a reading after midnight belongs to the
+          day the user had it.
+      tags:
+      - measurement
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - headlessJwtAuth: []
+      - oidcAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bucket'
+          description: ''
+  /api/v2/measurement/value-counts/:
+    get:
+      operationId: measurement_value_counts_list
+      description: |-
+        How often each value occurred, which is what a histogram bins.
+
+        Takes the same filters, plus `tz` and `summed_per_day` for the metrics
+        whose samples mean nothing on their own (steps, sleep), which are
+        counted as daily totals instead.
+      summary: Read how often each value occurred
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: category__in
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+        description: Multiple values may be separated by commas.
+        explode: false
+        style: form
+      - in: query
+        name: date
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__gt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__gte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__lt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: date__lte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: id
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: id__in
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+        description: Multiple values may be separated by commas.
+        explode: false
+        style: form
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: source
+        schema:
+          type: string
+          enum:
+          - apple
+          - calculated
+          - google
+          - user
+        description: |-
+          * `user` - User
+          * `google` - Google
+          * `apple` - Apple
+          * `calculated` - Calculated
+      - in: query
+        name: summed_per_day
+        schema:
+          type: boolean
+        description: Count daily totals rather than single readings, for the metrics
+          whose samples mean nothing on their own (steps, sleep)
+      - in: query
+        name: tz
+        schema:
+          type: string
+        description: IANA name of the zone the days are cut in
+      tags:
+      - measurement
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - headlessJwtAuth: []
+      - oidcAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValueCount'
+          description: ''
   /api/v2/min-app-version/:
     get:
       operationId: min_app_version_retrieve
@@ -9130,7 +9442,7 @@ paths:
   /api/v2/weightentry/:
     get:
       operationId: weightentry_list
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       parameters:
       - in: query
         name: date
@@ -9160,13 +9472,15 @@ paths:
       - in: query
         name: id
         schema:
-          type: integer
+          type: string
+          format: uuid
       - in: query
         name: id__in
         schema:
           type: array
           items:
-            type: integer
+            type: string
+            format: uuid
         description: Multiple values may be separated by commas.
         explode: false
         style: form
@@ -9225,7 +9539,7 @@ paths:
           description: ''
     post:
       operationId: weightentry_create
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       tags:
       - weightentry
       requestBody:
@@ -9250,13 +9564,14 @@ paths:
   /api/v2/weightentry/{id}/:
     get:
       operationId: weightentry_retrieve
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       parameters:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this Weight entry.
+          type: string
+          format: uuid
+        description: A UUID string identifying this measurement.
         required: true
       tags:
       - weightentry
@@ -9275,13 +9590,14 @@ paths:
           description: ''
     put:
       operationId: weightentry_update
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       parameters:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this Weight entry.
+          type: string
+          format: uuid
+        description: A UUID string identifying this measurement.
         required: true
       tags:
       - weightentry
@@ -9306,13 +9622,14 @@ paths:
           description: ''
     patch:
       operationId: weightentry_partial_update
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       parameters:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this Weight entry.
+          type: string
+          format: uuid
+        description: A UUID string identifying this measurement.
         required: true
       tags:
       - weightentry
@@ -9336,13 +9653,14 @@ paths:
           description: ''
     delete:
       operationId: weightentry_destroy
-      description: API endpoint for nutrition plan objects
+      description: API endpoint for weight entry objects
       parameters:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this Weight entry.
+          type: string
+          format: uuid
+        description: A UUID string identifying this measurement.
         required: true
       tags:
       - weightentry
@@ -9764,10 +10082,69 @@ paths:
       description: API endpoint for workout sessions objects
       parameters:
       - in: query
-        name: date
+        name: datetime_end
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_end__date
         schema:
           type: string
           format: date
+      - in: query
+        name: datetime_end__gt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_end__gte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_end__lt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_end__lte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_start
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_start__date
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: datetime_start__gt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_start__gte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_start__lt
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: datetime_start__lte
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: day
+        schema:
+          type: integer
       - in: query
         name: impression
         schema:
@@ -9809,16 +10186,6 @@ paths:
         name: routine
         schema:
           type: integer
-      - in: query
-        name: time_end
-        schema:
-          type: string
-          format: time
-      - in: query
-        name: time_start
-        schema:
-          type: string
-          format: time
       tags:
       - workoutsession
       security:
@@ -9973,6 +10340,51 @@ components:
     BlankEnum:
       enum:
       - ''
+    Bucket:
+      type: object
+      description: |-
+        One calendar bucket of a category's entries, see `api.aggregates`.
+
+        Read-only: buckets are derived, there is nothing to write back.
+      properties:
+        category:
+          type: string
+          format: uuid
+          readOnly: true
+        start:
+          type: string
+          format: date-time
+          readOnly: true
+        unit:
+          type: string
+          readOnly: true
+          nullable: true
+        count:
+          type: integer
+          readOnly: true
+        sum:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+      required:
+      - category
+      - count
+      - max
+      - min
+      - start
+      - sum
+      - unit
     Category:
       type: object
       description: Measurement category serializer
@@ -9986,9 +10398,34 @@ components:
         unit:
           type: string
           maxLength: 30
+        metric_type:
+          $ref: '#/components/schemas/MetricTypeEnum'
+        chart_type:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/ChartTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        chart_config: {}
+        parent:
+          type: string
+          format: uuid
+          nullable: true
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        is_official:
+          type: boolean
+          readOnly: true
+          title: Official category
+        dynamic_type:
+          $ref: '#/components/schemas/DynamicTypeEnum'
+        dynamic_params:
+          description: Configuration parameters for dynamic calculations
       required:
+      - is_official
       - name
-      - unit
     CategoryRequest:
       type: object
       description: Measurement category serializer
@@ -10002,11 +10439,44 @@ components:
           maxLength: 100
         unit:
           type: string
-          minLength: 1
           maxLength: 30
+        metric_type:
+          $ref: '#/components/schemas/MetricTypeEnum'
+        chart_type:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/ChartTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        chart_config: {}
+        parent:
+          type: string
+          format: uuid
+          nullable: true
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        dynamic_type:
+          $ref: '#/components/schemas/DynamicTypeEnum'
+        dynamic_params:
+          description: Configuration parameters for dynamic calculations
       required:
       - name
-      - unit
+    ChartTypeEnum:
+      enum:
+      - line
+      - bar
+      - heatmap
+      - delta
+      - distribution
+      type: string
+      description: |-
+        * `line` - Line
+        * `bar` - Bar
+        * `heatmap` - Heatmap
+        * `delta` - Delta
+        * `distribution` - Distribution
     CursorPaginatedIngredientInfoList:
       type: object
       required:
@@ -10166,6 +10636,38 @@ components:
       - replaced_by
       - timestamp
       - uuid
+    DynamicType:
+      type: object
+      description: |-
+        One calculated category type of the registry. Read-only: the registry is
+        code, there is nothing to write back.
+      properties:
+        value:
+          type: string
+          readOnly: true
+        label:
+          type: string
+          readOnly: true
+        params_schema:
+          readOnly: true
+      required:
+      - label
+      - params_schema
+      - value
+    DynamicTypeEnum:
+      enum:
+      - NONE
+      - BMI
+      - WHTR
+      - ONE_REP_MAX
+      - ONE_RM_TOTAL
+      type: string
+      description: |-
+        * `NONE` - None
+        * `BMI` - BMI
+        * `WHTR` - Waist-to-height ratio
+        * `ONE_REP_MAX` - 1RM
+        * `ONE_RM_TOTAL` - 1RM total
     Equipment:
       type: object
       description: Equipment serializer
@@ -12654,12 +13156,22 @@ components:
         value:
           type: number
           format: double
-          maximum: 5000
+          maximum: 1000000
           minimum: 0
+          exclusiveMaximum: true
         notes:
           type: string
           title: Description
           maxLength: 100
+        source:
+          allOf:
+          - $ref: '#/components/schemas/SourceEnum'
+          default: user
+        external_id:
+          type: string
+          format: uuid
+          nullable: true
+        extra_data: {}
       required:
       - category
       - value
@@ -12679,15 +13191,69 @@ components:
         value:
           type: number
           format: double
-          maximum: 5000
+          maximum: 1000000
           minimum: 0
+          exclusiveMaximum: true
         notes:
           type: string
           title: Description
           maxLength: 100
+        source:
+          allOf:
+          - $ref: '#/components/schemas/SourceEnum'
+          default: user
+        external_id:
+          type: string
+          format: uuid
+          nullable: true
+        extra_data: {}
       required:
       - category
       - value
+    MetricTypeEnum:
+      enum:
+      - custom
+      - body_weight
+      - body_fat
+      - lean_body_mass
+      - height
+      - blood_pressure
+      - blood_pressure_systolic
+      - blood_pressure_diastolic
+      - heart_rate
+      - resting_heart_rate
+      - blood_oxygen
+      - steps
+      - distance
+      - energy
+      - sleep
+      - sleep_total
+      - sleep_light
+      - sleep_deep
+      - sleep_rem
+      - sleep_awake
+      type: string
+      description: |-
+        * `custom` - Custom
+        * `body_weight` - Body Weight
+        * `body_fat` - Body Fat
+        * `lean_body_mass` - Lean Body Mass
+        * `height` - Height
+        * `blood_pressure` - Blood Pressure
+        * `blood_pressure_systolic` - Blood Pressure Systolic
+        * `blood_pressure_diastolic` - Blood Pressure Diastolic
+        * `heart_rate` - Heart Rate
+        * `resting_heart_rate` - Resting Heart Rate
+        * `blood_oxygen` - Blood Oxygen
+        * `steps` - Steps
+        * `distance` - Distance
+        * `energy` - Energy
+        * `sleep` - Sleep
+        * `sleep_total` - Total sleep
+        * `sleep_light` - Light sleep
+        * `sleep_deep` - Deep sleep
+        * `sleep_rem` - REM sleep
+        * `sleep_awake` - Awake
     ModelTypeEnum:
       enum:
       - base
@@ -14056,8 +14622,28 @@ components:
           maxLength: 100
         unit:
           type: string
-          minLength: 1
           maxLength: 30
+        metric_type:
+          $ref: '#/components/schemas/MetricTypeEnum'
+        chart_type:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/ChartTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        chart_config: {}
+        parent:
+          type: string
+          format: uuid
+          nullable: true
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        dynamic_type:
+          $ref: '#/components/schemas/DynamicTypeEnum'
+        dynamic_params:
+          description: Configuration parameters for dynamic calculations
     PatchedDayRequest:
       type: object
       description: Day serializer
@@ -14483,12 +15069,21 @@ components:
         value:
           type: number
           format: double
-          maximum: 5000
+          maximum: 1000000
           minimum: 0
+          exclusiveMaximum: true
         notes:
           type: string
           title: Description
           maxLength: 100
+        source:
+          allOf:
+          - $ref: '#/components/schemas/SourceEnum'
+        external_id:
+          type: string
+          format: uuid
+          nullable: true
+        extra_data: {}
     PatchedNutritionPlanRequest:
       type: object
       description: Nutritional plan serializer
@@ -14851,6 +15446,12 @@ components:
           minimum: 0
           title: Automatic reminders for weight entries
           description: Number of days after the last weight entry (enter 0 to deactivate)
+        time_zone:
+          type: string
+          title: Timezone
+          description: IANA timezone name, e.g. "Europe/Berlin". Empty means no client
+            has reported one and the instance timezone is used.
+          maxLength: 50
     PatchedWeightConfigRequest:
       type: object
       description: Weight Config serializer
@@ -14877,13 +15478,16 @@ components:
       type: object
       description: Weight serializer
       properties:
+        id:
+          type: string
+          format: uuid
         date:
           type: string
           format: date-time
         weight:
           type: string
           format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
     PatchedWorkoutLogRequest:
       type: object
       description: Workout log serializer
@@ -14975,9 +15579,6 @@ components:
         day:
           type: integer
           nullable: true
-        date:
-          type: string
-          format: date
         notes:
           type: string
           nullable: true
@@ -14992,16 +15593,15 @@ components:
             * `1` - Bad
             * `2` - Neutral
             * `3` - Good
-        time_start:
+        datetime_start:
           type: string
-          format: time
-          nullable: true
-          title: Start time
-        time_end:
+          format: date-time
+          title: Start date and time
+        datetime_end:
           type: string
-          format: time
+          format: date-time
           nullable: true
-          title: Finish time
+          title: End date and time
     PermissionResponse:
       type: object
       properties:
@@ -15048,13 +15648,6 @@ components:
           type: string
         details:
           type: string
-    RefreshTokenResponse:
-      type: object
-      properties:
-        refresh_token:
-          type: string
-      required:
-      - refresh_token
     RepetitionUnit:
       type: object
       description: Repetition unit serializer
@@ -15792,6 +16385,18 @@ components:
       - day
       - entries
       - id
+    SourceEnum:
+      enum:
+      - user
+      - google
+      - apple
+      - calculated
+      type: string
+      description: |-
+        * `user` - User
+        * `google` - Google
+        * `apple` - Apple
+        * `calculated` - Calculated
     StepEnum:
       enum:
       - na
@@ -16298,6 +16903,12 @@ components:
           minimum: 0
           title: Automatic reminders for weight entries
           description: Number of days after the last weight entry (enter 0 to deactivate)
+        time_zone:
+          type: string
+          title: Timezone
+          description: IANA timezone name, e.g. "Europe/Berlin". Empty means no client
+            has reported one and the instance timezone is used.
+          maxLength: 50
       required:
       - date_joined
       - email
@@ -16445,6 +17056,44 @@ components:
           minimum: 0
           title: Automatic reminders for weight entries
           description: Number of days after the last weight entry (enter 0 to deactivate)
+        time_zone:
+          type: string
+          title: Timezone
+          description: IANA timezone name, e.g. "Europe/Berlin". Empty means no client
+            has reported one and the instance timezone is used.
+          maxLength: 50
+    ValueCount:
+      type: object
+      description: |-
+        How often one value occurred, and when it was measured last. Read-only for
+        the same reason as `BucketSerializer`.
+      properties:
+        category:
+          type: string
+          format: uuid
+          readOnly: true
+        value:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
+          readOnly: true
+        unit:
+          type: string
+          readOnly: true
+          nullable: true
+        count:
+          type: integer
+          readOnly: true
+        newest:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - category
+      - count
+      - newest
+      - unit
+      - value
     VerifyEmailResponse:
       type: object
       properties:
@@ -16517,36 +17166,36 @@ components:
       description: Weight serializer
       properties:
         id:
-          type: integer
-          readOnly: true
+          type: string
+          format: uuid
         date:
           type: string
           format: date-time
         weight:
           type: string
           format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
         user:
           type: integer
           readOnly: true
       required:
-      - date
-      - id
       - user
       - weight
     WeightEntryRequest:
       type: object
       description: Weight serializer
       properties:
+        id:
+          type: string
+          format: uuid
         date:
           type: string
           format: date-time
         weight:
           type: string
           format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
       required:
-      - date
       - weight
     WeightUnitEnum:
       enum:
@@ -16775,9 +17424,6 @@ components:
         day:
           type: integer
           nullable: true
-        date:
-          type: string
-          format: date
         notes:
           type: string
           nullable: true
@@ -16792,16 +17438,15 @@ components:
             * `1` - Bad
             * `2` - Neutral
             * `3` - Good
-        time_start:
+        datetime_start:
           type: string
-          format: time
-          nullable: true
-          title: Start time
-        time_end:
+          format: date-time
+          title: Start date and time
+        datetime_end:
           type: string
-          format: time
+          format: date-time
           nullable: true
-          title: Finish time
+          title: End date and time
     WorkoutSessionRequest:
       type: object
       description: Workout session serializer
@@ -16815,9 +17460,6 @@ components:
         day:
           type: integer
           nullable: true
-        date:
-          type: string
-          format: date
         notes:
           type: string
           nullable: true
@@ -16832,16 +17474,15 @@ components:
             * `1` - Bad
             * `2` - Neutral
             * `3` - Good
-        time_start:
+        datetime_start:
           type: string
-          format: time
-          nullable: true
-          title: Start time
-        time_end:
+          format: date-time
+          title: Start date and time
+        datetime_end:
           type: string
-          format: time
+          format: date-time
           nullable: true
-          title: Finish time
+          title: End date and time
   securitySchemes:
     cookieAuth:
       type: apiKey
@@ -16861,8 +17502,8 @@ components:
       description: Access token issued by the OAuth2/OIDC provider
       flows:
         authorizationCode:
-          authorizationUrl: /identity/o/authorize
-          tokenUrl: /identity/o/api/token
+          authorizationUrl: https://wger.de/identity/o/authorize
+          tokenUrl: https://wger.de/identity/o/api/token
           scopes:
             api:read: View your training, nutrition and body data
             api:write: Add and change your training, nutrition and body data

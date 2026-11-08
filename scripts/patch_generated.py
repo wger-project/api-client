@@ -2,7 +2,7 @@
 """Join ``explode: false`` array query parameters with commas.
 
 openapi-python-client ignores a parameter's ``explode`` attribute and always
-hands the list to httpx, which repeats the parameter. wger declares its
+hands the list to httpx2, which repeats the parameter. wger declares its
 ``*__in`` filters as ``style: form, explode: false``, and Django's
 ``QueryDict.get`` keeps only the last repetition, so ``id__in=[9, 12, 13]``
 filters on 13 alone. No error, just the wrong result set.

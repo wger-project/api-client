@@ -11,7 +11,7 @@ import inspect
 import pkgutil
 from pathlib import Path
 
-import httpx
+import httpx2
 import pytest
 from ruamel.yaml import YAML
 
@@ -135,11 +135,11 @@ def test_routine_actions_have_their_own_response_types():
         assert model in annotation, f"{module.__name__} returns {annotation}"
 
 
-def query(operation: str, **kwargs) -> httpx.QueryParams:
+def query(operation: str, **kwargs) -> httpx2.QueryParams:
     """The query string one operation builds, decoded"""
     module = importlib.import_module(f"wger_api_client.api.{operation}")
     request = module._get_kwargs(**kwargs)
-    return httpx.Request(
+    return httpx2.Request(
         request["method"],
         "http://wger.local" + request["url"],
         params=request["params"],

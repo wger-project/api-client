@@ -3,7 +3,7 @@
 Typed Python client for the [wger](https://github.com/wger-project/wger) REST API,
 generated from the server's OpenAPI schema with
 [openapi-python-client](https://github.com/openapi-generators/openapi-python-client).
-Built on `httpx`, with a sync and an async call for every endpoint.
+Built on `httpx2`, with a sync and an async call for every endpoint.
 
 Note that this is still new, if you encounter any problems, please contact us.
 

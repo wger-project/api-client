@@ -25,7 +25,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "httpx>=0.23,<0.29",
+    "httpx2>=2.13,<3",
     "attrs>=22.2",
 ]
 
@@ -38,7 +38,7 @@ Changelog = "https://github.com/wger-project/api-client/blob/master/CHANGELOG.md
 [dependency-groups]
 dev = [
     "pytest>=8",
-    "openapi-python-client>=0.29",
+    "openapi-python-client>=0.30",
     "ruff>=0.9",
     # scripts/patch_generated.py reads the schema. Declared rather than relied on
     # through the generator, which happens to pull the same parser in.
